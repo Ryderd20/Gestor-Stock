@@ -22,7 +22,7 @@ class ArticulosController():
     def mostrar_articulos(self):
         datos = self.articulos.getArticulos()
         num_filas = len(datos)
-        num_columnas = 5     #podria obtenerlo solo con self.art_view.table_articulos.rowCount  //probar
+        num_columnas = 6     #podria obtenerlo solo con self.art_view.table_articulos.rowCount  //probar
         
 
         self.art_view.table_articulos.setRowCount(num_filas)
@@ -51,7 +51,7 @@ class ArticulosController():
 
         if len(articulo) >0:
             for arts in articulo:
-                self.articulos.updateArticulos(arts[0],arts[1],arts[2],arts[3],arts[4])
+                self.articulos.updateArticulos(arts[0],arts[1],arts[2],arts[3],arts[4],arts[5])
 
         self.mostrar_articulos()
 

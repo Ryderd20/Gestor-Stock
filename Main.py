@@ -5,6 +5,8 @@ from PyQt5.QtCore import QPropertyAnimation,QEasingCurve
 from PyQt5 import QtCore,QtWidgets
 from PyQt5.uic import loadUi
 
+from Controllers.ProveedoresController import ProveedoresController
+
 
 from Controllers.ArticulosController import ArticulosController
 
@@ -20,6 +22,7 @@ class VentanaPrincipal(QMainWindow):
         
 
         #----------------Controladores----------------
+        self.proveedores_controller = ProveedoresController(self)
         self.articulos_controller = ArticulosController(self)
 
         
