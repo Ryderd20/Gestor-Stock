@@ -29,11 +29,20 @@ class VentanaPrincipal(QMainWindow):
         
         #------------------------------------BOTONES------------------------
 
-        #---------------Menu---------------
+        #---------------Menu Principal---------------
+        self.btn_gestioncompras.clicked.connect(lambda:self.stackedWidget_menuSecundario.setCurrentWidget(self.stackedWidget_menuCompras))
+        self.btn_gestioncompras.clicked.connect(lambda:self.stackedWidget.setCurrentWidget(self.page_compras))
 
         self.btn_articulos.clicked.connect(lambda:self.stackedWidget.setCurrentWidget(self.page_articulos))
         self.btn_articulos.clicked.connect(self.articulos_controller.mostrar_articulos)
     
+
+        #---------------Menu Secundario--------------
+        self.btn_proveedores.clicked.connect(lambda:self.stackedWidget.setCurrentWidget(self.page_proveedores))
+
+
+        #---------------Proveedores------------------
+
 
         #---------------Articulos--------------
         self.btn_agregar_art.clicked.connect(lambda:self.stackedWidget.setCurrentWidget(self.page_agregar_art))

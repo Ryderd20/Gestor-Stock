@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Gestor Textil</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -226,7 +226,7 @@ QLineEdit{
                 <string notr="true"/>
                </property>
                <property name="currentIndex">
-                <number>3</number>
+                <number>5</number>
                </property>
                <widget class="QWidget" name="page_stock">
                 <widget class="QLabel" name="label_7">
@@ -1946,7 +1946,7 @@ QPushButton:hover{
              <enum>QFrame::Raised</enum>
             </property>
             <property name="currentIndex">
-             <number>1</number>
+             <number>0</number>
             </property>
             <widget class="QWidget" name="stackedWidget_menuStock">
              <layout class="QVBoxLayout" name="verticalLayout_3">
