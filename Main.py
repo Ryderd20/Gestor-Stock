@@ -39,10 +39,17 @@ class VentanaPrincipal(QMainWindow):
 
         #---------------Menu Secundario--------------
         self.btn_proveedores.clicked.connect(lambda:self.stackedWidget.setCurrentWidget(self.page_proveedores))
-
+        self.btn_proveedores.clicked.connect(self.proveedores_controller.mostrar_proveedores)
 
         #---------------Proveedores------------------
+        self.btn_modificar_proveedor.clicked.connect(lambda:self.stackedWidget.setCurrentWidget(self.page_modificar_proveedor))
+        self.btn_modificar_proveedor.clicked.connect(self.proveedores_controller.cargar_proveedor)
 
+        self.btn_guardar_proveedor_modificar.clicked.connect(self.proveedores_controller.modificar_proveedor)
+        self.btn_guardar_proveedor_modificar.clicked.connect(lambda:self.stackedWidget.setCurrentWidget(self.page_proveedores))
+        self.btn_cancelar_proveedor_modificar.clicked.connect(lambda:self.stackedWidget.setCurrentWidget(self.page_proveedores))
+
+        self.btn_eliminar_proveedor.clicked.connect(self.proveedores_controller.eliminar_proveedor)
 
         #---------------Articulos--------------
         self.btn_agregar_art.clicked.connect(lambda:self.stackedWidget.setCurrentWidget(self.page_agregar_art))
