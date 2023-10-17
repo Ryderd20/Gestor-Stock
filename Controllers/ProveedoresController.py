@@ -22,7 +22,7 @@ class ProveedoresController():
     def mostrar_proveedores(self):
         datos = self.proveedores.getProveedores()
         num_filas = len(datos)
-        num_columnas = 6 #self.proveedores_view.table_proveedores.rowCount    
+        num_columnas = 6 #self.proveedores_view.table_proveedores.rowCount()    
         
 
         self.proveedores_view.table_proveedores.setRowCount(num_filas)
@@ -34,12 +34,9 @@ class ProveedoresController():
                 self.proveedores_view.table_proveedores.setItem(fila, columna, item)
 
     def cargar_proveedor(self):
-        table = self.proveedores_view.table_proveedores
-        if table.currentItem() != None:
-            self.cod = table.currentItem().text()
-            self.proveedor = self.proveedores.getProveedorCod(self.cod)
-
-            
+        item = self.proveedores_view.table_proveedores.item(self.proveedores_view.table_proveedores.currentRow(),0).text()
+        if item != None:
+            self.proveedor = self.proveedores.getProveedorCod(item)            
             if self.proveedor:
                 self.proveedores_view.input_nombre_proveedor_modificar.setText(self.proveedor[1])
                 self.proveedores_view.input_telefono_proveedor_modificar.setText(str(self.proveedor[2]))
@@ -47,6 +44,7 @@ class ProveedoresController():
                 self.proveedores_view.input_direccion_proveedor_modificar.setText(self.proveedor[4])
                 self.proveedores_view.input_descripcion_proveedor_modificar.setText(self.proveedor[5])
     
+
     def modificar_proveedor(self):
         if self.proveedor != "":
             nombre = self.proveedores_view.input_nombre_proveedor_modificar.text()
@@ -55,21 +53,15 @@ class ProveedoresController():
             direccion = self.proveedores_view.input_direccion_proveedor_modificar.text()
             descripcion = self.proveedores_view.input_descripcion_proveedor_modificar.text()
 
-            #cod =  str("'"+ self.cod + "'")
-            #print(cod)
             self.proveedores.updateProveedores(self.cod,nombre,telefono,email,direccion,descripcion)
             self.mostrar_proveedores()
 
         
         
-
-
-    
     def eliminar_proveedor(self):
-        table = self.proveedores_view.table_proveedores
-        if table.currentItem() != None:
-            cod = table.currentItem().text()
-            proveedor = self.proveedores.getProveedorCod(cod)
+        item = self.proveedores_view.table_proveedores.item(self.proveedores_view.table_proveedores.currentRow(),0).text()
+        if item != None:
+            proveedor = self.proveedores.getProveedorCod(item)
             if proveedor:
-                self.proveedores.deleteProveedor(cod)
+                self.proveedores.deleteProveedor(item)
                 self.mostrar_proveedores()

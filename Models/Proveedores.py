@@ -13,7 +13,7 @@ class Proveedores():
         self.control = connection
 
         
-        #-------------CREAR LA TABLA ---------------
+        #-------------CREAR TABLA ---------------
         cursor = self.control.cursor()
         sql = """ CREATE TABLE IF NOT EXISTS "Tabla_Proveedores" (
 	    "Codigo"	INTEGER,
