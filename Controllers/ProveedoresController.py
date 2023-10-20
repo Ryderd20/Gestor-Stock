@@ -43,17 +43,22 @@ class ProveedoresController():
                 self.proveedores_view.input_email_proveedor_modificar.setText(self.proveedor[3])
                 self.proveedores_view.input_direccion_proveedor_modificar.setText(self.proveedor[4])
                 self.proveedores_view.input_descripcion_proveedor_modificar.setText(self.proveedor[5])
+        else:
+            print("Debe seleccionar un Proveedor")
+                
     
 
     def modificar_proveedor(self):
         if self.proveedor != "":
+            
             nombre = self.proveedores_view.input_nombre_proveedor_modificar.text()
             telefono = int(self.proveedores_view.input_telefono_proveedor_modificar.text())
             email = self.proveedores_view.input_email_proveedor_modificar.text()
             direccion = self.proveedores_view.input_direccion_proveedor_modificar.text()
             descripcion = self.proveedores_view.input_descripcion_proveedor_modificar.text()
 
-            self.proveedores.updateProveedores(self.cod,nombre,telefono,email,direccion,descripcion)
+            cod = self.proveedor[0]
+            self.proveedores.updateProveedores(cod,nombre,telefono,email,direccion,descripcion)
             self.mostrar_proveedores()
 
         
