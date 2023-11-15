@@ -589,7 +589,7 @@ QLineEdit{
                       </font>
                      </property>
                      <property name="text">
-                      <string>Nombre:</string>
+                      <string>Nombre:*</string>
                      </property>
                     </widget>
                    </item>
@@ -657,7 +657,7 @@ QLineEdit{
                       </font>
                      </property>
                      <property name="text">
-                      <string>Teléfono:</string>
+                      <string>Teléfono:*</string>
                      </property>
                     </widget>
                    </item>
@@ -725,7 +725,10 @@ QLineEdit{
                       </font>
                      </property>
                      <property name="text">
-                      <string>E-Mail:</string>
+                      <string>E-Mail:*</string>
+                     </property>
+                     <property name="buddy">
+                      <cstring>label_19</cstring>
                      </property>
                     </widget>
                    </item>
@@ -793,7 +796,10 @@ QLineEdit{
                       </font>
                      </property>
                      <property name="text">
-                      <string>Dirección:</string>
+                      <string>Dirección:*</string>
+                     </property>
+                     <property name="buddy">
+                      <cstring>label_20</cstring>
                      </property>
                     </widget>
                    </item>
@@ -900,6 +906,13 @@ QLineEdit{
                   </layout>
                  </item>
                  <item>
+                  <widget class="QLabel" name="signal_proveedor_nuevo">
+                   <property name="text">
+                    <string>Espacios obligatorios*</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
                   <spacer name="verticalSpacer_4">
                    <property name="orientation">
                     <enum>Qt::Vertical</enum>
@@ -928,7 +941,7 @@ QLineEdit{
                     </spacer>
                    </item>
                    <item>
-                    <widget class="QPushButton" name="btn_cancelar_proveedor_nuevo">
+                    <widget class="QPushButton" name="btn_atras_proveedor_nuevo">
                      <property name="minimumSize">
                       <size>
                        <width>200</width>
@@ -939,7 +952,7 @@ QLineEdit{
                       <cursorShape>PointingHandCursor</cursorShape>
                      </property>
                      <property name="text">
-                      <string>Cancelar</string>
+                      <string>Atras</string>
                      </property>
                     </widget>
                    </item>
@@ -1052,7 +1065,7 @@ QLineEdit{
                       </font>
                      </property>
                      <property name="text">
-                      <string>Nombre:</string>
+                      <string>Nombre:*</string>
                      </property>
                     </widget>
                    </item>
@@ -1120,7 +1133,7 @@ QLineEdit{
                       </font>
                      </property>
                      <property name="text">
-                      <string>Teléfono:</string>
+                      <string>Teléfono:*</string>
                      </property>
                     </widget>
                    </item>
@@ -1188,7 +1201,7 @@ QLineEdit{
                       </font>
                      </property>
                      <property name="text">
-                      <string>E-Mail:</string>
+                      <string>E-Mail:*</string>
                      </property>
                     </widget>
                    </item>
@@ -1256,7 +1269,7 @@ QLineEdit{
                       </font>
                      </property>
                      <property name="text">
-                      <string>Dirección:</string>
+                      <string>Dirección:*</string>
                      </property>
                     </widget>
                    </item>
@@ -1361,6 +1374,13 @@ QLineEdit{
                     </spacer>
                    </item>
                   </layout>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="signal_proveedor_modificado">
+                   <property name="text">
+                    <string>Espacios obligatorios*</string>
+                   </property>
+                  </widget>
                  </item>
                  <item>
                   <spacer name="verticalSpacer_6">
