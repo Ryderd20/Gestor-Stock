@@ -83,13 +83,15 @@ class VentanaPrincipal(QMainWindow):
 
 
         #-------------------------------Gestion de Articulos--------------
-        #self.btn_agregar_articulo.clicked.connect(lambda:self.stackedWidget.setCurrentWidget(self.page_nuevo_proveedor))
-        #self.btn_cancelar_articulo_nuevo.clicked.connect(lambda:self.stackedWidget.setCurrentWidget(self.page_proveedores))
+        #Agregar Articulo
+        self.btn_agregar_articulo.clicked.connect(lambda:self.stackedWidget.setCurrentWidget(self.page_nuevo_articulo))
+        self.btn_atras_articulo_nuevo.clicked.connect(lambda:self.stackedWidget.setCurrentWidget(self.page_articulos))
 
-        self.btn_agregar_articulo.clicked.connect(lambda:self.stackedWidget.setCurrentWidget(self.page_agregar_art))
-        #self.btn_guardar_articulo.clicked.connect(lambda:self.articulos_controller.crear_articulo(self.input_cod_art.text(),self.input_nom_art.text(),self.input_prec_art.text(),self.input_desc_art.text(),self.input_prov_art.text()))
-        self.btn_cancelar_articulo_nuevo.clicked.connect(lambda:self.stackedWidget.setCurrentWidget(self.page_articulos))
+        #Modificar Articulo
+        self.btn_modificar_articulo.clicked.connect(lambda:self.stackedWidget.setCurrentWidget(self.page_modificar_articulo))
+        self.btn_cancelar_articulo_modificar.clicked.connect(lambda:self.stackedWidget.setCurrentWidget(self.page_articulos))
 
+        #Eliminar Articulo
         #self.btn_eliminar_art.clicked.connect(lambda:self.articulos_controller.eliminar_articulo())
         #self.btn_buscar_art.clicked.connect(lambda:self.articulos_controller.buscar_Articulo(self.input_nombre_art.text()))
 
