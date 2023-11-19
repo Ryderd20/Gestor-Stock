@@ -44,7 +44,7 @@ class VentanaPrincipal(QMainWindow):
         self.btn_stock.clicked.connect(lambda:self.stackedWidget.setCurrentWidget(self.page_stock))
 
         self.btn_articulos.clicked.connect(lambda:self.stackedWidget.setCurrentWidget(self.page_articulos))
-        self.btn_articulos.clicked.connect(self.articulos_controller.mostrar_articulos)
+        #self.btn_articulos.clicked.connect(self.articulos_controller.mostrar_articulos)
 
         
         self.btn_compras.clicked.connect(lambda:self.stackedWidget.setCurrentWidget(self.page_compras))

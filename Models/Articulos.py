@@ -13,19 +13,21 @@ class Articulos():
     def __init__(self,connection):
         self.control = connection
 
-        """
-        -------------CREAR LA TABLA - AGREGAR DESPUES--------------
+        
+        #-------------CREAR LA TABLA--------------
         cursor = self.control.cursor()
-        sql = CREATE TABLE IF NOT EXISTS "Tabla_Articulos"
-        ("Codigo" VARCHAR(45) NO NULL,
-        "Nombre" VARCHAR(45) NO NULL,
-        "Precio" VARCHAR(45) NO NULL,
-        "Descripcion" VARCHAR(45) NO NULL,
-        "Proveedor" VARCHAR(45) NO NULL)
+        sql = """CREATE TABLE IF NOT EXISTS "Tabla_Articulos" (
+            "Codigo"	INTEGER NOT NULL,
+            "Nombre"	TEXT NOT NULL,
+            "Proveedor"	TEXT NOT NULL,
+            "Costo"	REAL NOT NULL,
+            "Precio"	REAL NOT NULL,
+            "Descripcion"	TEXT NOT NULL,
+            PRIMARY KEY("Codigo" AUTOINCREMENT)
+        );"""
 
         cursor.execute(sql)
         self.control.commit()
-        """
         
 
 

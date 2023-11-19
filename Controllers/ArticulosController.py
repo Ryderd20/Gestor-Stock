@@ -36,31 +36,6 @@ class ArticulosController():
 
 
 
-    def modificar_articulo(self):
-        table = self.art_view.table_articulos
-        articulo = []
-        fila = []
-
-        for row_number in range(table.rowCount()):
-            for column_number in range(table.columnCount()):
-                if table.item(row_number,column_number) != None:
-                    fila.append(table.item(row_number,column_number).text())
-            if len(fila)>0:
-                articulo.append(fila)
-            fila= []
-
-        if len(articulo) >0:
-            for arts in articulo:
-                self.articulos.updateArticulos(arts[0],arts[1],arts[2],arts[3],arts[4],arts[5])
-
-        self.mostrar_articulos()
-
-    def crear_articulo(self,cod,nombre,precio,descripcion,proveedor):
-        if cod and nombre and precio and descripcion and proveedor:
-            self.articulos.insertArticulo(cod,nombre,precio,descripcion,proveedor)
-        
-        self.mostrar_articulos()
-
     def eliminar_articulo(self):
         table = self.art_view.table_articulos
         if table.currentItem() != None:
@@ -70,8 +45,6 @@ class ArticulosController():
                 self.articulos.deleteArticulo(cod)
                 self.mostrar_articulos()
 
-    def buscar_Articulo(self,nombre):
-        self.articulos.getArticuloNom(nombre)
         
         
 
