@@ -1641,6 +1641,12 @@ QLineEdit{
                  </item>
                  <item>
                   <widget class="QTableWidget" name="table_articulos">
+                   <property name="selectionMode">
+                    <enum>QAbstractItemView::SingleSelection</enum>
+                   </property>
+                   <property name="selectionBehavior">
+                    <enum>QAbstractItemView::SelectRows</enum>
+                   </property>
                    <column>
                     <property name="text">
                      <string>Codigo</string>

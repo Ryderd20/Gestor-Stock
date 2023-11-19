@@ -44,7 +44,7 @@ class VentanaPrincipal(QMainWindow):
         self.btn_stock.clicked.connect(lambda:self.stackedWidget.setCurrentWidget(self.page_stock))
 
         self.btn_articulos.clicked.connect(lambda:self.stackedWidget.setCurrentWidget(self.page_articulos))
-        #self.btn_articulos.clicked.connect(self.articulos_controller.mostrar_articulos)
+        self.btn_articulos.clicked.connect(self.articulos_controller.mostrar_articulos)
 
         
         self.btn_compras.clicked.connect(lambda:self.stackedWidget.setCurrentWidget(self.page_compras))
@@ -85,14 +85,17 @@ class VentanaPrincipal(QMainWindow):
         #-------------------------------Gestion de Articulos--------------
         #Agregar Articulo
         self.btn_agregar_articulo.clicked.connect(lambda:self.stackedWidget.setCurrentWidget(self.page_nuevo_articulo))
+
         self.btn_atras_articulo_nuevo.clicked.connect(lambda:self.stackedWidget.setCurrentWidget(self.page_articulos))
+        self.btn_atras_articulo_nuevo.clicked.connect(self.articulos_controller.mostrar_articulos)
+        self.btn_guardar_articulo.clicked.connect(self.articulos_controller.agregar_articulo)
 
         #Modificar Articulo
         self.btn_modificar_articulo.clicked.connect(lambda:self.stackedWidget.setCurrentWidget(self.page_modificar_articulo))
         self.btn_cancelar_articulo_modificar.clicked.connect(lambda:self.stackedWidget.setCurrentWidget(self.page_articulos))
 
         #Eliminar Articulo
-        #self.btn_eliminar_art.clicked.connect(lambda:self.articulos_controller.eliminar_articulo())
+        self.btn_eliminar_articulo.clicked.connect(lambda:self.articulos_controller.eliminar_articulo())
         #self.btn_buscar_art.clicked.connect(lambda:self.articulos_controller.buscar_Articulo(self.input_nombre_art.text()))
 
 

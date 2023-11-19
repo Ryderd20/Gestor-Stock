@@ -57,9 +57,9 @@ class Articulos():
         cursor.execute(sql,(nombre,precio,descripcion,proveedor,cod))
         self.control.commit()
 
-    def insertArticulo(self,cod,nombre,precio,descripcion,proveedor):
+    def insertArticulo(self,nombre,proveedor,costo,precio,descripcion):
         cursor = self.control.cursor()
-        sql = """INSERT INTO Tabla_Articulos (Codigo,Nombre,Precio,Descripcion,Proveedor) VALUES ("{}","{}","{}","{}","{}")""".format(cod,nombre,precio,descripcion,proveedor)
+        sql = """INSERT INTO Tabla_Articulos (Nombre,Proveedor,Costo,Precio,Descripcion) VALUES ("{}","{}","{}","{}","{}")""".format(nombre,proveedor,costo,precio,descripcion)
         cursor.execute(sql)
         self.control.commit()
 
@@ -78,6 +78,8 @@ class Articulos():
         cursor.close()
         if registro:
             return registro
+        
+
 
 
 
