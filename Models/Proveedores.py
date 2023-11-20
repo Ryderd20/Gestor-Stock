@@ -66,6 +66,16 @@ class Proveedores():
         sql = """DELETE FROM Tabla_Proveedores WHERE Codigo = {}""".format(cod)
         cursor.execute(sql)
         self.control.commit()
+
+    def getListProveevores(self):
+        cursor = self.control.cursor()
+        sql = "SELECT Nombre FROM Tabla_Proveedores"
+        cursor.execute(sql)
+        registro = cursor.fetchall()
+        return registro
+
+
+        
     
         
         

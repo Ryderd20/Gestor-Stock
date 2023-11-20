@@ -1596,7 +1596,7 @@ QLineEdit{
                     </spacer>
                    </item>
                    <item>
-                    <widget class="QLineEdit" name="input_nombre_art">
+                    <widget class="QLineEdit" name="input_nombre_articulo_buscar">
                      <property name="minimumSize">
                       <size>
                        <width>200</width>

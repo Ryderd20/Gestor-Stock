@@ -72,12 +72,13 @@ class Articulos():
     
     def getArticuloNom(self,nom):
         cursor = self.control.cursor()
-        sql = """SELECT * FROM Tabla_Articulos WHERE Nombre = {}""".format(nom)
-        cursor.execute(sql)
-        registro = cursor.fetchone()
-        cursor.close()
+        sql = """SELECT * FROM Tabla_Articulos WHERE Nombre = ?"""
+        cursor.execute(sql, (nom,))
+        registro = cursor.fetchall()
         if registro:
             return registro
+        
+
         
 
 
