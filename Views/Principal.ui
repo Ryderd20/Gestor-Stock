@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Gestor Textil</string>
+   <string>Gestor Stock</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout_4">
@@ -211,7 +211,7 @@ QLineEdit{
                 <string notr="true"/>
                </property>
                <property name="currentIndex">
-                <number>0</number>
+                <number>8</number>
                </property>
                <widget class="QWidget" name="page_stock">
                 <layout class="QVBoxLayout" name="verticalLayout_6">
@@ -227,7 +227,7 @@ QLineEdit{
                     </font>
                    </property>
                    <property name="text">
-                    <string>Gestion de Stock</string>
+                    <string>Stock</string>
                    </property>
                    <property name="alignment">
                     <set>Qt::AlignCenter</set>
@@ -473,6 +473,9 @@ QLineEdit{
                  </item>
                  <item>
                   <widget class="QTableWidget" name="table_proveedores">
+                   <property name="editTriggers">
+                    <set>QAbstractItemView::NoEditTriggers</set>
+                   </property>
                    <property name="selectionMode">
                     <enum>QAbstractItemView::SingleSelection</enum>
                    </property>
@@ -1641,6 +1644,9 @@ QLineEdit{
                  </item>
                  <item>
                   <widget class="QTableWidget" name="table_articulos">
+                   <property name="editTriggers">
+                    <set>QAbstractItemView::NoEditTriggers</set>
+                   </property>
                    <property name="selectionMode">
                     <enum>QAbstractItemView::SingleSelection</enum>
                    </property>

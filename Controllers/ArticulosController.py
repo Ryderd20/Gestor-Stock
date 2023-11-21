@@ -71,7 +71,45 @@ class ArticulosController():
                 self.articulos.deleteArticulo(item)
                 self.mostrar_articulos()
 
+    
+    def modificar_articulo(self):
+            
+        nombre = self.art_view.input_nombre_articulo_modificar.text()
+        proveedor = self.art_view.comboBox_modificar_articulo_listaProv.currentText()
+        costo = self.art_view.input_costo_articulo_modificar.text()
+        precio = self.art_view.input_precio_articulo_modificar.text()
+        descripcion = self.art_view.input_descripcion_articulo_modificar.text()
+
+        if nombre !="" and proveedor !="" and costo !="" and precio != "":
+            cod = self.articulo[0]
+            self.articulos.updateArticulo(cod,nombre,proveedor,costo,precio,descripcion)
+            self.mostrar_articulos()
+            return True
+        else:
+            return False
+    
+    
+    def cargar_articulo(self):
+        self.art_view.signal_articulo_modificado.setText("Espacios obligatorios*")
+        self.cargarListaProveedores()
+
+
+        if self.art_view.table_articulos.currentRow() != -1:
+            item = self.art_view.table_articulos.item(self.art_view.table_articulos.currentRow(), 0).text()
+            if item is not None:
+                # Obtén el artículo como una instancia de la clase Articulos
+                self.articulo = self.articulos.getArticuloCod(item)
+                if self.articulo:
+                    # Actualiza el atributo 'articulos' con la instancia del artículo
+                    self.art_view.input_nombre_articulo_modificar.setText(self.articulo[1])
+                    self.art_view.input_costo_articulo_modificar.setText(str(self.articulo[3]))
+                    self.art_view.input_precio_articulo_modificar.setText(str(self.articulo[4]))
+                    self.art_view.input_descripcion_articulo_modificar.setText(self.articulo[5])
+
+
+
     #Limpiar los input para agregar un nuevo articulo
+    
     def limpiar_articulo_nuevo(self):
             self.art_view.input_nombre_articulo_nuevo.clear()
             self.art_view.input_costo_articulo_nuevo.clear()

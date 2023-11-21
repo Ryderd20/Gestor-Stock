@@ -93,8 +93,10 @@ class VentanaPrincipal(QMainWindow):
         self.btn_guardar_articulo.clicked.connect(self.articulos_controller.agregar_articulo)
 
         #Modificar Articulo
-        self.btn_modificar_articulo.clicked.connect(lambda:self.stackedWidget.setCurrentWidget(self.page_modificar_articulo))
-        self.btn_modificar_articulo.clicked.connect(self.articulos_controller.cargarListaProveedores)
+        self.btn_modificar_articulo.clicked.connect(self.validarSeleccionDeArticulo)
+        self.btn_modificar_articulo.clicked.connect(self.articulos_controller.cargar_articulo)
+        
+        self.btn_guardar_articulo_modificar.clicked.connect(self.validarArticuloModificado)
         self.btn_cancelar_articulo_modificar.clicked.connect(lambda:self.stackedWidget.setCurrentWidget(self.page_articulos))
 
         #Eliminar Articulo
@@ -123,7 +125,22 @@ class VentanaPrincipal(QMainWindow):
     
 
 
-            
+    def validarSeleccionDeArticulo(self):
+        if self.table_articulos.currentRow() != -1:
+            self.stackedWidget.setCurrentWidget(self.page_modificar_articulo)
+        else:
+            msg = QMessageBox()
+            msg.setIcon(QMessageBox.Warning)
+            msg.setWindowTitle("Advertencia")
+            msg.setText("Debes seleccionar un articulo")
+            msg.exec_()
+
+    def validarArticuloModificado(self):
+        
+        if self.articulos_controller.modificar_articulo():
+            self.stackedWidget.setCurrentWidget(self.page_articulos)
+        else:
+            self.signal_articulo_modificado.setText("Hay espacios obligatorios vacios")        
 
 
 

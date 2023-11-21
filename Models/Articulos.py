@@ -4,7 +4,6 @@ import os
 myDir = os.getcwd()
 sys.path.append(myDir)
 
-import sqlite3
 
 class Articulos():
 
@@ -51,11 +50,12 @@ class Articulos():
         if registro:
             return registro
     
-    def updateArticulos(self,cod,nombre,precio,descripcion,proveedor):
+    def updateArticulo(self,cod,nombre,proveedor,costo,precio,descripcion):
         cursor = self.control.cursor()
-        sql = """UPDATE Tabla_Articulos SET Nombre = %s , Precio = %s , Descripcion = %s, Proveedor = %s WHERE Codigo = %s """
-        cursor.execute(sql,(nombre,precio,descripcion,proveedor,cod))
+        sql = """UPDATE Tabla_Articulos SET Nombre = "{}" , Proveedor = "{}" , Costo = "{}", Precio = "{}", Descripcion = "{}" WHERE Codigo = "{}" """.format(nombre,proveedor,costo,precio,descripcion,cod)
+        cursor.execute(sql)
         self.control.commit()
+        cursor.close()
 
     def insertArticulo(self,nombre,proveedor,costo,precio,descripcion):
         cursor = self.control.cursor()
