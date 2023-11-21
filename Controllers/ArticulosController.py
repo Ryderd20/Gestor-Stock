@@ -80,10 +80,17 @@ class ArticulosController():
         precio = self.art_view.input_precio_articulo_modificar.text()
         descripcion = self.art_view.input_descripcion_articulo_modificar.text()
 
-        if nombre !="" and proveedor !="" and costo !="" and precio != "":
-            cod = self.articulo[0]
-            self.articulos.updateArticulo(cod,nombre,proveedor,costo,precio,descripcion)
-            self.mostrar_articulos()
+        
+        if nombre !="" and costo !="" and precio != "":
+            try:
+                costo_float = float(costo)
+                precio_float = float(precio)
+                cod = self.articulo[0]
+                self.articulos.updateArticulo(cod,nombre,proveedor,costo_float,precio_float,descripcion)
+                self.mostrar_articulos()
+            except ValueError:
+                self.art_view.signal_modificar_articulo.setText("Los espacios Costo y Precio deben ser numerales")
+            
             return True
         else:
             return False
