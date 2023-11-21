@@ -29,10 +29,7 @@ class Articulos():
         self.control.commit()
         
 
-
-
-
-
+    #Obtener todos los Articulos
     def getArticulos(self):
         cursor = self.control.cursor()
         sql = """SELECT * FROM Tabla_Articulos"""
@@ -41,6 +38,7 @@ class Articulos():
         cursor.close()
         return registro
     
+    #Obtener un Articulo por Codigo
     def getArticuloCod(self,cod):
         cursor = self.control.cursor()
         sql = """SELECT * FROM Tabla_Articulos WHERE Codigo = {}""".format(cod)
@@ -50,6 +48,7 @@ class Articulos():
         if registro:
             return registro
     
+    #Actualizar Articulo
     def updateArticulo(self,cod,nombre,proveedor,costo,precio,descripcion):
         cursor = self.control.cursor()
         sql = """UPDATE Tabla_Articulos SET Nombre = "{}" , Proveedor = "{}" , Costo = "{}", Precio = "{}", Descripcion = "{}" WHERE Codigo = "{}" """.format(nombre,proveedor,costo,precio,descripcion,cod)
@@ -57,19 +56,21 @@ class Articulos():
         self.control.commit()
         cursor.close()
 
+    #Agregar Nuevo Articulo
     def insertArticulo(self,nombre,proveedor,costo,precio,descripcion):
         cursor = self.control.cursor()
         sql = """INSERT INTO Tabla_Articulos (Nombre,Proveedor,Costo,Precio,Descripcion) VALUES ("{}","{}","{}","{}","{}")""".format(nombre,proveedor,costo,precio,descripcion)
         cursor.execute(sql)
         self.control.commit()
 
-
+    #Eliminar un Articulo
     def deleteArticulo(self,cod):
         cursor = self.control.cursor()
         sql = """DELETE FROM Tabla_Articulos WHERE Codigo = {}""".format(cod)
         cursor.execute(sql)
         self.control.commit()
     
+    #Obetener Articulos por Nombre
     def getArticuloNom(self,nom):
         cursor = self.control.cursor()
         sql = """SELECT * FROM Tabla_Articulos WHERE Nombre = ?"""
@@ -78,12 +79,3 @@ class Articulos():
         if registro:
             return registro
         
-
-        
-
-
-
-
-#
-    
-

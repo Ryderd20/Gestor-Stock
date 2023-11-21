@@ -71,7 +71,7 @@ class ArticulosController():
                 self.articulos.deleteArticulo(item)
                 self.mostrar_articulos()
 
-    
+    #Guardar Articulo
     def modificar_articulo(self):
             
         nombre = self.art_view.input_nombre_articulo_modificar.text()
@@ -96,6 +96,7 @@ class ArticulosController():
             return False
     
     
+    #Cargar Articulo para Modificar
     def cargar_articulo(self):
         self.art_view.signal_articulo_modificado.setText("Espacios obligatorios*")
         self.cargarListaProveedores()
@@ -116,13 +117,13 @@ class ArticulosController():
 
 
     #Limpiar los input para agregar un nuevo articulo
-    
     def limpiar_articulo_nuevo(self):
             self.art_view.input_nombre_articulo_nuevo.clear()
             self.art_view.input_costo_articulo_nuevo.clear()
             self.art_view.input_precio_articulo_nuevo.clear()
             self.art_view.input_descripcion_articulo_nuevo.clear()
 
+    #Cargar Lista de Proveedores en ComboBox
     def cargarListaProveedores(self):
         lista = self.proveedores.getListProveevores()
         self.art_view.comboBox_nuevo_articulo_listaProv.addItem("Ninguno")
@@ -132,6 +133,7 @@ class ArticulosController():
             self.art_view.comboBox_nuevo_articulo_listaProv.addItem(texto_proveedor)
             self.art_view.comboBox_modificar_articulo_listaProv.addItem(texto_proveedor)
 
+    #Buscar Articulo
     def buscarArticuloPorNombre(self):
         nombre = self.art_view.input_nombre_articulo_buscar.text()
         datos = self.articulos.getArticuloNom(nombre)
@@ -152,11 +154,10 @@ class ArticulosController():
                     item = QtWidgets.QTableWidgetItem(str(valor))
                     self.art_view.table_articulos.setItem(fila, columna, item)
             self.art_view.input_nombre_articulo_buscar.clear()
-
         else:
-            # Limpiar la tabla si no hay datos
             self.mostrar_articulos
-            #self.art_view.table_articulos.clearContents()
+            self.art_view.input_nombre_articulo_buscar.clear()
+    
 
 
 

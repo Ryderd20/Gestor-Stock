@@ -2571,7 +2571,7 @@ QLineEdit{
                   </layout>
                  </item>
                  <item>
-                  <widget class="QLabel" name="label_12">
+                  <widget class="QLabel" name="signal_articulo_modificado">
                    <property name="text">
                     <string>Espacios obligatorios*</string>
                    </property>
