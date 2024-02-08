@@ -125,6 +125,7 @@ class ArticulosController():
 
     #Cargar Lista de Proveedores en ComboBox
     def cargarListaProveedores(self):
+        self.art_view.comboBox_nuevo_articulo_listaProv.clear()
         lista = self.proveedores.getListProveevores()
         self.art_view.comboBox_nuevo_articulo_listaProv.addItem("Ninguno")
         self.art_view.comboBox_modificar_articulo_listaProv.addItem("Ninguno")
@@ -132,6 +133,9 @@ class ArticulosController():
             texto_proveedor = str(prov).replace("(", "").replace(")", "").replace("'", "").replace('"', '').replace(',', '')
             self.art_view.comboBox_nuevo_articulo_listaProv.addItem(texto_proveedor)
             self.art_view.comboBox_modificar_articulo_listaProv.addItem(texto_proveedor)
+
+
+        
 
     #Buscar Articulo
     def buscarArticuloPorNombre(self):
