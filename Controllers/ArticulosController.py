@@ -8,7 +8,7 @@ from DataBase.Connection import connection
 from Models.Articulos import Articulos
 from Models.Proveedores import Proveedores
 
-
+#------comentario prueba---------------
 
 class ArticulosController():
     
