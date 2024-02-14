@@ -98,6 +98,7 @@ class VentanaPrincipal(QMainWindow):
         
         self.btn_guardar_articulo_modificar.clicked.connect(self.validarArticuloModificado)
         self.btn_cancelar_articulo_modificar.clicked.connect(lambda:self.stackedWidget.setCurrentWidget(self.page_articulos))
+        self.btn_cancelar_articulo_modificar.clicked.connect(self.articulos_controller.limpiar_articulo_modificado)
 
         #Eliminar Articulo
         self.btn_eliminar_articulo.clicked.connect(lambda:self.articulos_controller.eliminar_articulo())
