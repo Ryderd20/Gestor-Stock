@@ -111,5 +111,28 @@ class ProveedoresController():
 
 
 
+    #Buscar Proveedor
+    def buscarProveedorPorNombre(self):
+        nombre = self.proveedores_view.input_nombre_proveedor.text()
+        datos = self.proveedores.getProveedorNom(nombre)
 
+        if datos is not None:
+            num_filas = len(datos)
+        else:
+            num_filas = 0
+
+        num_columnas = self.proveedores_view.table_proveedores.columnCount()
+
+        self.proveedores_view.table_proveedores.setRowCount(num_filas)
+        self.proveedores_view.table_proveedores.setColumnCount(num_columnas)
+
+        if datos:
+            for fila, registro in enumerate(datos):
+                for columna, valor in enumerate(registro):
+                    item = QtWidgets.QTableWidgetItem(str(valor))
+                    self.proveedores_view.table_proveedores.setItem(fila, columna, item)
+            self.proveedores_view.input_nombre_proveedor.clear()
+        else:
+            self.mostrar_proveedores
+            self.proveedores_view.input_nombre_proveedor.clear()
 

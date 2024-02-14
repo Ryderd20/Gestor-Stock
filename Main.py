@@ -79,7 +79,8 @@ class VentanaPrincipal(QMainWindow):
         #Eliminar Proveedor
         self.btn_eliminar_proveedor.clicked.connect(self.proveedores_controller.eliminar_proveedor)
 
-
+        #Buscar Proveedor
+        self.btn_buscar_proveedor.clicked.connect(self.proveedores_controller.buscarProveedorPorNombre)
 
 
         #-------------------------------Gestion de Articulos--------------

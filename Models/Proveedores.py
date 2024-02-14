@@ -77,8 +77,14 @@ class Proveedores():
 
 
         
-    
-        
+    #Obetener Articulos por Nombre
+    def getProveedorNom(self,nom):
+        cursor = self.control.cursor()
+        sql = """SELECT * FROM Tabla_Proveedores WHERE Nombre = ?"""
+        cursor.execute(sql, (nom,))
+        registro = cursor.fetchall()
+        if registro:
+            return registro    
         
 
 
