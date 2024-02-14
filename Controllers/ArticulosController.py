@@ -71,7 +71,7 @@ class ArticulosController():
                 self.articulos.deleteArticulo(item)
                 self.mostrar_articulos()
 
-    
+    #Guardar Articulo
     def modificar_articulo(self):
             
         nombre = self.art_view.input_nombre_articulo_modificar.text()
@@ -80,15 +80,23 @@ class ArticulosController():
         precio = self.art_view.input_precio_articulo_modificar.text()
         descripcion = self.art_view.input_descripcion_articulo_modificar.text()
 
-        if nombre !="" and proveedor !="" and costo !="" and precio != "":
-            cod = self.articulo[0]
-            self.articulos.updateArticulo(cod,nombre,proveedor,costo,precio,descripcion)
-            self.mostrar_articulos()
+        
+        if nombre !="" and costo !="" and precio != "":
+            try:
+                costo_float = float(costo)
+                precio_float = float(precio)
+                cod = self.articulo[0]
+                self.articulos.updateArticulo(cod,nombre,proveedor,costo_float,precio_float,descripcion)
+                self.mostrar_articulos()
+            except ValueError:
+                self.art_view.signal_modificar_articulo.setText("Los espacios Costo y Precio deben ser numerales")
+            
             return True
         else:
             return False
     
     
+    #Cargar Articulo para Modificar
     def cargar_articulo(self):
         self.art_view.signal_articulo_modificado.setText("Espacios obligatorios*")
         self.cargarListaProveedores()
@@ -109,14 +117,15 @@ class ArticulosController():
 
 
     #Limpiar los input para agregar un nuevo articulo
-    
     def limpiar_articulo_nuevo(self):
             self.art_view.input_nombre_articulo_nuevo.clear()
             self.art_view.input_costo_articulo_nuevo.clear()
             self.art_view.input_precio_articulo_nuevo.clear()
             self.art_view.input_descripcion_articulo_nuevo.clear()
 
+    #Cargar Lista de Proveedores en ComboBox
     def cargarListaProveedores(self):
+        self.art_view.comboBox_nuevo_articulo_listaProv.clear()
         lista = self.proveedores.getListProveevores()
         self.art_view.comboBox_nuevo_articulo_listaProv.addItem("Ninguno")
         self.art_view.comboBox_modificar_articulo_listaProv.addItem("Ninguno")
@@ -125,6 +134,10 @@ class ArticulosController():
             self.art_view.comboBox_nuevo_articulo_listaProv.addItem(texto_proveedor)
             self.art_view.comboBox_modificar_articulo_listaProv.addItem(texto_proveedor)
 
+
+        
+
+    #Buscar Articulo
     def buscarArticuloPorNombre(self):
         nombre = self.art_view.input_nombre_articulo_buscar.text()
         datos = self.articulos.getArticuloNom(nombre)
@@ -145,11 +158,10 @@ class ArticulosController():
                     item = QtWidgets.QTableWidgetItem(str(valor))
                     self.art_view.table_articulos.setItem(fila, columna, item)
             self.art_view.input_nombre_articulo_buscar.clear()
-
         else:
-            # Limpiar la tabla si no hay datos
             self.mostrar_articulos
-            #self.art_view.table_articulos.clearContents()
+            self.art_view.input_nombre_articulo_buscar.clear()
+    
 
 
 

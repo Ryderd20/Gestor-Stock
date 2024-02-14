@@ -67,6 +67,7 @@ class Proveedores():
         cursor.execute(sql)
         self.control.commit()
 
+    #Obtener lista de Nombres de Proveedores
     def getListProveevores(self):
         cursor = self.control.cursor()
         sql = "SELECT Nombre FROM Tabla_Proveedores"
