@@ -25,13 +25,10 @@ class VentanaPrincipal(QMainWindow):
         
 
         #--------------------Botones Menu Superior------------------------
-        self.btn_gestionstock.clicked.connect(lambda:self.stackedWidget_menuSecundario.setCurrentWidget(self.stackedWidget_menuStock))
+        self.btn_gestionstock.clicked.connect(lambda:self.stackedWidget_frame_menu.setCurrentWidget(self.stackedWidget_menuStock))
         self.btn_gestionstock.clicked.connect(lambda:self.stackedWidget.setCurrentWidget(self.page_stock))
 
-        self.btn_gestioncompras.clicked.connect(lambda:self.stackedWidget_menuSecundario.setCurrentWidget(self.stackedWidget_menuCompras))
-        self.btn_gestioncompras.clicked.connect(lambda:self.stackedWidget.setCurrentWidget(self.page_compras))
-
-        self.btn_gestionventas.clicked.connect(lambda:self.stackedWidget_menuSecundario.setCurrentWidget(self.stackedWidget_menuVentas))
+        self.btn_gestionventas.clicked.connect(lambda:self.stackedWidget_frame_menu.setCurrentWidget(self.stackedWidget_menuVentas))
         self.btn_gestionventas.clicked.connect(lambda:self.stackedWidget.setCurrentWidget(self.page_ventas))
 
 
@@ -39,27 +36,26 @@ class VentanaPrincipal(QMainWindow):
         #--------------------Botones Menu Secundario--------------
         
         #Ir a Gestion de Stock
-        self.btn_stock.clicked.connect(lambda:self.stackedWidget.setCurrentWidget(self.page_stock))
+        #self.btn_stock.clicked.connect(lambda:self.stackedWidget.setCurrentWidget(self.page_stock))
 
         #Ir a Gestion de Articulos
         self.btn_articulos.clicked.connect(lambda:self.stackedWidget.setCurrentWidget(self.page_articulos))
         self.btn_articulos.clicked.connect(self.articulos_controller.mostrar_articulos)
 
         #Ir a Gestion de Compras
-        self.btn_compras.clicked.connect(lambda:self.stackedWidget.setCurrentWidget(self.page_compras))
+       # self.btn_compras.clicked.connect(lambda:self.stackedWidget.setCurrentWidget(self.page_compras))
         
         #Ir a Gestion de Proveedores
         self.btn_proveedores.clicked.connect(lambda:self.stackedWidget.setCurrentWidget(self.page_proveedores))
         self.btn_proveedores.clicked.connect(self.proveedores_controller.mostrar_proveedores)
 
         #Ir a Gestion de Vesntas
-        self.btn_ventas.clicked.connect(lambda:self.stackedWidget.setCurrentWidget(self.page_ventas))
-        self.btn_clientes.clicked.connect(lambda:self.stackedWidget.setCurrentWidget(self.page_clientes))
+        #self.btn_ventas.clicked.connect(lambda:self.stackedWidget.setCurrentWidget(self.page_ventas))
+        #self.btn_clientes.clicked.connect(lambda:self.stackedWidget.setCurrentWidget(self.page_clientes))
 
         #Salir
         self.btn_salir.clicked.connect(lambda:self.close())
-        self.btn_salir_2.clicked.connect(lambda:self.close())
-        self.btn_salir_3.clicked.connect(lambda:self.close())
+        
 
         
         #-------------------------------Gestion de Proveedores---------------------------
@@ -99,7 +95,7 @@ class VentanaPrincipal(QMainWindow):
         
         self.btn_guardar_articulo_modificar.clicked.connect(self.validarArticuloModificado)
         self.btn_cancelar_articulo_modificar.clicked.connect(lambda:self.stackedWidget.setCurrentWidget(self.page_articulos))
-        self.btn_cancelar_articulo_modificar.clicked.connect(self.articulos_controller.limpiar_articulo_modificado)
+        
 
         #Eliminar Articulo
         self.btn_eliminar_articulo.clicked.connect(lambda:self.articulos_controller.eliminar_articulo())
@@ -168,9 +164,9 @@ class VentanaPrincipal(QMainWindow):
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     mi_app = VentanaPrincipal()
-    mi_app.show()
+    mi_app.showMaximized()
     sys.exit(app.exec_())
-
+    
     
 
 
