@@ -135,7 +135,7 @@ class ArticulosController():
             self.art_view.comboBox_modificar_articulo_listaProv.addItem(texto_proveedor)
 
 
-        
+     #hsfd   
 
     #Buscar Articulo
     def buscarArticuloPorNombre(self):
