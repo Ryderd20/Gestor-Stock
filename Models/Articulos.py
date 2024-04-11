@@ -70,6 +70,8 @@ class Articulos():
         cursor.execute(sql)
         self.control.commit()
     
+    #test
+
     #Obetener Articulos por Nombre
     def getArticuloNom(self,nom):
         cursor = self.control.cursor()
