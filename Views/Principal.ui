@@ -63,6 +63,7 @@ QPushButton{
     font: 77 10pt &quot;Arial Black&quot;;
 }
 
+
 </string>
          </property>
          <property name="frameShape">
@@ -211,7 +212,7 @@ QLineEdit{
                 <string notr="true"/>
                </property>
                <property name="currentIndex">
-                <number>0</number>
+                <number>9</number>
                </property>
                <widget class="QWidget" name="page_stock">
                 <layout class="QVBoxLayout" name="verticalLayout_6">
