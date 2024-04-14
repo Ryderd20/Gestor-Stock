@@ -16,7 +16,37 @@
   <property name="windowTitle">
    <string>Gestor Stock</string>
   </property>
-  <widget class="QWidget" name="centralwidget">
+  <widget class="QWidget" name="frame_styleSheet">
+   <property name="styleSheet">
+    <string notr="true">background-color:rgb(43, 43, 43);
+
+QWidget{
+	color: rgb(221, 221, 221);
+	font: 10pt &quot;Segoe UI&quot;;
+}
+
+/* ///////////////////////////////////////////FRAME_MENU//////////////////////////////////////////////////////*/
+
+
+
+/* ///////////////////////////////////////////FRAME_PRINCIPAL//////////////////////////////////////////////////////*/
+
+
+QLineEdit {
+	background-color: rgb(33, 37, 43);
+	border-radius: 5px;
+	border: 2px solid rgb(33, 37, 43);
+	padding-left: 10px;
+	selection-color: rgb(255, 255, 255);
+	selection-background-color: rgb(255, 121, 198);
+}
+QLineEdit:hover {
+	border: 2px solid rgb(64, 71, 88);
+}
+QLineEdit:focus {
+	border: 2px solid rgb(91, 101, 124);
+}</string>
+   </property>
    <layout class="QHBoxLayout" name="horizontalLayout">
     <property name="leftMargin">
      <number>0</number>
@@ -31,34 +61,34 @@
      <number>0</number>
     </property>
     <item>
-     <widget class="QFrame" name="frame">
+     <widget class="QFrame" name="bg">
       <property name="palette">
        <palette>
         <active>
          <colorrole role="Button">
           <brush brushstyle="SolidPattern">
            <color alpha="255">
-            <red>40</red>
-            <green>44</green>
-            <blue>52</blue>
+            <red>43</red>
+            <green>43</green>
+            <blue>43</blue>
            </color>
           </brush>
          </colorrole>
          <colorrole role="Base">
           <brush brushstyle="SolidPattern">
            <color alpha="255">
-            <red>40</red>
-            <green>44</green>
-            <blue>52</blue>
+            <red>43</red>
+            <green>43</green>
+            <blue>43</blue>
            </color>
           </brush>
          </colorrole>
          <colorrole role="Window">
           <brush brushstyle="SolidPattern">
            <color alpha="255">
-            <red>40</red>
-            <green>44</green>
-            <blue>52</blue>
+            <red>43</red>
+            <green>43</green>
+            <blue>43</blue>
            </color>
           </brush>
          </colorrole>
@@ -67,27 +97,27 @@
          <colorrole role="Button">
           <brush brushstyle="SolidPattern">
            <color alpha="255">
-            <red>40</red>
-            <green>44</green>
-            <blue>52</blue>
+            <red>43</red>
+            <green>43</green>
+            <blue>43</blue>
            </color>
           </brush>
          </colorrole>
          <colorrole role="Base">
           <brush brushstyle="SolidPattern">
            <color alpha="255">
-            <red>40</red>
-            <green>44</green>
-            <blue>52</blue>
+            <red>43</red>
+            <green>43</green>
+            <blue>43</blue>
            </color>
           </brush>
          </colorrole>
          <colorrole role="Window">
           <brush brushstyle="SolidPattern">
            <color alpha="255">
-            <red>40</red>
-            <green>44</green>
-            <blue>52</blue>
+            <red>43</red>
+            <green>43</green>
+            <blue>43</blue>
            </color>
           </brush>
          </colorrole>
@@ -96,27 +126,27 @@
          <colorrole role="Button">
           <brush brushstyle="SolidPattern">
            <color alpha="255">
-            <red>40</red>
-            <green>44</green>
-            <blue>52</blue>
+            <red>43</red>
+            <green>43</green>
+            <blue>43</blue>
            </color>
           </brush>
          </colorrole>
          <colorrole role="Base">
           <brush brushstyle="SolidPattern">
            <color alpha="255">
-            <red>40</red>
-            <green>44</green>
-            <blue>52</blue>
+            <red>43</red>
+            <green>43</green>
+            <blue>43</blue>
            </color>
           </brush>
          </colorrole>
          <colorrole role="Window">
           <brush brushstyle="SolidPattern">
            <color alpha="255">
-            <red>40</red>
-            <green>44</green>
-            <blue>52</blue>
+            <red>43</red>
+            <green>43</green>
+            <blue>43</blue>
            </color>
           </brush>
          </colorrole>
@@ -124,7 +154,7 @@
        </palette>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color:#282c34;</string>
+       <string notr="true"/>
       </property>
       <property name="frameShape">
        <enum>QFrame::StyledPanel</enum>
@@ -134,7 +164,7 @@
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="0,0">
        <item>
-        <widget class="QFrame" name="Frame_Menu">
+        <widget class="QFrame" name="frameMenu">
          <property name="minimumSize">
           <size>
            <width>0</width>
@@ -148,16 +178,44 @@
           </size>
          </property>
          <property name="styleSheet">
-          <string notr="true">QFrame{
-	background-color:#282c34;
+          <string notr="true">#frameMenu{
+	 background-color: rgb(33, 37, 43);
 }
 
-QPushButton{
-	background-color: #b5b5b5;
-    font: 77 10pt &quot;Arial Black&quot;;
+QPushButton {	
+	background-position: left center;
+    background-repeat: no-repeat;
+	border: none;
+	border-left: 22px solid transparent;
+	background-color: transparent;
+	text-align: left;
+	padding-left: 44px;
+	color: rgb(255, 255, 255); 
+}
+QPushButton:hover {
+	background-color: rgb(40, 44, 52);
+}
+QPushButton:pressed {	
+	background-color: rgb(189, 147, 249);
+	color: rgb(255, 255, 255);
+}
+QPushButton {	
+	background-position: left center;
+    background-repeat: no-repeat;
+	border: none;
+	border-left: 20px solid transparent;
+	background-color:transparent;
+	text-align: left;
+	padding-left: 44px;
+}
+QPushButton:hover {
+	background-color: rgb(40, 44, 52);
+}
+QPushButton:pressed {	
+	background-color: rgb(189, 147, 249);
+	color: rgb(255, 255, 255);
 }
 
-//asd 
 </string>
          </property>
          <property name="frameShape">
@@ -177,6 +235,26 @@ QPushButton{
             </property>
             <property name="cursor">
              <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">/*background-image: url(:/Views/icons/icon_menu.png);*/
+
+QPushButton  {
+	background-position: left center;
+    background-repeat: no-repeat;
+	border: none;
+	border-left: 20px solid transparent;
+	background-color: rgb(37, 41, 48);
+	text-align: left;
+	padding-left: 44px;
+	color: rgb(113, 126, 149);
+}
+QPushButton :hover {
+	background-color: rgb(40, 44, 52);
+}
+QPushButton :pressed {
+	background-color: rgb(189, 147, 249);
+}</string>
             </property>
             <property name="text">
              <string>Menu</string>
@@ -292,28 +370,28 @@ QPushButton{
            <active>
             <colorrole role="Button">
              <brush brushstyle="SolidPattern">
-              <color alpha="255">
-               <red>40</red>
-               <green>44</green>
-               <blue>52</blue>
+              <color alpha="0">
+               <red>0</red>
+               <green>0</green>
+               <blue>0</blue>
               </color>
              </brush>
             </colorrole>
             <colorrole role="Base">
              <brush brushstyle="SolidPattern">
-              <color alpha="255">
-               <red>40</red>
-               <green>44</green>
-               <blue>52</blue>
+              <color alpha="0">
+               <red>0</red>
+               <green>0</green>
+               <blue>0</blue>
               </color>
              </brush>
             </colorrole>
             <colorrole role="Window">
              <brush brushstyle="SolidPattern">
-              <color alpha="255">
-               <red>40</red>
-               <green>44</green>
-               <blue>52</blue>
+              <color alpha="0">
+               <red>0</red>
+               <green>0</green>
+               <blue>0</blue>
               </color>
              </brush>
             </colorrole>
@@ -321,28 +399,28 @@ QPushButton{
            <inactive>
             <colorrole role="Button">
              <brush brushstyle="SolidPattern">
-              <color alpha="255">
-               <red>40</red>
-               <green>44</green>
-               <blue>52</blue>
+              <color alpha="0">
+               <red>0</red>
+               <green>0</green>
+               <blue>0</blue>
               </color>
              </brush>
             </colorrole>
             <colorrole role="Base">
              <brush brushstyle="SolidPattern">
-              <color alpha="255">
-               <red>40</red>
-               <green>44</green>
-               <blue>52</blue>
+              <color alpha="0">
+               <red>0</red>
+               <green>0</green>
+               <blue>0</blue>
               </color>
              </brush>
             </colorrole>
             <colorrole role="Window">
              <brush brushstyle="SolidPattern">
-              <color alpha="255">
-               <red>40</red>
-               <green>44</green>
-               <blue>52</blue>
+              <color alpha="0">
+               <red>0</red>
+               <green>0</green>
+               <blue>0</blue>
               </color>
              </brush>
             </colorrole>
@@ -350,28 +428,28 @@ QPushButton{
            <disabled>
             <colorrole role="Button">
              <brush brushstyle="SolidPattern">
-              <color alpha="255">
-               <red>40</red>
-               <green>44</green>
-               <blue>52</blue>
+              <color alpha="0">
+               <red>0</red>
+               <green>0</green>
+               <blue>0</blue>
               </color>
              </brush>
             </colorrole>
             <colorrole role="Base">
              <brush brushstyle="SolidPattern">
-              <color alpha="255">
-               <red>40</red>
-               <green>44</green>
-               <blue>52</blue>
+              <color alpha="0">
+               <red>0</red>
+               <green>0</green>
+               <blue>0</blue>
               </color>
              </brush>
             </colorrole>
             <colorrole role="Window">
              <brush brushstyle="SolidPattern">
-              <color alpha="255">
-               <red>40</red>
-               <green>44</green>
-               <blue>52</blue>
+              <color alpha="0">
+               <red>0</red>
+               <green>0</green>
+               <blue>0</blue>
               </color>
              </brush>
             </colorrole>
@@ -379,31 +457,13 @@ QPushButton{
           </palette>
          </property>
          <property name="styleSheet">
-          <string notr="true">
-
-QPushButton{
-	background-color: #5E5E5E;   
-   	border-top-right-radius:20px;
-    border-bottom-right-radius:20px;
-   	border-top-left-radius:20px;
-    border-bottom-left-radius:20px;
-	color:rgb(255, 255, 255);
-    font: 77 10pt &quot;Arial Black&quot;;
-}
-
-QTableWidget{
-	background-color: rgb(255, 255, 255);
-	color:rgb(0, 0, 0);
-	font-size:12pt;
+          <string notr="true">QFrame {	
+	background-color: transparent;
+	border: 1px solid rgb(44, 49, 58);
 }
 
 
 
-
-QLineEdit{
-	background-color: rgb(255, 255, 255);
-
-}
 
 </string>
          </property>
@@ -417,53 +477,127 @@ QLineEdit{
           <item>
            <widget class="QStackedWidget" name="stackedWidget">
             <property name="styleSheet">
-             <string notr="true"/>
+             <string notr="true">
+QLabel { 
+	background-color:transparent;
+	color: rgb(255, 255, 255); 
+}
+
+/* /////////////////////////////////////////////////////////////////////////////////////////////////
+Button */
+QPushButton {
+	border: 2px solid rgb(52, 59, 72);
+	border-radius: 5px;	
+	background-color: rgb(52, 59, 72);
+	color: rgb(255, 255, 255); 
+}
+QPushButton:hover {
+	background-color: rgb(57, 65, 80);
+	border: 2px solid rgb(61, 70, 86);
+}
+QPushButton:pressed {	
+	background-color: rgb(35, 40, 49);
+	border: 2px solid rgb(43, 50, 61);
+}
+
+
+/* /////////////////////////////////////////////////////////////////////////////////////////////////
+QTableWidget */
+QTableWidget {	
+	background-color: transparent;
+	padding: 10px;
+	border-radius: 5px;
+	gridline-color: rgb(44, 49, 58);
+	border-bottom: 1px solid rgb(44, 49, 60);
+}
+QTableWidget::item{
+	border-color: rgb(44, 49, 60);
+	padding-left: 5px;
+	padding-right: 5px;
+	gridline-color: rgb(44, 49, 60);
+	color: rgb(255, 255, 255); 
+}
+QTableWidget::item:selected{
+	background-color: rgb(189, 147, 249);
+}
+QHeaderView::section{
+	background-color: rgb(33, 37, 43);
+	max-width: 30px;
+	border: 1px solid rgb(44, 49, 58);
+	border-style: none;
+    border-bottom: 1px solid rgb(44, 49, 60);
+    border-right: 1px solid rgb(44, 49, 60);
+	color: rgb(255, 255, 255); 
+}
+QTableWidget::horizontalHeader {	
+	background-color: rgb(33, 37, 43);
+}
+QHeaderView::section:horizontal
+{
+    border: 1px solid rgb(33, 37, 43);
+	background-color: rgb(33, 37, 43);
+	padding: 3px;
+	border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+}
+QHeaderView::section:vertical
+{
+    border: 1px solid rgb(44, 49, 60);
+}
+
+/* /////////////////////////////////////////////////////////////////////////////////////////////////
+LineEdit */
+QLineEdit {
+	background-color: rgb(33, 37, 43);
+	border-radius: 5px;
+	border: 2px solid rgb(33, 37, 43);
+	padding-left: 10px;
+	selection-color: rgb(255, 255, 255);
+	selection-background-color: rgb(255, 121, 198);
+	color: rgb(255, 255, 255); 
+}
+QLineEdit:hover {
+	border: 2px solid rgb(64, 71, 88);
+}
+QLineEdit:focus {
+	border: 2px solid rgb(91, 101, 124);
+}
+
+
+
+QComboBox{
+	background-color: rgb(27, 29, 35);
+	border-radius: 5px;
+	border: 2px solid rgb(33, 37, 43);
+	padding: 5px;
+	padding-left: 10px;
+}
+QComboBox:hover{
+	border: 2px solid rgb(64, 71, 88);
+}
+QComboBox::drop-down {
+	subcontrol-origin: padding;
+	subcontrol-position: top right;
+	width: 25px; 
+	border-left-width: 3px;
+	border-left-color: rgba(39, 44, 54, 150);
+	border-left-style: solid;
+	border-top-right-radius: 3px;
+	border-bottom-right-radius: 3px;	
+
+	background-position: center;
+	background-repeat: no-reperat;
+ }
+QComboBox QAbstractItemView {
+	color: rgb(255, 121, 198);	
+	background-color: rgb(33, 37, 43);
+	padding: 10px;
+	selection-background-color: rgb(39, 44, 54);
+}</string>
             </property>
             <property name="currentIndex">
              <number>0</number>
             </property>
-            <widget class="QWidget" name="page_stock">
-             <layout class="QVBoxLayout" name="verticalLayout_6">
-              <item>
-               <widget class="QLabel" name="label_7">
-                <property name="font">
-                 <font>
-                  <family>Arial Black</family>
-                  <pointsize>20</pointsize>
-                  <weight>50</weight>
-                  <italic>false</italic>
-                  <bold>false</bold>
-                 </font>
-                </property>
-                <property name="text">
-                 <string>Stock</string>
-                </property>
-                <property name="alignment">
-                 <set>Qt::AlignCenter</set>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QLabel" name="label_8">
-                <property name="font">
-                 <font>
-                  <family>Arial Black</family>
-                  <pointsize>20</pointsize>
-                  <weight>50</weight>
-                  <italic>false</italic>
-                  <bold>false</bold>
-                 </font>
-                </property>
-                <property name="text">
-                 <string>Proximamente</string>
-                </property>
-                <property name="alignment">
-                 <set>Qt::AlignCenter</set>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </widget>
             <widget class="QWidget" name="page_ventas">
              <layout class="QVBoxLayout" name="verticalLayout_12">
               <item>
@@ -506,10 +640,10 @@ QLineEdit{
               </item>
              </layout>
             </widget>
-            <widget class="QWidget" name="page_clientes">
-             <layout class="QVBoxLayout" name="verticalLayout_14">
+            <widget class="QWidget" name="page_stock">
+             <layout class="QVBoxLayout" name="verticalLayout_2">
               <item>
-               <widget class="QLabel" name="label_5">
+               <widget class="QLabel" name="label_7">
                 <property name="font">
                  <font>
                   <family>Arial Black</family>
@@ -520,7 +654,7 @@ QLineEdit{
                  </font>
                 </property>
                 <property name="text">
-                 <string>Lista de Clientes</string>
+                 <string>Stock</string>
                 </property>
                 <property name="alignment">
                  <set>Qt::AlignCenter</set>
@@ -528,9 +662,90 @@ QLineEdit{
                </widget>
               </item>
               <item>
-               <layout class="QHBoxLayout" name="horizontalLayout_29">
+               <layout class="QHBoxLayout" name="horizontalLayout_34">
                 <item>
-                 <widget class="QPushButton" name="btn_agregar_cliente">
+                 <spacer name="horizontalSpacer_59">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>40</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+                <item>
+                 <widget class="QLabel" name="label_11">
+                  <property name="text">
+                   <string>Producto:</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QComboBox" name="comboBox_listaProd">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                  <property name="minimumSize">
+                   <size>
+                    <width>200</width>
+                    <height>25</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>400</width>
+                    <height>16777215</height>
+                   </size>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">Background-color:rgb(255, 255, 255)</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <spacer name="horizontalSpacer_60">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>40</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+                <item>
+                 <widget class="QLabel" name="label_12">
+                  <property name="text">
+                   <string>Cantidad:</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QSpinBox" name="cantidadProd"/>
+                </item>
+                <item>
+                 <spacer name="horizontalSpacer_61">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>40</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="btn_agregar_stock">
                   <property name="minimumSize">
                    <size>
                     <width>100</width>
@@ -546,23 +761,7 @@ QLineEdit{
                  </widget>
                 </item>
                 <item>
-                 <widget class="QPushButton" name="btn_modificar_cliente">
-                  <property name="minimumSize">
-                   <size>
-                    <width>100</width>
-                    <height>40</height>
-                   </size>
-                  </property>
-                  <property name="cursor">
-                   <cursorShape>PointingHandCursor</cursorShape>
-                  </property>
-                  <property name="text">
-                   <string>Modificar</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QPushButton" name="btn_eliminar_cliente">
+                 <widget class="QPushButton" name="btn_eliminar_stock">
                   <property name="minimumSize">
                    <size>
                     <width>100</width>
@@ -577,10 +776,23 @@ QLineEdit{
                   </property>
                  </widget>
                 </item>
+                <item>
+                 <spacer name="horizontalSpacer_52">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>40</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
                </layout>
               </item>
               <item>
-               <layout class="QHBoxLayout" name="horizontalLayout_30">
+               <layout class="QHBoxLayout" name="horizontalLayout_29">
                 <item>
                  <spacer name="horizontalSpacer_50">
                   <property name="orientation">
@@ -595,7 +807,7 @@ QLineEdit{
                  </spacer>
                 </item>
                 <item>
-                 <widget class="QLineEdit" name="input_nombre_cliente">
+                 <widget class="QLineEdit" name="input_nombre_articulo_buscar_stock">
                   <property name="minimumSize">
                    <size>
                     <width>200</width>
@@ -608,7 +820,7 @@ QLineEdit{
                  </widget>
                 </item>
                 <item>
-                 <widget class="QPushButton" name="btn_buscar_cliente">
+                 <widget class="QPushButton" name="btn_buscar_art_stock">
                   <property name="minimumSize">
                    <size>
                     <width>100</width>
@@ -636,10 +848,73 @@ QLineEdit{
                   </property>
                  </spacer>
                 </item>
+                <item>
+                 <widget class="QLabel" name="label_38">
+                  <property name="minimumSize">
+                   <size>
+                    <width>150</width>
+                    <height>40</height>
+                   </size>
+                  </property>
+                  <property name="font">
+                   <font>
+                    <family>Arial Narrow</family>
+                    <pointsize>18</pointsize>
+                   </font>
+                  </property>
+                  <property name="text">
+                   <string>Buscar por Proveedor:</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QComboBox" name="comboBox_nuevo_artStock_listaProv">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                  <property name="minimumSize">
+                   <size>
+                    <width>200</width>
+                    <height>25</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>400</width>
+                    <height>16777215</height>
+                   </size>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">Background-color:rgb(255, 255, 255)</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <spacer name="horizontalSpacer">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>40</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
                </layout>
               </item>
               <item>
-               <widget class="QTableWidget" name="table_clientes">
+               <widget class="QTableWidget" name="table_stock">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>0</height>
+                 </size>
+                </property>
                 <property name="editTriggers">
                  <set>QAbstractItemView::NoEditTriggers</set>
                 </property>
@@ -651,981 +926,20 @@ QLineEdit{
                 </property>
                 <column>
                  <property name="text">
-                  <string>Codigo</string>
+                  <string>Producto</string>
                  </property>
                 </column>
                 <column>
                  <property name="text">
-                  <string>Nombre</string>
+                  <string>Cantidad</string>
                  </property>
                 </column>
                 <column>
                  <property name="text">
-                  <string>Teléfono</string>
-                 </property>
-                </column>
-                <column>
-                 <property name="text">
-                  <string>E-Mail</string>
-                 </property>
-                </column>
-                <column>
-                 <property name="text">
-                  <string>Dirección</string>
-                 </property>
-                </column>
-                <column>
-                 <property name="text">
-                  <string>Descripción</string>
+                  <string>Proveedor</string>
                  </property>
                 </column>
                </widget>
-              </item>
-             </layout>
-            </widget>
-            <widget class="QWidget" name="page_nuevo_cliente">
-             <layout class="QVBoxLayout" name="verticalLayout_26">
-              <item>
-               <widget class="QLabel" name="label_70">
-                <property name="minimumSize">
-                 <size>
-                  <width>0</width>
-                  <height>40</height>
-                 </size>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>16777215</width>
-                  <height>0</height>
-                 </size>
-                </property>
-                <property name="font">
-                 <font>
-                  <family>Arial Black</family>
-                  <pointsize>20</pointsize>
-                  <weight>50</weight>
-                  <italic>false</italic>
-                  <bold>false</bold>
-                 </font>
-                </property>
-                <property name="text">
-                 <string>Nuevo Cliente</string>
-                </property>
-                <property name="alignment">
-                 <set>Qt::AlignCenter</set>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <spacer name="verticalSpacer_20">
-                <property name="orientation">
-                 <enum>Qt::Vertical</enum>
-                </property>
-                <property name="sizeHint" stdset="0">
-                 <size>
-                  <width>20</width>
-                  <height>40</height>
-                 </size>
-                </property>
-               </spacer>
-              </item>
-              <item>
-               <layout class="QHBoxLayout" name="horizontalLayout_63">
-                <item>
-                 <spacer name="horizontalSpacer_110">
-                  <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
-                  </property>
-                  <property name="sizeHint" stdset="0">
-                   <size>
-                    <width>40</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                 </spacer>
-                </item>
-                <item>
-                 <widget class="QLabel" name="label_71">
-                  <property name="minimumSize">
-                   <size>
-                    <width>150</width>
-                    <height>40</height>
-                   </size>
-                  </property>
-                  <property name="font">
-                   <font>
-                    <family>Arial Narrow</family>
-                    <pointsize>18</pointsize>
-                   </font>
-                  </property>
-                  <property name="text">
-                   <string>Nombre:*</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QLineEdit" name="input_nombre_cliente_nuevo">
-                  <property name="minimumSize">
-                   <size>
-                    <width>200</width>
-                    <height>25</height>
-                   </size>
-                  </property>
-                  <property name="maximumSize">
-                   <size>
-                    <width>400</width>
-                    <height>16777215</height>
-                   </size>
-                  </property>
-                  <property name="placeholderText">
-                   <string>nombre</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <spacer name="horizontalSpacer_111">
-                  <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
-                  </property>
-                  <property name="sizeHint" stdset="0">
-                   <size>
-                    <width>40</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                 </spacer>
-                </item>
-               </layout>
-              </item>
-              <item>
-               <layout class="QHBoxLayout" name="horizontalLayout_65">
-                <item>
-                 <spacer name="horizontalSpacer_114">
-                  <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
-                  </property>
-                  <property name="sizeHint" stdset="0">
-                   <size>
-                    <width>40</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                 </spacer>
-                </item>
-                <item>
-                 <widget class="QLabel" name="label_73">
-                  <property name="minimumSize">
-                   <size>
-                    <width>150</width>
-                    <height>40</height>
-                   </size>
-                  </property>
-                  <property name="font">
-                   <font>
-                    <family>Arial Narrow</family>
-                    <pointsize>18</pointsize>
-                   </font>
-                  </property>
-                  <property name="text">
-                   <string>Teléfono:*</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QLineEdit" name="input_telefono_cliente_nuevo">
-                  <property name="minimumSize">
-                   <size>
-                    <width>200</width>
-                    <height>25</height>
-                   </size>
-                  </property>
-                  <property name="maximumSize">
-                   <size>
-                    <width>400</width>
-                    <height>16777215</height>
-                   </size>
-                  </property>
-                  <property name="placeholderText">
-                   <string>teléfono</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <spacer name="horizontalSpacer_115">
-                  <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
-                  </property>
-                  <property name="sizeHint" stdset="0">
-                   <size>
-                    <width>40</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                 </spacer>
-                </item>
-               </layout>
-              </item>
-              <item>
-               <layout class="QHBoxLayout" name="horizontalLayout_66">
-                <item>
-                 <spacer name="horizontalSpacer_116">
-                  <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
-                  </property>
-                  <property name="sizeHint" stdset="0">
-                   <size>
-                    <width>40</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                 </spacer>
-                </item>
-                <item>
-                 <widget class="QLabel" name="label_74">
-                  <property name="minimumSize">
-                   <size>
-                    <width>150</width>
-                    <height>40</height>
-                   </size>
-                  </property>
-                  <property name="font">
-                   <font>
-                    <family>Arial Narrow</family>
-                    <pointsize>18</pointsize>
-                   </font>
-                  </property>
-                  <property name="text">
-                   <string>E-Mail:*</string>
-                  </property>
-                  <property name="buddy">
-                   <cstring>label_19</cstring>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QLineEdit" name="input_email_cliente_nuevo">
-                  <property name="minimumSize">
-                   <size>
-                    <width>200</width>
-                    <height>25</height>
-                   </size>
-                  </property>
-                  <property name="maximumSize">
-                   <size>
-                    <width>400</width>
-                    <height>16777215</height>
-                   </size>
-                  </property>
-                  <property name="placeholderText">
-                   <string>email</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <spacer name="horizontalSpacer_117">
-                  <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
-                  </property>
-                  <property name="sizeHint" stdset="0">
-                   <size>
-                    <width>40</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                 </spacer>
-                </item>
-               </layout>
-              </item>
-              <item>
-               <layout class="QHBoxLayout" name="horizontalLayout_67">
-                <item>
-                 <spacer name="horizontalSpacer_118">
-                  <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
-                  </property>
-                  <property name="sizeHint" stdset="0">
-                   <size>
-                    <width>40</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                 </spacer>
-                </item>
-                <item>
-                 <widget class="QLabel" name="label_75">
-                  <property name="minimumSize">
-                   <size>
-                    <width>150</width>
-                    <height>40</height>
-                   </size>
-                  </property>
-                  <property name="font">
-                   <font>
-                    <family>Arial Narrow</family>
-                    <pointsize>18</pointsize>
-                   </font>
-                  </property>
-                  <property name="text">
-                   <string>Dirección:*</string>
-                  </property>
-                  <property name="buddy">
-                   <cstring>label_20</cstring>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QLineEdit" name="input_direccion_cliente_nuevo">
-                  <property name="minimumSize">
-                   <size>
-                    <width>200</width>
-                    <height>25</height>
-                   </size>
-                  </property>
-                  <property name="maximumSize">
-                   <size>
-                    <width>400</width>
-                    <height>16777215</height>
-                   </size>
-                  </property>
-                  <property name="placeholderText">
-                   <string>dirección</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <spacer name="horizontalSpacer_119">
-                  <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
-                  </property>
-                  <property name="sizeHint" stdset="0">
-                   <size>
-                    <width>40</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                 </spacer>
-                </item>
-               </layout>
-              </item>
-              <item>
-               <layout class="QHBoxLayout" name="horizontalLayout_64">
-                <item>
-                 <spacer name="horizontalSpacer_112">
-                  <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
-                  </property>
-                  <property name="sizeHint" stdset="0">
-                   <size>
-                    <width>40</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                 </spacer>
-                </item>
-                <item>
-                 <widget class="QLabel" name="label_72">
-                  <property name="minimumSize">
-                   <size>
-                    <width>150</width>
-                    <height>40</height>
-                   </size>
-                  </property>
-                  <property name="font">
-                   <font>
-                    <family>Arial Narrow</family>
-                    <pointsize>18</pointsize>
-                   </font>
-                  </property>
-                  <property name="text">
-                   <string>Descripción:</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QLineEdit" name="input_descripcion_cliente_nuevo">
-                  <property name="minimumSize">
-                   <size>
-                    <width>200</width>
-                    <height>25</height>
-                   </size>
-                  </property>
-                  <property name="maximumSize">
-                   <size>
-                    <width>400</width>
-                    <height>16777215</height>
-                   </size>
-                  </property>
-                  <property name="placeholderText">
-                   <string>descripción</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <spacer name="horizontalSpacer_113">
-                  <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
-                  </property>
-                  <property name="sizeHint" stdset="0">
-                   <size>
-                    <width>40</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                 </spacer>
-                </item>
-               </layout>
-              </item>
-              <item>
-               <widget class="QLabel" name="signal_proveedor_nuevo_3">
-                <property name="text">
-                 <string>Espacios obligatorios*</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <spacer name="verticalSpacer_21">
-                <property name="orientation">
-                 <enum>Qt::Vertical</enum>
-                </property>
-                <property name="sizeHint" stdset="0">
-                 <size>
-                  <width>20</width>
-                  <height>40</height>
-                 </size>
-                </property>
-               </spacer>
-              </item>
-              <item>
-               <layout class="QHBoxLayout" name="horizontalLayout_72">
-                <item>
-                 <spacer name="horizontalSpacer_128">
-                  <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
-                  </property>
-                  <property name="sizeHint" stdset="0">
-                   <size>
-                    <width>40</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                 </spacer>
-                </item>
-                <item>
-                 <widget class="QPushButton" name="btn_atras_cliente_nuevo">
-                  <property name="minimumSize">
-                   <size>
-                    <width>200</width>
-                    <height>40</height>
-                   </size>
-                  </property>
-                  <property name="cursor">
-                   <cursorShape>PointingHandCursor</cursorShape>
-                  </property>
-                  <property name="text">
-                   <string>Atras</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QPushButton" name="btn_guardar_cliente_nuevo">
-                  <property name="minimumSize">
-                   <size>
-                    <width>200</width>
-                    <height>40</height>
-                   </size>
-                  </property>
-                  <property name="cursor">
-                   <cursorShape>PointingHandCursor</cursorShape>
-                  </property>
-                  <property name="text">
-                   <string>Guardar</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <spacer name="horizontalSpacer_129">
-                  <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
-                  </property>
-                  <property name="sizeHint" stdset="0">
-                   <size>
-                    <width>40</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                 </spacer>
-                </item>
-               </layout>
-              </item>
-             </layout>
-            </widget>
-            <widget class="QWidget" name="page_modificar_cliente">
-             <layout class="QVBoxLayout" name="verticalLayout_27">
-              <item>
-               <widget class="QLabel" name="label_80">
-                <property name="minimumSize">
-                 <size>
-                  <width>0</width>
-                  <height>40</height>
-                 </size>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>16777215</width>
-                  <height>0</height>
-                 </size>
-                </property>
-                <property name="font">
-                 <font>
-                  <family>Arial Black</family>
-                  <pointsize>20</pointsize>
-                  <weight>50</weight>
-                  <italic>false</italic>
-                  <bold>false</bold>
-                 </font>
-                </property>
-                <property name="text">
-                 <string>Modificar Cliente</string>
-                </property>
-                <property name="alignment">
-                 <set>Qt::AlignCenter</set>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <spacer name="verticalSpacer_22">
-                <property name="orientation">
-                 <enum>Qt::Vertical</enum>
-                </property>
-                <property name="sizeHint" stdset="0">
-                 <size>
-                  <width>20</width>
-                  <height>40</height>
-                 </size>
-                </property>
-               </spacer>
-              </item>
-              <item>
-               <layout class="QHBoxLayout" name="horizontalLayout_78">
-                <item>
-                 <spacer name="horizontalSpacer_140">
-                  <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
-                  </property>
-                  <property name="sizeHint" stdset="0">
-                   <size>
-                    <width>40</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                 </spacer>
-                </item>
-                <item>
-                 <widget class="QLabel" name="label_86">
-                  <property name="minimumSize">
-                   <size>
-                    <width>150</width>
-                    <height>40</height>
-                   </size>
-                  </property>
-                  <property name="font">
-                   <font>
-                    <family>Arial Narrow</family>
-                    <pointsize>18</pointsize>
-                   </font>
-                  </property>
-                  <property name="text">
-                   <string>Nombre:*</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QLineEdit" name="input_nombre_cliente_modificar">
-                  <property name="minimumSize">
-                   <size>
-                    <width>200</width>
-                    <height>25</height>
-                   </size>
-                  </property>
-                  <property name="maximumSize">
-                   <size>
-                    <width>400</width>
-                    <height>16777215</height>
-                   </size>
-                  </property>
-                  <property name="placeholderText">
-                   <string>nombre</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <spacer name="horizontalSpacer_141">
-                  <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
-                  </property>
-                  <property name="sizeHint" stdset="0">
-                   <size>
-                    <width>40</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                 </spacer>
-                </item>
-               </layout>
-              </item>
-              <item>
-               <layout class="QHBoxLayout" name="horizontalLayout_82">
-                <item>
-                 <spacer name="horizontalSpacer_148">
-                  <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
-                  </property>
-                  <property name="sizeHint" stdset="0">
-                   <size>
-                    <width>40</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                 </spacer>
-                </item>
-                <item>
-                 <widget class="QLabel" name="label_90">
-                  <property name="minimumSize">
-                   <size>
-                    <width>150</width>
-                    <height>40</height>
-                   </size>
-                  </property>
-                  <property name="font">
-                   <font>
-                    <family>Arial Narrow</family>
-                    <pointsize>18</pointsize>
-                   </font>
-                  </property>
-                  <property name="text">
-                   <string>Teléfono:*</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QLineEdit" name="input_telefono_cliente_modificar">
-                  <property name="minimumSize">
-                   <size>
-                    <width>200</width>
-                    <height>25</height>
-                   </size>
-                  </property>
-                  <property name="maximumSize">
-                   <size>
-                    <width>400</width>
-                    <height>16777215</height>
-                   </size>
-                  </property>
-                  <property name="placeholderText">
-                   <string>teléfono</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <spacer name="horizontalSpacer_149">
-                  <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
-                  </property>
-                  <property name="sizeHint" stdset="0">
-                   <size>
-                    <width>40</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                 </spacer>
-                </item>
-               </layout>
-              </item>
-              <item>
-               <layout class="QHBoxLayout" name="horizontalLayout_81">
-                <item>
-                 <spacer name="horizontalSpacer_146">
-                  <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
-                  </property>
-                  <property name="sizeHint" stdset="0">
-                   <size>
-                    <width>40</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                 </spacer>
-                </item>
-                <item>
-                 <widget class="QLabel" name="label_89">
-                  <property name="minimumSize">
-                   <size>
-                    <width>150</width>
-                    <height>40</height>
-                   </size>
-                  </property>
-                  <property name="font">
-                   <font>
-                    <family>Arial Narrow</family>
-                    <pointsize>18</pointsize>
-                   </font>
-                  </property>
-                  <property name="text">
-                   <string>E-Mail:*</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QLineEdit" name="input_email_cliente_modificar">
-                  <property name="minimumSize">
-                   <size>
-                    <width>200</width>
-                    <height>25</height>
-                   </size>
-                  </property>
-                  <property name="maximumSize">
-                   <size>
-                    <width>400</width>
-                    <height>16777215</height>
-                   </size>
-                  </property>
-                  <property name="placeholderText">
-                   <string>email</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <spacer name="horizontalSpacer_147">
-                  <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
-                  </property>
-                  <property name="sizeHint" stdset="0">
-                   <size>
-                    <width>40</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                 </spacer>
-                </item>
-               </layout>
-              </item>
-              <item>
-               <layout class="QHBoxLayout" name="horizontalLayout_79">
-                <item>
-                 <spacer name="horizontalSpacer_142">
-                  <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
-                  </property>
-                  <property name="sizeHint" stdset="0">
-                   <size>
-                    <width>40</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                 </spacer>
-                </item>
-                <item>
-                 <widget class="QLabel" name="label_87">
-                  <property name="minimumSize">
-                   <size>
-                    <width>150</width>
-                    <height>40</height>
-                   </size>
-                  </property>
-                  <property name="font">
-                   <font>
-                    <family>Arial Narrow</family>
-                    <pointsize>18</pointsize>
-                   </font>
-                  </property>
-                  <property name="text">
-                   <string>Dirección:*</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QLineEdit" name="input_direccion_cliente_modificar">
-                  <property name="minimumSize">
-                   <size>
-                    <width>200</width>
-                    <height>25</height>
-                   </size>
-                  </property>
-                  <property name="maximumSize">
-                   <size>
-                    <width>400</width>
-                    <height>16777215</height>
-                   </size>
-                  </property>
-                  <property name="placeholderText">
-                   <string>dirección</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <spacer name="horizontalSpacer_143">
-                  <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
-                  </property>
-                  <property name="sizeHint" stdset="0">
-                   <size>
-                    <width>40</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                 </spacer>
-                </item>
-               </layout>
-              </item>
-              <item>
-               <layout class="QHBoxLayout" name="horizontalLayout_80">
-                <item>
-                 <spacer name="horizontalSpacer_144">
-                  <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
-                  </property>
-                  <property name="sizeHint" stdset="0">
-                   <size>
-                    <width>40</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                 </spacer>
-                </item>
-                <item>
-                 <widget class="QLabel" name="label_88">
-                  <property name="minimumSize">
-                   <size>
-                    <width>150</width>
-                    <height>40</height>
-                   </size>
-                  </property>
-                  <property name="font">
-                   <font>
-                    <family>Arial Narrow</family>
-                    <pointsize>18</pointsize>
-                   </font>
-                  </property>
-                  <property name="text">
-                   <string>Descripción:</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QLineEdit" name="input_descripcion_cliente_modificar">
-                  <property name="minimumSize">
-                   <size>
-                    <width>200</width>
-                    <height>25</height>
-                   </size>
-                  </property>
-                  <property name="maximumSize">
-                   <size>
-                    <width>400</width>
-                    <height>16777215</height>
-                   </size>
-                  </property>
-                  <property name="placeholderText">
-                   <string>descripción</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <spacer name="horizontalSpacer_145">
-                  <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
-                  </property>
-                  <property name="sizeHint" stdset="0">
-                   <size>
-                    <width>40</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                 </spacer>
-                </item>
-               </layout>
-              </item>
-              <item>
-               <widget class="QLabel" name="signal_proveedor_modificado_3">
-                <property name="text">
-                 <string>Espacios obligatorios*</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <spacer name="verticalSpacer_23">
-                <property name="orientation">
-                 <enum>Qt::Vertical</enum>
-                </property>
-                <property name="sizeHint" stdset="0">
-                 <size>
-                  <width>20</width>
-                  <height>40</height>
-                 </size>
-                </property>
-               </spacer>
-              </item>
-              <item>
-               <layout class="QHBoxLayout" name="horizontalLayout_83">
-                <item>
-                 <spacer name="horizontalSpacer_150">
-                  <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
-                  </property>
-                  <property name="sizeHint" stdset="0">
-                   <size>
-                    <width>40</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                 </spacer>
-                </item>
-                <item>
-                 <widget class="QPushButton" name="btn_cancelar_cliente_modificar">
-                  <property name="minimumSize">
-                   <size>
-                    <width>200</width>
-                    <height>40</height>
-                   </size>
-                  </property>
-                  <property name="cursor">
-                   <cursorShape>PointingHandCursor</cursorShape>
-                  </property>
-                  <property name="text">
-                   <string>Cancelar</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QPushButton" name="btn_guardar_cliente_modificar">
-                  <property name="minimumSize">
-                   <size>
-                    <width>200</width>
-                    <height>40</height>
-                   </size>
-                  </property>
-                  <property name="cursor">
-                   <cursorShape>PointingHandCursor</cursorShape>
-                  </property>
-                  <property name="text">
-                   <string>Guardar</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <spacer name="horizontalSpacer_151">
-                  <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
-                  </property>
-                  <property name="sizeHint" stdset="0">
-                   <size>
-                    <width>40</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                 </spacer>
-                </item>
-               </layout>
               </item>
              </layout>
             </widget>
@@ -2755,9 +2069,6 @@ QLineEdit{
               </item>
              </layout>
             </widget>
-            <widget class="QWidget" name="page_compras">
-             <layout class="QVBoxLayout" name="verticalLayout_13"/>
-            </widget>
             <widget class="QWidget" name="page_articulos">
              <layout class="QVBoxLayout" name="verticalLayout_5">
               <item>
@@ -3601,7 +2912,7 @@ QLineEdit{
                    </size>
                   </property>
                   <property name="styleSheet">
-                   <string notr="true">Background-color:rgb(255, 255, 255)</string>
+                   <string notr="true"/>
                   </property>
                  </widget>
                 </item>

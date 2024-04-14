@@ -18,6 +18,7 @@ class ArticulosController():
         self.articulos = Articulos(connection())
         self.proveedores = Proveedores(connection())
         self.art_view = view
+        
 
     #Muestra la lista de Articulos
     def mostrar_articulos(self):
@@ -25,7 +26,6 @@ class ArticulosController():
         num_filas = len(datos)
         num_columnas = 6     #podria obtenerlo solo con self.art_view.table_articulos.rowCount  //probar
         
-
         self.art_view.table_articulos.setRowCount(num_filas)
         self.art_view.table_articulos.setColumnCount(num_columnas)
 

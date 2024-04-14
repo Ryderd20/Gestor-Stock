@@ -24,38 +24,25 @@ class VentanaPrincipal(QMainWindow):
         
         
 
-        #--------------------Botones Menu Superior------------------------
-        self.btn_gestionstock.clicked.connect(lambda:self.stackedWidget_frame_menu.setCurrentWidget(self.stackedWidget_menuStock))
-        self.btn_gestionstock.clicked.connect(lambda:self.stackedWidget.setCurrentWidget(self.page_stock))
-
-        self.btn_gestionventas.clicked.connect(lambda:self.stackedWidget_frame_menu.setCurrentWidget(self.stackedWidget_menuVentas))
+        #--------------------Botones Menu Principal------------------------
+        
+        #Ir a Gestion de Vesntas
         self.btn_gestionventas.clicked.connect(lambda:self.stackedWidget.setCurrentWidget(self.page_ventas))
 
-
-     
-        #--------------------Botones Menu Secundario--------------
-        
         #Ir a Gestion de Stock
-        #self.btn_stock.clicked.connect(lambda:self.stackedWidget.setCurrentWidget(self.page_stock))
-
+        self.btn_gestionstock.clicked.connect(lambda:self.stackedWidget.setCurrentWidget(self.page_stock))
+        
         #Ir a Gestion de Articulos
         self.btn_articulos.clicked.connect(lambda:self.stackedWidget.setCurrentWidget(self.page_articulos))
         self.btn_articulos.clicked.connect(self.articulos_controller.mostrar_articulos)
 
-        #Ir a Gestion de Compras
-       # self.btn_compras.clicked.connect(lambda:self.stackedWidget.setCurrentWidget(self.page_compras))
-        
         #Ir a Gestion de Proveedores
         self.btn_proveedores.clicked.connect(lambda:self.stackedWidget.setCurrentWidget(self.page_proveedores))
         self.btn_proveedores.clicked.connect(self.proveedores_controller.mostrar_proveedores)
 
-        #Ir a Gestion de Vesntas
-        #self.btn_ventas.clicked.connect(lambda:self.stackedWidget.setCurrentWidget(self.page_ventas))
-        #self.btn_clientes.clicked.connect(lambda:self.stackedWidget.setCurrentWidget(self.page_clientes))
-
         #Salir
         self.btn_salir.clicked.connect(lambda:self.close())
-        
+
 
         
         #-------------------------------Gestion de Proveedores---------------------------
@@ -103,8 +90,8 @@ class VentanaPrincipal(QMainWindow):
         #Buscar Articulo
         self.btn_buscar_art.clicked.connect(self.articulos_controller.buscarArticuloPorNombre)
 
-
-
+    
+    
     #---------------------------------FUNCIONES--------------------------------
     def validarSeleccionDeProveedor(self):
         if self.table_proveedores.currentRow() != -1:
