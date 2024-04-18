@@ -4,7 +4,7 @@ from PyQt5.QtWidgets import QApplication,QMainWindow,QMessageBox
 from PyQt5.uic import loadUi
 
 from Controllers.ProveedoresController import ProveedoresController
-from Controllers.ArticulosController import ArticulosController
+from Controllers.ProductosController import ProductosController
 
 
 
@@ -19,7 +19,7 @@ class VentanaPrincipal(QMainWindow):
     
         #----------------Controladores----------------
         self.proveedores_controller = ProveedoresController(self)
-        self.articulos_controller = ArticulosController(self)
+        self.productos_controller = ProductosController(self)
 
         
         
@@ -32,9 +32,9 @@ class VentanaPrincipal(QMainWindow):
         #Ir a Gestion de Stock
         self.btn_gestionstock.clicked.connect(lambda:self.stackedWidget.setCurrentWidget(self.page_stock))
         
-        #Ir a Gestion de Articulos
-        self.btn_articulos.clicked.connect(lambda:self.stackedWidget.setCurrentWidget(self.page_articulos))
-        self.btn_articulos.clicked.connect(self.articulos_controller.mostrar_articulos)
+        #Ir a Gestion de Productos
+        self.btn_productos.clicked.connect(lambda:self.stackedWidget.setCurrentWidget(self.page_productos))
+        self.btn_productos.clicked.connect(self.productos_controller.mostrar_productos)
 
         #Ir a Gestion de Proveedores
         self.btn_proveedores.clicked.connect(lambda:self.stackedWidget.setCurrentWidget(self.page_proveedores))
@@ -66,29 +66,29 @@ class VentanaPrincipal(QMainWindow):
         self.btn_buscar_proveedor.clicked.connect(self.proveedores_controller.buscarProveedorPorNombre)
 
 
-        #-------------------------------Gestion de Articulos--------------
-        #Agregar Articulo
-        self.btn_agregar_articulo.clicked.connect(lambda:self.stackedWidget.setCurrentWidget(self.page_nuevo_articulo))
-        self.btn_agregar_articulo.clicked.connect(self.articulos_controller.cargarListaProveedores)
+        #-------------------------------Gestion de Productos--------------
+        #Agregar Producto
+        self.btn_agregar_producto.clicked.connect(lambda:self.stackedWidget.setCurrentWidget(self.page_nuevo_producto))
+        self.btn_agregar_producto.clicked.connect(self.productos_controller.cargarListaProveedores)
 
-        self.btn_atras_articulo_nuevo.clicked.connect(lambda:self.stackedWidget.setCurrentWidget(self.page_articulos))
-        self.btn_atras_articulo_nuevo.clicked.connect(self.articulos_controller.mostrar_articulos)
+        self.btn_atras_producto_nuevo.clicked.connect(lambda:self.stackedWidget.setCurrentWidget(self.page_productos))
+        self.btn_atras_producto_nuevo.clicked.connect(self.productos_controller.mostrar_productos)
 
-        self.btn_guardar_articulo.clicked.connect(self.articulos_controller.agregar_articulo)
+        self.btn_guardar_producto.clicked.connect(self.productos_controller.agregar_producto)
 
-        #Modificar Articulo
-        self.btn_modificar_articulo.clicked.connect(self.validarSeleccionDeArticulo)
-        self.btn_modificar_articulo.clicked.connect(self.articulos_controller.cargar_articulo)
+        #Modificar Producto
+        self.btn_modificar_producto.clicked.connect(self.validarSeleccionDeProducto)
+        self.btn_modificar_producto.clicked.connect(self.productos_controller.cargar_producto)
         
-        self.btn_guardar_articulo_modificar.clicked.connect(self.validarArticuloModificado)
-        self.btn_cancelar_articulo_modificar.clicked.connect(lambda:self.stackedWidget.setCurrentWidget(self.page_articulos))
+        self.btn_guardar_producto_modificar.clicked.connect(self.validarProductoModificado)
+        self.btn_cancelar_producto_modificar.clicked.connect(lambda:self.stackedWidget.setCurrentWidget(self.page_productos))
         
 
-        #Eliminar Articulo
-        self.btn_eliminar_articulo.clicked.connect(lambda:self.articulos_controller.eliminar_articulo())
+        #Eliminar Producto
+        self.btn_eliminar_producto.clicked.connect(lambda:self.productos_controller.eliminar_producto())
 
-        #Buscar Articulo
-        self.btn_buscar_art.clicked.connect(self.articulos_controller.buscarArticuloPorNombre)
+        #Buscar Producto
+        self.btn_buscar_prod.clicked.connect(self.productos_controller.buscarProductoPorNombre)
 
     
     
@@ -112,22 +112,22 @@ class VentanaPrincipal(QMainWindow):
     
 
 
-    def validarSeleccionDeArticulo(self):
-        if self.table_articulos.currentRow() != -1:
-            self.stackedWidget.setCurrentWidget(self.page_modificar_articulo)
+    def validarSeleccionDeProducto(self):
+        if self.table_productos.currentRow() != -1:
+            self.stackedWidget.setCurrentWidget(self.page_modificar_producto)
         else:
             msg = QMessageBox()
             msg.setIcon(QMessageBox.Warning)
             msg.setWindowTitle("Advertencia")
-            msg.setText("Debes seleccionar un articulo")
+            msg.setText("Debes seleccionar un producto")
             msg.exec_()
 
-    def validarArticuloModificado(self):
+    def validarProductoModificado(self):
         
-        if self.articulos_controller.modificar_articulo():
-            self.stackedWidget.setCurrentWidget(self.page_articulos)
+        if self.productos_controller.modificar_producto():
+            self.stackedWidget.setCurrentWidget(self.page_productos)
         else:
-            self.signal_articulo_modificado.setText("Hay espacios obligatorios vacios")        
+            self.signal_producto_modificado.setText("Hay espacios obligatorios vacios")        
 
 
 
