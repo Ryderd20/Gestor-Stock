@@ -5,6 +5,7 @@ from PyQt5.uic import loadUi
 
 from Controllers.ProveedoresController import ProveedoresController
 from Controllers.ArticulosController import ArticulosController
+from Controllers.StockController import StockController
 
 
 
@@ -20,6 +21,7 @@ class VentanaPrincipal(QMainWindow):
         #----------------Controladores----------------
         self.proveedores_controller = ProveedoresController(self)
         self.articulos_controller = ArticulosController(self)
+        self.stock_controller = StockController(self)
 
         
         
@@ -31,7 +33,9 @@ class VentanaPrincipal(QMainWindow):
 
         #Ir a Gestion de Stock
         self.btn_gestionstock.clicked.connect(lambda:self.stackedWidget.setCurrentWidget(self.page_stock))
-        
+        self.btn_gestionstock.clicked.connect(self.stock_controller.cargarListaProveedores_Stock)
+        self.btn_gestionstock.clicked.connect(self.stock_controller.cargarListaArticulos_Stock)
+
         #Ir a Gestion de Articulos
         self.btn_articulos.clicked.connect(lambda:self.stackedWidget.setCurrentWidget(self.page_articulos))
         self.btn_articulos.clicked.connect(self.articulos_controller.mostrar_articulos)

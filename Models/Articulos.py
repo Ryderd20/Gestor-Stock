@@ -81,3 +81,11 @@ class Articulos():
         if registro:
             return registro
         
+
+    #Obtener Lista de articulos
+    def getListArticulos(self):
+        cursor = self.control.cursor()
+        sql = "SELECT Nombre FROM Tabla_Articulos"
+        cursor.execute(sql)
+        registro = cursor.fetchall()
+        return registro
