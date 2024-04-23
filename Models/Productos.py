@@ -5,7 +5,7 @@ myDir = os.getcwd()
 sys.path.append(myDir)
 
 
-class Articulos():
+class Productos():
 
 
     #-----------Constructor----------------
@@ -15,11 +15,10 @@ class Articulos():
         
         #-------------CREAR LA TABLA--------------
         cursor = self.control.cursor()
-        sql = """CREATE TABLE IF NOT EXISTS "Tabla_Articulos" (
+        sql = """CREATE TABLE IF NOT EXISTS "Tabla_Productos" (
             "Codigo"	INTEGER NOT NULL,
             "Nombre"	TEXT NOT NULL,
             "Proveedor"	TEXT NOT NULL,
-            "Costo"	REAL NOT NULL,
             "Precio"	REAL NOT NULL,
             "Descripcion"	TEXT NOT NULL,
             PRIMARY KEY("Codigo" AUTOINCREMENT)
@@ -29,53 +28,53 @@ class Articulos():
         self.control.commit()
         
 
-    #Obtener todos los Articulos
-    def getArticulos(self):
+    #Obtener todos los Productos
+    def getProductos(self):
         cursor = self.control.cursor()
-        sql = """SELECT * FROM Tabla_Articulos"""
+        sql = """SELECT * FROM Tabla_Productos"""
         cursor.execute(sql)
         registro = cursor.fetchall()
         cursor.close()
         return registro
     
-    #Obtener un Articulo por Codigo
-    def getArticuloCod(self,cod):
+    #Obtener un Producto por Codigo
+    def getProductoCod(self,cod):
         cursor = self.control.cursor()
-        sql = """SELECT * FROM Tabla_Articulos WHERE Codigo = {}""".format(cod)
+        sql = """SELECT * FROM Tabla_Productos WHERE Codigo = {}""".format(cod)
         cursor.execute(sql)
         registro = cursor.fetchone()
         cursor.close()
         if registro:
             return registro
     
-    #Actualizar Articulo
-    def updateArticulo(self,cod,nombre,proveedor,costo,precio,descripcion):
+    #Actualizar Producto
+    def updateProducto(self,cod,nombre,proveedor,precio,descripcion):
         cursor = self.control.cursor()
-        sql = """UPDATE Tabla_Articulos SET Nombre = "{}" , Proveedor = "{}" , Costo = "{}", Precio = "{}", Descripcion = "{}" WHERE Codigo = "{}" """.format(nombre,proveedor,costo,precio,descripcion,cod)
+        sql = """UPDATE Tabla_Productos SET Nombre = "{}" , Proveedor = "{}" , Precio = "{}", Descripcion = "{}" WHERE Codigo = "{}" """.format(nombre,proveedor,precio,descripcion,cod)
         cursor.execute(sql)
         self.control.commit()
         cursor.close()
 
-    #Agregar Nuevo Articulo
-    def insertArticulo(self,nombre,proveedor,costo,precio,descripcion):
+    #Agregar Nuevo Producto
+    def insertProducto(self,nombre,proveedor,precio,descripcion):
         cursor = self.control.cursor()
-        sql = """INSERT INTO Tabla_Articulos (Nombre,Proveedor,Costo,Precio,Descripcion) VALUES ("{}","{}","{}","{}","{}")""".format(nombre,proveedor,costo,precio,descripcion)
+        sql = """INSERT INTO Tabla_Productos (Nombre,Proveedor,Precio,Descripcion) VALUES ("{}","{}","{}","{}")""".format(nombre,proveedor,precio,descripcion)
         cursor.execute(sql)
         self.control.commit()
 
-    #Eliminar un Articulo
-    def deleteArticulo(self,cod):
+    #Eliminar un Producto
+    def deleteProducto(self,cod):
         cursor = self.control.cursor()
-        sql = """DELETE FROM Tabla_Articulos WHERE Codigo = {}""".format(cod)
+        sql = """DELETE FROM Tabla_Productos WHERE Codigo = {}""".format(cod)
         cursor.execute(sql)
         self.control.commit()
     
     #test
 
-    #Obetener Articulos por Nombre
-    def getArticuloNom(self,nom):
+    #Obetener Productos por Nombre
+    def getProductoNom(self,nom):
         cursor = self.control.cursor()
-        sql = """SELECT * FROM Tabla_Articulos WHERE Nombre = ?"""
+        sql = """SELECT * FROM Tabla_Productos WHERE Nombre = ?"""
         cursor.execute(sql, (nom,))
         registro = cursor.fetchall()
         if registro:
