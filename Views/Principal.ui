@@ -596,7 +596,7 @@ QComboBox QAbstractItemView {
 }</string>
             </property>
             <property name="currentIndex">
-             <number>0</number>
+             <number>1</number>
             </property>
             <widget class="QWidget" name="page_ventas">
              <layout class="QVBoxLayout" name="verticalLayout_12">
@@ -785,7 +785,7 @@ QComboBox QAbstractItemView {
                  </layout>
                 </item>
                 <item>
-                 <widget class="QFrame" name="">
+                 <widget class="QFrame" name="frame">
                   <property name="maximumSize">
                    <size>
                     <width>900</width>
@@ -832,7 +832,7 @@ QComboBox QAbstractItemView {
                       </widget>
                      </item>
                      <item>
-                      <widget class="QSpinBox" name="cantidadProd"/>
+                      <widget class="QSpinBox" name="spinBox_Agregar"/>
                      </item>
                     </layout>
                    </item>

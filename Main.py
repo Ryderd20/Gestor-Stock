@@ -54,6 +54,9 @@ class VentanaPrincipal(QMainWindow):
         #-------------------------------Gestion de Stock---------------------------
 
         self.btn_agregar_stock.clicked.connect(self.stock_controller.cargar_producto_stock)
+        self.btn_eliminar_stock.clicked.connect(self.stock_controller.restar_cantidad_producto)
+        self.btn_buscar_prodStock_porNom.clicked.connect(self.stock_controller.buscar_producto_por_nombre)
+
 
 
         
