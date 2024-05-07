@@ -15,11 +15,9 @@ class Stock():
         #-------------CREAR LA TABLA--------------
         cursor = self.control.cursor()
         sql = """CREATE TABLE IF NOT EXISTS "Tabla_Stock" (
-	    "Codigo"	INTEGER NOT NULL,
-	    "Producto"	TEXT NOT NULL,
+	    "CodStock"	INTEGER NOT NULL,
 	    "Cantidad"	REAL NOT NULL,
-	    "Descripcion"	TEXT NOT NULL,
-	    PRIMARY KEY("Codigo"));"""
+	    PRIMARY KEY("CodStock"));"""
 
         cursor.execute(sql)
         self.control.commit()
@@ -29,16 +27,16 @@ class Stock():
     #Obtener todo el Stock
     def getStock(self):
         cursor = self.control.cursor()
-        sql = """SELECT * FROM Tabla_Stock"""
+        sql = """SELECT s.CodStock, p.Nombre, s.Cantidad, p.Precio, p.Descripcion FROM Tabla_Stock s, Tabla_Productos p WHERE s.CodStock = p.CodProd"""
         cursor.execute(sql)
         registro = cursor.fetchall()
         cursor.close()
         return registro
     
-
+    #Obtener Producto en Stock
     def getInStock(self, cod):
         cursor = self.control.cursor()
-        sql = """SELECT * FROM Tabla_Stock WHERE Codigo = {}""".format(cod)
+        sql = """SELECT s.CodStock, p.Nombre, s.Cantidad, p.Precio, p.Descripcion FROM Tabla_Stock s, Tabla_Productos p WHERE s.CodStock = {}""".format(cod)
         cursor.execute(sql)
         registro = cursor.fetchone()
         cursor.close()
@@ -46,9 +44,9 @@ class Stock():
 
 
     #Agregar Nuevo Producto al Stock
-    def insertProducto(self,codigo,producto,cantidad,descripcion):
+    def insertProducto(self,cod,cantidad):
         cursor = self.control.cursor()
-        sql = """INSERT INTO Tabla_Stock (Codigo, Producto, Cantidad, Descripcion) VALUES ("{}","{}","{}","{}")""".format(codigo,producto,cantidad,descripcion)
+        sql = """INSERT INTO Tabla_Stock (CodStock, Cantidad) VALUES ("{}","{}")""".format(cod,cantidad)
         cursor.execute(sql)
         self.control.commit()
 
@@ -57,7 +55,7 @@ class Stock():
     #Eliminar un Producto del Stock
     def deleteStock(self,cod):
         cursor = self.control.cursor()
-        sql = """DELETE FROM Tabla_Stock WHERE Codigo = {}""".format(cod)
+        sql = """DELETE FROM Tabla_Stock WHERE CodStock = {}""".format(cod)
         cursor.execute(sql)
         self.control.commit()
 
@@ -76,7 +74,7 @@ class Stock():
 
     def getProductos(self):
         cursor = self.control.cursor()
-        sql = """SELECT Codigo, Nombre, Descripcion FROM Tabla_Productos"""
+        sql = """SELECT CodProd, Nombre, Precio, Descripcion FROM Tabla_Productos"""
         cursor.execute(sql)
         registro = cursor.fetchall()
         cursor.close()
@@ -86,7 +84,16 @@ class Stock():
 
     def updateStock(self,cod,cantidad):
         cursor = self.control.cursor()
-        sql = """UPDATE Tabla_Stock SET Cantidad = "{}" WHERE Codigo = "{}" """.format(cantidad,cod)
+        sql = """UPDATE Tabla_Stock SET Cantidad = "{}" WHERE CodStock = "{}" """.format(cantidad,cod)
         cursor.execute(sql)
         self.control.commit()
         cursor.close()
+
+    def getStockCantidad(self,codStock):
+        cursor = self.control.cursor()
+        sql = """SELECT Cantidad FROM Tabla_Stock WHERE CodStock = "{}" """.format(codStock)
+        cursor.execute(sql)
+        registro = cursor.fetchone()
+        self.control.commit()
+        cursor.close()
+        return registro

@@ -2,12 +2,13 @@ import sys
 
 from PyQt5.QtWidgets import QApplication,QMainWindow,QMessageBox
 from PyQt5.uic import loadUi
+from PyQt5.QtCore import QDate
 
 from Controllers.ProveedoresController import ProveedoresController
 from Controllers.ProductosController import ProductosController
 from Controllers.StockController import StockController
-
-
+from Controllers.DetalleVentaController import DetalleVentaController
+from Controllers.VentasController import VentasController
 
 
 
@@ -16,21 +17,24 @@ class VentanaPrincipal(QMainWindow):
     def __init__(self):
         super(VentanaPrincipal,self).__init__()
         loadUi("Views/Principal.ui",self)
-        
+        self.dateEdit_test.setDate(QDate.currentDate())
 
     
         #----------------Controladores----------------
         self.proveedores_controller = ProveedoresController(self)
         self.productos_controller = ProductosController(self)
         self.stock_controller = StockController(self)
-
+        self.detalleVenta_controller = DetalleVentaController(self)
+        self.ventas_controller = VentasController(self)
         
         
 
         #--------------------Botones Menu Principal------------------------
         
-        #Ir a Gestion de Vesntas
+        #Ir a Gestion de Ventas
         self.btn_gestionventas.clicked.connect(lambda:self.stackedWidget.setCurrentWidget(self.page_ventas))
+        self.btn_gestionventas.clicked.connect(self.ventas_controller.mostrar_ventas)
+
 
         #Ir a Gestion de Stock
         self.btn_gestionstock.clicked.connect(lambda:self.stackedWidget.setCurrentWidget(self.page_stock))
@@ -49,6 +53,37 @@ class VentanaPrincipal(QMainWindow):
         self.btn_salir.clicked.connect(lambda:self.close())
 
 
+
+        #-------------------------------Gestion de Ventas---------------------------
+
+        #Ingresar nueva Venta
+        self.btn_nuevaVenta.clicked.connect(lambda:self.stackedWidget.setCurrentWidget(self.page_nueva_venta))
+        self.btn_nuevaVenta.clicked.connect(self.detalleVenta_controller.mostrar_stock)
+        self.btn_nuevaVenta.clicked.connect(lambda:self.ventas_controller.nueva_venta(self.getFecha()))
+
+        #Mostrar Detalle de Venta
+        self.table_ventas.itemSelectionChanged.connect(lambda:self.ventas_controller.mostrar_detalleVentaSeleccionada())
+
+        #Eliminar Venta seleccionada
+        self.btn_eliminarVenta.clicked.connect(lambda:self.ventas_controller.eliminar_venta_seleccionada())
+
+        #-------------------------------Detalle de Venta--------------------------
+        #Agregar Producto a Detalle
+        self.btn_agregar_detalleVenta.clicked.connect(self.ventas_controller.cargar_producto)
+        self.btn_agregar_detalleVenta.clicked.connect(self.detalleVenta_controller.mostrar_stock)
+
+        #Restar Producto a Detalle
+        self.btn_restar_detalleVenta.clicked.connect(self.ventas_controller.restar_producto)
+        self.btn_restar_detalleVenta.clicked.connect(self.detalleVenta_controller.mostrar_stock)
+
+        #Confirmar Venta
+        self.btn_detalleVenta_confirmar.clicked.connect(lambda:self.stackedWidget.setCurrentWidget(self.page_ventas))
+        self.btn_detalleVenta_confirmar.clicked.connect(self.ventas_controller.mostrar_ventas)
+
+        #Cancelar Venta
+        self.btn_detalleVenta_cancelar.clicked.connect(lambda:self.stackedWidget.setCurrentWidget(self.page_ventas))
+        self.btn_detalleVenta_cancelar.clicked.connect(self.ventas_controller.cancelar_venta)
+        self.btn_detalleVenta_cancelar.clicked.connect(self.ventas_controller.mostrar_ventas)
 
 
         #-------------------------------Gestion de Stock---------------------------
@@ -139,7 +174,13 @@ class VentanaPrincipal(QMainWindow):
         if self.productos_controller.modificar_producto():
             self.stackedWidget.setCurrentWidget(self.page_productos)
         else:
-            self.signal_producto_modificado.setText("Hay espacios obligatorios vacios")        
+            self.signal_producto_modificado.setText("Hay espacios obligatorios vacios")     
+
+    def getFecha(self):
+        fecha = self.dateEdit_test.date()
+        fecha_str = fecha.toString("yyyy-MM-dd")
+        return (fecha_str)
+
 
 
 
@@ -147,16 +188,6 @@ class VentanaPrincipal(QMainWindow):
 
 
     
-
-
-
-    
-            
-
-        
-
-
-
 
 
 

@@ -14,13 +14,13 @@ class Proveedores():
         #-------------CREAR TABLA SI NO EXISTE---------------
         cursor = self.control.cursor()
         sql = """ CREATE TABLE IF NOT EXISTS "Tabla_Proveedores" (
-	    "Codigo"	INTEGER,
+	    "CodProv"	INTEGER,
 	    "Nombre"	TEXT,
 	    "Telefono"	TEXT,
 	    "Mail"	TEXT,
 	    "Direccion"	TEXT,
 	    "Descripcion"	TEXT,
-	    PRIMARY KEY("Codigo" AUTOINCREMENT)
+	    PRIMARY KEY("CodProv" AUTOINCREMENT)
         );"""
 
         cursor.execute(sql)
@@ -35,10 +35,10 @@ class Proveedores():
         cursor.close()
         return registro
     
-    #Buscar Proveedor por Codigo
+    #Buscar Proveedor por CodProv
     def getProveedorCod(self,cod):
         cursor = self.control.cursor()
-        sql = """SELECT * FROM Tabla_Proveedores WHERE Codigo = {}""".format(cod)
+        sql = """SELECT * FROM Tabla_Proveedores WHERE CodProv = {}""".format(cod)
         cursor.execute(sql)
         registro = cursor.fetchone()
         cursor.close()
@@ -55,7 +55,7 @@ class Proveedores():
     #Actualizar Proveedor
     def updateProveedores(self,cod,nombre,telefono,mail,direccion,descripcion):
         cursor = self.control.cursor()
-        sql = """UPDATE Tabla_Proveedores SET Nombre = "{}" , Telefono = "{}" , Mail = "{}", Direccion = "{}", Descripcion = "{}" WHERE Codigo = "{}" """.format(nombre,telefono,mail,direccion,descripcion,cod)
+        sql = """UPDATE Tabla_Proveedores SET Nombre = "{}" , Telefono = "{}" , Mail = "{}", Direccion = "{}", Descripcion = "{}" WHERE CodProv = "{}" """.format(nombre,telefono,mail,direccion,descripcion,cod)
         cursor.execute(sql)
         self.control.commit()
         cursor.close()
@@ -63,7 +63,7 @@ class Proveedores():
     #Eliminar Proveedor
     def deleteProveedor(self,cod):
         cursor = self.control.cursor()
-        sql = """DELETE FROM Tabla_Proveedores WHERE Codigo = {}""".format(cod)
+        sql = """DELETE FROM Tabla_Proveedores WHERE CodProv = {}""".format(cod)
         cursor.execute(sql)
         self.control.commit()
 

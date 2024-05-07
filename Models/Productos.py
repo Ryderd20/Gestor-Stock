@@ -16,12 +16,12 @@ class Productos():
         #-------------CREAR LA TABLA--------------
         cursor = self.control.cursor()
         sql = """CREATE TABLE IF NOT EXISTS "Tabla_Productos" (
-            "Codigo"	INTEGER NOT NULL,
+            "CodProd"	INTEGER NOT NULL,
             "Nombre"	TEXT NOT NULL,
             "Proveedor"	TEXT NOT NULL,
             "Precio"	REAL NOT NULL,
             "Descripcion"	TEXT NOT NULL,
-            PRIMARY KEY("Codigo" AUTOINCREMENT)
+            PRIMARY KEY("CodProd" AUTOINCREMENT)
         );"""
 
         cursor.execute(sql)
@@ -40,7 +40,7 @@ class Productos():
     #Obtener un Producto por Codigo
     def getProductoCod(self,cod):
         cursor = self.control.cursor()
-        sql = """SELECT * FROM Tabla_Productos WHERE Codigo = {}""".format(cod)
+        sql = """SELECT * FROM Tabla_Productos WHERE CodProd = {}""".format(cod)
         cursor.execute(sql)
         registro = cursor.fetchone()
         cursor.close()
@@ -50,7 +50,7 @@ class Productos():
     #Actualizar Producto
     def updateProducto(self,cod,nombre,proveedor,precio,descripcion):
         cursor = self.control.cursor()
-        sql = """UPDATE Tabla_Productos SET Nombre = "{}" , Proveedor = "{}" , Precio = "{}", Descripcion = "{}" WHERE Codigo = "{}" """.format(nombre,proveedor,precio,descripcion,cod)
+        sql = """UPDATE Tabla_Productos SET Nombre = "{}" , Proveedor = "{}" , Precio = "{}", Descripcion = "{}" WHERE CodProd = "{}" """.format(nombre,proveedor,precio,descripcion,cod)
         cursor.execute(sql)
         self.control.commit()
         cursor.close()
@@ -65,12 +65,11 @@ class Productos():
     #Eliminar un Producto
     def deleteProducto(self,cod):
         cursor = self.control.cursor()
-        sql = """DELETE FROM Tabla_Productos WHERE Codigo = {}""".format(cod)
+        sql = """DELETE FROM Tabla_Productos WHERE CodProd = {}""".format(cod)
         cursor.execute(sql)
         self.control.commit()
     
-    #test
-
+    
     #Obetener Productos por Nombre
     def getProductoNom(self,nom):
         cursor = self.control.cursor()
@@ -80,11 +79,21 @@ class Productos():
         if registro:
             return registro
         
-
-    #Obtener Lista de articulos
-    def getListArticulos(self):
+    #Obtener Precio de Producto
+    def getPrecioProducto(self,cod):
         cursor = self.control.cursor()
-        sql = "SELECT Nombre FROM Tabla_Articulos"
+        sql = """SELECT Precio FROM Tabla_Productos WHERE CodProd = {}""".format(cod)
         cursor.execute(sql)
-        registro = cursor.fetchall()
-        return registro
+        precio = cursor.fetchone()
+        self.control.commit()
+        return precio
+    
+    #Obtener Nombre de Producto
+    def getNombreProducto(self,cod):
+        cursor = self.control.cursor()
+        sql = """SELECT Nombre FROM Tabla_Productos WHERE CodProd = {}""".format(cod)
+        cursor.execute(sql)
+        nombre = cursor.fetchone()
+        self.control.commit()
+        return nombre
+        

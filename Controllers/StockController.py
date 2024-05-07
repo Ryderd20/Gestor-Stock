@@ -26,7 +26,7 @@ class StockController():
     def mostrar_stock(self):
         datos = self.stock.getStock()
         num_filas = len(datos)
-        num_columnas = 4     #podria obtenerlo solo con self.stock_view.table_articulos.rowCount  //probar
+        num_columnas = 5     #podria obtenerlo solo con self.stock_view.table_articulos.rowCount  //probar
         
         self.stock_view.table_stock.setRowCount(num_filas)
         self.stock_view.table_stock.setColumnCount(num_columnas)
@@ -39,12 +39,11 @@ class StockController():
         
 
 
-
     #Muestra la lista de Productos
     def mostrar_productos(self):
         datos = self.stock.getProductos()
         num_filas = len(datos)
-        num_columnas = 3    #podria obtenerlo solo con self.stock_view.table_productos.rowCount  //probar
+        num_columnas = 4    #podria obtenerlo solo con self.stock_view.table_productos.rowCount  //probar
         
         self.stock_view.table_stock_listaProductos.setRowCount(num_filas)
         self.stock_view.table_stock_listaProductos.setColumnCount(num_columnas)
@@ -68,29 +67,24 @@ class StockController():
 
 
     
-            
+    #Agregar Producto al Stock
     def cargar_producto_stock(self):
         
-    
         if self.stock_view.table_stock_listaProductos.currentRow() != -1:
-            item = self.stock_view.table_stock_listaProductos.item(self.stock_view.table_stock_listaProductos.currentRow(), 0).text()
+            codItem = self.stock_view.table_stock_listaProductos.item(self.stock_view.table_stock_listaProductos.currentRow(), 0).text()
             
-            if item is not None:
-                self.producto = self.productos.getProductoCod(item)
+            if codItem is not None:
+                self.producto = self.productos.getProductoCod(codItem)
                 
-
                 if self.producto:
-                    self.en_stock = self.stock.getInStock(item)
+                    self.en_stock = self.stock.getInStock(codItem)
                     if self.en_stock:
                         cantidad = int(self.en_stock[2]) + int(self.stock_view.spinBox_Agregar.value())
-                        self.stock.updateStock(item, cantidad)
-                        print (self.en_stock[2])
+                        self.stock.updateStock(codItem, cantidad)
                         self.mostrar_stock()
                     else:
-                        nombre = self.stock_view.table_stock_listaProductos.item(self.stock_view.table_stock_listaProductos.currentRow(), 1).text()
                         cantidad = int(self.stock_view.spinBox_Agregar.value())
-                        descripcion = self.stock_view.table_stock_listaProductos.item(self.stock_view.table_stock_listaProductos.currentRow(), 2).text()
-                        self.stock.insertProducto(item,nombre,cantidad,descripcion)
+                        self.stock.insertProducto(codItem,cantidad)
                         self.mostrar_stock()
 
 

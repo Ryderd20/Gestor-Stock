@@ -4,6 +4,7 @@ myDir = os.getcwd()
 sys.path.append(myDir)
 
 from PyQt5 import QtWidgets
+from PyQt5.QtWidgets import QMessageBox
 from DataBase.Connection import connection
 from Models.Productos import Productos
 from Models.Proveedores import Proveedores
@@ -62,12 +63,18 @@ class ProductosController():
 
     #Elimina el Producto seleccionado
     def eliminar_producto(self):
-        item = self.prod_view.table_productos.item(self.prod_view.table_productos.currentRow(),0).text()
-        if item != None:
-            producto = self.productos.getProductoCod(item)
-            if producto:
-                self.productos.deleteProducto(item)
-                self.mostrar_productos()
+        current_row = self.prod_view.table_productos.currentRow()
+        if current_row != -1:
+            item = self.prod_view.table_productos.item(current_row, 0).text()
+            if item:
+                producto = self.productos.getProductoCod(item)
+                if producto:
+                    self.productos.deleteProducto(item)
+                    self.mostrar_productos()
+        else:
+            mensaje = "Debes seleccionar un Producto"
+            self.mensaje_advertencia(mensaje)
+
 
     #Guardar Producto
     def modificar_producto(self):
@@ -157,6 +164,15 @@ class ProductosController():
         else:
             self.mostrar_productos
             self.prod_view.input_nombre_producto_buscar.clear()
+
+
+    def mensaje_advertencia(self,mensaje):
+        msg = QMessageBox()
+        msg.setIcon(QMessageBox.Warning)
+        msg.setWindowTitle("Advertencia")
+        msg.setText(mensaje)
+        msg.exec_()
+
     
 
 

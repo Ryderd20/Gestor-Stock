@@ -3,6 +3,8 @@ import os
 myDir = os.getcwd()
 sys.path.append(myDir)
 
+
+from PyQt5.QtWidgets import QMessageBox
 from PyQt5 import QtWidgets
 from DataBase.Connection import connection
 from Models.Proveedores import Proveedores
@@ -91,12 +93,19 @@ class ProveedoresController():
         
     #Eliminar un proveedor seleccionado
     def eliminar_proveedor(self):
-        item = self.proveedores_view.table_proveedores.item(self.proveedores_view.table_proveedores.currentRow(),0).text()
-        if item != None:
-            proveedor = self.proveedores.getProveedorCod(item)
-            if proveedor:
-                self.proveedores.deleteProveedor(item)
-                self.mostrar_proveedores()
+        current_row = self.proveedores_view.table_proveedores.currentRow()
+        if current_row != -1:
+            item = self.proveedores_view.table_proveedores.item(current_row, 0).text()
+            if item:
+                proveedor = self.proveedores.getProveedorCod(item)
+                if proveedor:
+                    self.proveedores.deleteProveedor(item)
+                    self.mostrar_proveedores()
+        else:
+            mensaje = "Debes seleccionar un Proveedor"
+            self.mensaje_advertencia(mensaje)
+
+
 
 
     #Limpiar los input para agregar un nuevo proveedor
@@ -136,3 +145,11 @@ class ProveedoresController():
             self.mostrar_proveedores
             self.proveedores_view.input_nombre_proveedor.clear()
 
+
+
+    def mensaje_advertencia(self,mensaje):
+        msg = QMessageBox()
+        msg.setIcon(QMessageBox.Warning)
+        msg.setWindowTitle("Advertencia")
+        msg.setText(mensaje)
+        msg.exec_()
