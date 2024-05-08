@@ -16,15 +16,14 @@ class Stock():
         cursor = self.control.cursor()
         sql = """CREATE TABLE IF NOT EXISTS "Tabla_Stock" (
 	    "CodStock"	INTEGER NOT NULL,
-	    "Cantidad"	REAL NOT NULL,
+	    "Cantidad"	INTEGER NOT NULL,
 	    PRIMARY KEY("CodStock"));"""
 
         cursor.execute(sql)
         self.control.commit()
 
 
-    
-    #Obtener todo el Stock
+    #Obtener todos los Productos en Stock
     def getStock(self):
         cursor = self.control.cursor()
         sql = """SELECT s.CodStock, p.Nombre, s.Cantidad, p.Precio, p.Descripcion FROM Tabla_Stock s, Tabla_Productos p WHERE s.CodStock = p.CodProd"""
@@ -33,6 +32,7 @@ class Stock():
         cursor.close()
         return registro
     
+
     #Obtener Producto en Stock
     def getInStock(self, cod):
         cursor = self.control.cursor()
@@ -51,7 +51,6 @@ class Stock():
         self.control.commit()
 
 
-
     #Eliminar un Producto del Stock
     def deleteStock(self,cod):
         cursor = self.control.cursor()
@@ -60,7 +59,6 @@ class Stock():
         self.control.commit()
 
 
-    
     #Obetener Stock por Nombre
     def getStockNom(self,nom):
         cursor = self.control.cursor()
@@ -71,7 +69,7 @@ class Stock():
             return registro
         
 
-
+    #Obtener Codigo, Nombre y Precio de los Productos
     def getProductos(self):
         cursor = self.control.cursor()
         sql = """SELECT CodProd, Nombre, Precio, Descripcion FROM Tabla_Productos"""
@@ -81,7 +79,7 @@ class Stock():
         return registro
     
 
-
+    #Actualizar la Cantidad 
     def updateStock(self,cod,cantidad):
         cursor = self.control.cursor()
         sql = """UPDATE Tabla_Stock SET Cantidad = "{}" WHERE CodStock = "{}" """.format(cantidad,cod)
@@ -89,6 +87,8 @@ class Stock():
         self.control.commit()
         cursor.close()
 
+
+    #Obtener Cantidad en Stock
     def getStockCantidad(self,codStock):
         cursor = self.control.cursor()
         sql = """SELECT Cantidad FROM Tabla_Stock WHERE CodStock = "{}" """.format(codStock)

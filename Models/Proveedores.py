@@ -26,7 +26,7 @@ class Proveedores():
         cursor.execute(sql)
         self.control.commit()
 
-    #Obtener todos los Proveedores
+    #Obtener lista de Proveedores
     def getProveedores(self):
         cursor = self.control.cursor()
         sql = """SELECT * FROM Tabla_Proveedores"""
@@ -75,13 +75,11 @@ class Proveedores():
         registro = cursor.fetchall()
         return registro
 
-
-        
-    #Obetener Articulos por Nombre
-    def getProveedorNom(self,nom):
+    #Obetener Proveedores por Nombre
+    def getProveedorNom(self,nombre):
         cursor = self.control.cursor()
-        sql = """SELECT * FROM Tabla_Proveedores WHERE Nombre = ?"""
-        cursor.execute(sql, (nom,))
+        sql = """SELECT * FROM Tabla_Proveedores WHERE LOWER(Nombre) LIKE LOWER('{}%')""".format(nombre)
+        cursor.execute(sql)
         registro = cursor.fetchall()
         if registro:
             return registro    

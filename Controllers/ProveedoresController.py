@@ -19,14 +19,13 @@ class ProveedoresController():
         self.proveedores = Proveedores(connection())
         self.proveedores_view = PrincipalView
 
-    
-    #Listar la lista de Proveedores
+    #Mostrar lista de Proveedores
     def mostrar_proveedores(self):
         datos = self.proveedores.getProveedores()
-        num_filas = len(datos)
-        num_columnas = 6 #self.proveedores_view.table_proveedores.rowCount()    
-        
 
+        num_filas = len(datos)
+        num_columnas = 6   
+    
         self.proveedores_view.table_proveedores.setRowCount(num_filas)
         self.proveedores_view.table_proveedores.setColumnCount(num_columnas)
 
@@ -35,8 +34,7 @@ class ProveedoresController():
                 item = QtWidgets.QTableWidgetItem(str(valor))
                 self.proveedores_view.table_proveedores.setItem(fila, columna, item)
 
-
-    #Agregar nuevo proveedor
+    #Agregar nuevo Proveedor
     def agregar_proveedor(self):
         self.proveedores_view.signal_proveedor_nuevo.setText("Espacios obligatorios*")
 
@@ -55,9 +53,7 @@ class ProveedoresController():
             self.proveedores_view.signal_proveedor_nuevo.setText("Hay espacios obligatorios vacios")
 
 
-
-
-    #Cargar los datos del proveedor a los input para modificarlos
+    #Cargar los datos del Proveedor a modificar
     def cargar_proveedor(self):
         self.proveedores_view.signal_proveedor_modificado.setText("Espacios obligatorios*")
 
@@ -73,9 +69,9 @@ class ProveedoresController():
                     self.proveedores_view.input_descripcion_proveedor_modificar.setText(self.proveedor[5])
 
 
-    #Actualiza los datos de proveedor por los nuevos
+    #Actualizar los datos de Proveedor
     def modificar_proveedor(self):
-            
+        
         nombre = self.proveedores_view.input_nombre_proveedor_modificar.text()
         telefono = self.proveedores_view.input_telefono_proveedor_modificar.text()
         email = self.proveedores_view.input_email_proveedor_modificar.text()
@@ -83,15 +79,15 @@ class ProveedoresController():
         descripcion = self.proveedores_view.input_descripcion_proveedor_modificar.text()
 
         if nombre !="" and telefono !="" and email !="" and direccion !="":
-            cod = self.proveedor[0]
-            self.proveedores.updateProveedores(cod,nombre,telefono,email,direccion,descripcion)
+            codProv = self.proveedor[0]
+            self.proveedores.updateProveedores(codProv,nombre,telefono,email,direccion,descripcion)
             self.mostrar_proveedores()
             return True
         else:
             return False
 
-        
-    #Eliminar un proveedor seleccionado
+    
+    #Eliminar un Proveedor seleccionado
     def eliminar_proveedor(self):
         current_row = self.proveedores_view.table_proveedores.currentRow()
         if current_row != -1:
@@ -106,9 +102,7 @@ class ProveedoresController():
             self.mensaje_advertencia(mensaje)
 
 
-
-
-    #Limpiar los input para agregar un nuevo proveedor
+    #Limpiar espacios para un nuevo Proveedor
     def limpiar_proveedor_nuevo(self):
             self.proveedores_view.input_nombre_proveedor_nuevo.clear()
             self.proveedores_view.input_telefono_proveedor_nuevo.clear()
@@ -117,14 +111,12 @@ class ProveedoresController():
             self.proveedores_view.input_descripcion_proveedor_nuevo.clear()
 
 
-
-
-
-    #Buscar Proveedor
+    #Buscar Proveedor por Nombre
     def buscarProveedorPorNombre(self):
+
         nombre = self.proveedores_view.input_nombre_proveedor.text()
         datos = self.proveedores.getProveedorNom(nombre)
-
+        
         if datos is not None:
             num_filas = len(datos)
         else:
@@ -146,7 +138,7 @@ class ProveedoresController():
             self.proveedores_view.input_nombre_proveedor.clear()
 
 
-
+    #Caja de Mensajes
     def mensaje_advertencia(self,mensaje):
         msg = QMessageBox()
         msg.setIcon(QMessageBox.Warning)

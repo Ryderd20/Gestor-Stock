@@ -596,7 +596,7 @@ QComboBox QAbstractItemView {
 }</string>
             </property>
             <property name="currentIndex">
-             <number>1</number>
+             <number>0</number>
             </property>
             <widget class="QWidget" name="page">
              <layout class="QVBoxLayout" name="verticalLayout_20">
@@ -710,10 +710,10 @@ QComboBox QAbstractItemView {
                  </widget>
                 </item>
                 <item>
-                 <widget class="QDateEdit" name="dateEdit_test"/>
+                 <widget class="QDateEdit" name="dateEdit"/>
                 </item>
                 <item>
-                 <widget class="QPushButton" name="btn_buscar_prodStock_porNom_3">
+                 <widget class="QPushButton" name="btn_buscar_fecha">
                   <property name="minimumSize">
                    <size>
                     <width>100</width>
@@ -729,7 +729,7 @@ QComboBox QAbstractItemView {
                  </widget>
                 </item>
                 <item>
-                 <widget class="QPushButton" name="btn_buscar_prodStock_porNom_4">
+                 <widget class="QPushButton" name="btn_buscar_fecha_cancelar">
                   <property name="minimumSize">
                    <size>
                     <width>100</width>
@@ -1639,7 +1639,7 @@ QComboBox QAbstractItemView {
                      </font>
                     </property>
                     <property name="text">
-                     <string>Productos</string>
+                     <string>Lista de Productos</string>
                     </property>
                     <property name="alignment">
                      <set>Qt::AlignCenter</set>

@@ -133,7 +133,6 @@ class VentanaPrincipal(QMainWindow):
         self.btn_guardar_producto_modificar.clicked.connect(self.validarProductoModificado)
         self.btn_cancelar_producto_modificar.clicked.connect(lambda:self.stackedWidget.setCurrentWidget(self.page_productos))
         
-
         #Eliminar Producto
         self.btn_eliminar_producto.clicked.connect(lambda:self.productos_controller.eliminar_producto())
 
@@ -150,7 +149,7 @@ class VentanaPrincipal(QMainWindow):
             msg = QMessageBox()
             msg.setIcon(QMessageBox.Warning)
             msg.setWindowTitle("Advertencia")
-            msg.setText("Debes seleccionar un proveedor")
+            msg.setText("Debes seleccionar un Proveedor")
             msg.exec_()
 
     def validarProveedorModificado(self):
@@ -161,7 +160,6 @@ class VentanaPrincipal(QMainWindow):
             self.signal_proveedor_modificado.setText("Hay espacios obligatorios vacios")
     
 
-
     def validarSeleccionDeProducto(self):
         if self.table_productos.currentRow() != -1:
             self.stackedWidget.setCurrentWidget(self.page_modificar_producto)
@@ -169,18 +167,18 @@ class VentanaPrincipal(QMainWindow):
             msg = QMessageBox()
             msg.setIcon(QMessageBox.Warning)
             msg.setWindowTitle("Advertencia")
-            msg.setText("Debes seleccionar un producto")
+            msg.setText("Debes seleccionar un Producto")
             msg.exec_()
 
-    def validarProductoModificado(self):
-        
+
+    def validarProductoModificado(self):        
         if self.productos_controller.modificar_producto():
             self.stackedWidget.setCurrentWidget(self.page_productos)
         else:
             self.signal_producto_modificado.setText("Hay espacios obligatorios vacios")     
 
     def getFecha(self):
-        fecha = self.dateEdit_test.date()
+        fecha = self.dateEdit.date()
         fecha_str = fecha.toString("yyyy-MM-dd")
         return (fecha_str)
 

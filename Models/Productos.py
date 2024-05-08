@@ -28,7 +28,7 @@ class Productos():
         self.control.commit()
         
 
-    #Obtener todos los Productos
+    #Obtener lista de Productos
     def getProductos(self):
         cursor = self.control.cursor()
         sql = """SELECT * FROM Tabla_Productos"""
@@ -37,7 +37,8 @@ class Productos():
         cursor.close()
         return registro
     
-    #Obtener un Producto por Codigo
+
+    #Obtener Producto por Codigo
     def getProductoCod(self,cod):
         cursor = self.control.cursor()
         sql = """SELECT * FROM Tabla_Productos WHERE CodProd = {}""".format(cod)
@@ -47,6 +48,7 @@ class Productos():
         if registro:
             return registro
     
+
     #Actualizar Producto
     def updateProducto(self,cod,nombre,proveedor,precio,descripcion):
         cursor = self.control.cursor()
@@ -55,12 +57,14 @@ class Productos():
         self.control.commit()
         cursor.close()
 
+
     #Agregar Nuevo Producto
     def insertProducto(self,nombre,proveedor,precio,descripcion):
         cursor = self.control.cursor()
         sql = """INSERT INTO Tabla_Productos (Nombre,Proveedor,Precio,Descripcion) VALUES ("{}","{}","{}","{}")""".format(nombre,proveedor,precio,descripcion)
         cursor.execute(sql)
         self.control.commit()
+
 
     #Eliminar un Producto
     def deleteProducto(self,cod):
@@ -71,14 +75,15 @@ class Productos():
     
     
     #Obetener Productos por Nombre
-    def getProductoNom(self,nom):
+    def getProductoNom(self,nombre):
         cursor = self.control.cursor()
-        sql = """SELECT * FROM Tabla_Productos WHERE Nombre = ?"""
-        cursor.execute(sql, (nom,))
+        sql = """SELECT * FROM Tabla_Productos WHERE LOWER(Nombre) LIKE LOWER('{}%')""".format(nombre)
+        cursor.execute(sql)
         registro = cursor.fetchall()
         if registro:
             return registro
-        
+
+
     #Obtener Precio de Producto
     def getPrecioProducto(self,cod):
         cursor = self.control.cursor()
@@ -88,12 +93,4 @@ class Productos():
         self.control.commit()
         return precio
     
-    #Obtener Nombre de Producto
-    def getNombreProducto(self,cod):
-        cursor = self.control.cursor()
-        sql = """SELECT Nombre FROM Tabla_Productos WHERE CodProd = {}""".format(cod)
-        cursor.execute(sql)
-        nombre = cursor.fetchone()
-        self.control.commit()
-        return nombre
-        
+

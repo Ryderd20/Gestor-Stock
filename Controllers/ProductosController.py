@@ -9,7 +9,6 @@ from DataBase.Connection import connection
 from Models.Productos import Productos
 from Models.Proveedores import Proveedores
 
-#------comentario prueba---------------
 
 class ProductosController():
     
@@ -21,11 +20,11 @@ class ProductosController():
         self.prod_view = view
         
 
-    #Muestra la lista de Productos
+    #Mostrar la lista de Productos
     def mostrar_productos(self):
         datos = self.productos.getProductos()
         num_filas = len(datos)
-        num_columnas = 5     #podria obtenerlo solo con self.prod_view.table_productos.rowCount  //probar
+        num_columnas = 5  
         
         self.prod_view.table_productos.setRowCount(num_filas)
         self.prod_view.table_productos.setColumnCount(num_columnas)
@@ -56,12 +55,12 @@ class ProductosController():
                 self.limpiar_producto_nuevo()
                 self.prod_view.signal_nuevo_producto.setText("Registrado con exito")
             except ValueError:
-                self.prod_view.signal_nuevo_producto.setText("El espacio Precio deben ser numerales")
+                self.prod_view.signal_nuevo_producto.setText("El espacio Precio debe ser numeral")
         else:
             self.prod_view.signal_nuevo_producto.setText("Hay espacios obligatorios vacios")
 
 
-    #Elimina el Producto seleccionado
+    #Eliminar el Producto seleccionado
     def eliminar_producto(self):
         current_row = self.prod_view.table_productos.currentRow()
         if current_row != -1:
@@ -84,17 +83,15 @@ class ProductosController():
         precio = self.prod_view.input_precio_producto_modificar.text()
         descripcion = self.prod_view.input_descripcion_producto_modificar.text()
 
-        
         if nombre !="" and precio != "":
             try:
-                
                 precio_float = float(precio)
                 cod = self.producto[0]
                 self.productos.updateProducto(cod,nombre,proveedor,precio_float,descripcion)
                 self.mostrar_productos()
             except ValueError:
-                self.prod_view.signal_modificar_producto.setText("El espacio Precio deben ser numerales")
-            
+                self.prod_view.signal_modificar_producto.setText("El espacio Precio debe ser numeral")
+
             return True
         else:
             return False
@@ -102,29 +99,28 @@ class ProductosController():
     
     #Cargar Producto para Modificar
     def cargar_producto(self):
+
         self.prod_view.signal_producto_modificado.setText("Espacios obligatorios*")
         self.cargarListaProveedores()
 
-
         if self.prod_view.table_productos.currentRow() != -1:
             item = self.prod_view.table_productos.item(self.prod_view.table_productos.currentRow(), 0).text()
+
             if item is not None:
- 
                 self.producto = self.productos.getProductoCod(item)
+
                 if self.producto:
-        
                     self.prod_view.input_nombre_producto_modificar.setText(self.producto[1])
                     self.prod_view.input_precio_producto_modificar.setText(str(self.producto[3]))
                     self.prod_view.input_descripcion_producto_modificar.setText(str(self.producto[4]))
-                    
 
 
-
-    #Limpiar los input para agregar un nuevo producto
+    #Limpiar espacios para agregar un nuevo Producto
     def limpiar_producto_nuevo(self):
             self.prod_view.input_nombre_producto_nuevo.clear()
             self.prod_view.input_precio_producto_nuevo.clear()
             self.prod_view.input_descripcion_producto_nuevo.clear()
+
 
     #Cargar Lista de Proveedores en ComboBox
     def cargarListaProveedores(self):
@@ -138,9 +134,7 @@ class ProductosController():
             self.prod_view.comboBox_modificar_producto_listaProv.addItem(texto_proveedor)
 
 
-     #hsfd   
-
-    #Buscar Producto
+    #Buscar Producto por Nombre
     def buscarProductoPorNombre(self):
         nombre = self.prod_view.input_nombre_producto_buscar.text()
         datos = self.productos.getProductoNom(nombre)
@@ -166,6 +160,7 @@ class ProductosController():
             self.prod_view.input_nombre_producto_buscar.clear()
 
 
+    #Caja de Mensajes
     def mensaje_advertencia(self,mensaje):
         msg = QMessageBox()
         msg.setIcon(QMessageBox.Warning)

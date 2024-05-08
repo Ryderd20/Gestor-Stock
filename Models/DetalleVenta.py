@@ -15,12 +15,12 @@ class DetalleVenta():
         #-------------CREAR LA TABLA--------------
         cursor = self.control.cursor()
         sql = """CREATE TABLE IF NOT EXISTS "Tabla_DetalleVenta" (
-	    "CodVen"	INTEGER NOT NULL,
-	    "CodProd"	INTEGER NOT NULL,
+	    "CodVen"	INTEGER,
+	    "CodProd"	INTEGER,
         "Producto" TEXT,
-	    "Cantidad"	REAL,
+	    "Cantidad"	INTEGER,
 	    "SubTotal"	REAL,
-	    PRIMARY KEY("CodVenta","CodProd")
+	    PRIMARY KEY("CodVen","CodProd")
         );"""
 
         cursor.execute(sql)
@@ -46,6 +46,7 @@ class DetalleVenta():
         cursor.execute(sql)
         self.control.commit()
 
+
     #Obtener Producto en Detalle
     def getInDetalle(self,codVen, codProd):
         cursor = self.control.cursor()
@@ -54,6 +55,7 @@ class DetalleVenta():
         registro = cursor.fetchone()
         cursor.close()
         return registro
+    
     
     #Actualizar Producto en Detalle
     def updateDetalle(self,codVen, codProd, cantidad, subtotal):
@@ -76,7 +78,6 @@ class DetalleVenta():
         sql = """SELECT Sum(SubTotal) FROM Tabla_DetalleVenta WHERE CodVen = {}""".format(codVen)
         cursor.execute(sql)
         registro = cursor.fetchone()
-        print(registro)
         cursor.close()
         return registro
     

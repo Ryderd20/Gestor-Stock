@@ -13,6 +13,7 @@ from Models.Stock import Stock
 
 class DetalleVentaController():
 
+    #-------------Constructor------------
     def __init__(self,view):
         self.ventas = Ventas(connection())
         self.detalleVenta = DetalleVenta(connection())
@@ -20,7 +21,7 @@ class DetalleVentaController():
         self.detalleVenta_view = view
 
     
-    #Cargar los productos en stock
+    #Mostrar los productos en Stock
     def mostrar_stock(self):
         datos = self.stock.getStock()
         num_filas = len(datos)

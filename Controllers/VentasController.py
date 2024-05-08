@@ -17,6 +17,7 @@ from Models.Productos import Productos
 
 class VentasController():
 
+    #-----------------Constructor----------------------
     def __init__(self,view):
         self.ventas = Ventas(connection())
         self.detalleVenta = DetalleVenta(connection())
@@ -25,7 +26,7 @@ class VentasController():
         self.ventas_view = view
     
 
-    #Muestra el Registro de Ventas
+    #Mostrar Registro de Ventas
     def mostrar_ventas(self):
         datos = self.ventas.getVentas()
         num_filas = len(datos)
@@ -68,14 +69,16 @@ class VentasController():
             self.mensaje_advertencia(mensaje)
 
 
-
-    #Agregar un Producto al DetalleVenta
+    #Agregar un Producto al Detalle de la Venta
     def cargar_producto(self):
         current_row = self.ventas_view.table_venta_prodEnStock.currentRow()
+
         if current_row != -1:
             codItem = self.ventas_view.table_venta_prodEnStock.item(current_row, 0).text()
+
             if codItem:
                 self.producto = self.productos.getProductoCod(codItem)
+
                 if self.producto:
                     en_stock = self.stock.getStockCantidad(codItem)[0]  
                     cantidad_a_agregar = self.ventas_view.spinBox_agregarDetalle.value()
@@ -92,7 +95,7 @@ class VentasController():
                             subtotal = self.productos.getPrecioProducto(codItem)[0] * nueva_cantidad
                             self.detalleVenta.updateDetalle(self.codVenta, codItem, nueva_cantidad, subtotal)
                         else:
-                            nombre_producto = self.productos.getNombreProducto(codItem)[0]
+                            nombre_producto = self.productos.getProductoCod(codItem)[1] #Nombre del Producto
                             subtotal = self.productos.getPrecioProducto(codItem)[0] * cantidad_a_agregar
                             self.detalleVenta.insertDetalle(self.codVenta, codItem, nombre_producto, cantidad_a_agregar, subtotal)
 
@@ -105,12 +108,13 @@ class VentasController():
                         self.mensaje_advertencia(mensaje)
 
 
-
-
+    #Restar Producto de Detalle
     def restar_producto(self):
         current_row = self.ventas_view.table_detalleVenta.currentRow()
+
         if current_row != -1:
             codProd_item = self.ventas_view.table_detalleVenta.item(current_row, 0)
+
             if codProd_item:
                 codProd = codProd_item.text()
                 cantidadDetalle = self.detalleVenta.getDetalleCantidad(self.codVenta, codProd)
@@ -127,13 +131,9 @@ class VentasController():
                     en_stock = self.stock.getStockCantidad(codProd)[0]
                     nuevo_en_stock = en_stock + resta  
                     self.stock.updateStock(codProd, nuevo_en_stock)
-
                 else:
                     mensaje = "La cantidad ingresada es superior a la disponible en el Detalle"
                     self.mensaje_advertencia(mensaje)
-
-
-
         else:
             mensaje = "Debes seleccionar un Producto en Detalle de Venta"
             self.mensaje_advertencia(mensaje)
@@ -170,15 +170,13 @@ class VentasController():
         self.ventas_view.table_detalleVentaSelec.setRowCount(num_filas)
         self.ventas_view.table_detalleVentaSelec.setColumnCount(num_columnas)
 
-
         for fila, registro in enumerate(datos):
             for columna, valor in enumerate(registro):
                 item = QtWidgets.QTableWidgetItem(str(valor))
                 self.ventas_view.table_detalleVentaSelec.setItem(fila, columna, item)
 
 
-
-
+    #Caja de Mensajes
     def mensaje_advertencia(self,mensaje):
         msg = QMessageBox()
         msg.setIcon(QMessageBox.Warning)
