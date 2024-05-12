@@ -213,7 +213,7 @@ class VentasController():
                     item = QtWidgets.QTableWidgetItem(str(valor))
                     self.ventas_view.table_ventas.setItem(fila, columna, item)
 
-            tabla= self.ventas_view.table_venta
+            tabla= self.ventas_view.table_ventas
             self.redimensionar_tabla(tabla)
 
 
