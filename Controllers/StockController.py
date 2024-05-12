@@ -36,6 +36,11 @@ class StockController():
             for columna, valor in enumerate(registro):
                 item = QtWidgets.QTableWidgetItem(str(valor))
                 self.stock_view.table_stock.setItem(fila, columna, item)
+
+        tabla= self.stock_view.table_stock
+        self.redimensionar_tabla(tabla)
+
+
         
         
     #Mostrar lista de Productos
@@ -51,6 +56,10 @@ class StockController():
             for columna, valor in enumerate(registro):
                 item = QtWidgets.QTableWidgetItem(str(valor))
                 self.stock_view.table_stock_listaProductos.setItem(fila, columna, item)
+        
+ 
+        tabla= self.stock_view.table_stock_listaProductos
+        self.redimensionar_tabla(tabla)
         
     
     #Agregar Producto al Stock
@@ -138,6 +147,34 @@ class StockController():
             for columna, valor in enumerate(resultado):
                 item = QtWidgets.QTableWidgetItem(valor)
                 self.stock_view.table_stock.setItem(fila, columna, item)
+
+                tabla= self.stock_view.table_stock
+                self.redimensionar_tabla(tabla)
+
+                tabla= self.stock_view.table_stock_listaProductos
+                self.redimensionar_tabla(tabla)
+
+
+    #Alertar la falta de Stock
+    def mostrar_alerta_stock_bajo(self):
+        productos_stock_bajo = []
+        for stock in self.stock.getStock():
+            if stock[2] < 10:  # La cantidad está en el segundo índice
+                productos_stock_bajo.append(stock)
+
+        if productos_stock_bajo:
+            mensaje = "Los siguientes Productos estan escasos en Stock\n"
+            for stock in productos_stock_bajo:
+                mensaje += f"Código: {stock[0]} | Cantidad: {stock[2]} | Nombre: {stock[1]} \n"
+            self.mensaje_advertencia(mensaje)
+
+
+    #Redimensionar la Tabla
+    def redimensionar_tabla(self,tabla):
+        header = tabla.horizontalHeader()
+        header.setSectionResizeMode(QtWidgets.QHeaderView.ResizeToContents)
+        header.setSectionResizeMode(0,QtWidgets.QHeaderView.Interactive)
+
 
     #Caja de Mensajes
     def mensaje_advertencia(self,mensaje):

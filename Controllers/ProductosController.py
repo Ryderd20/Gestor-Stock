@@ -37,6 +37,9 @@ class ProductosController():
         self.prod_view.comboBox_nuevo_producto_listaProv.clear()
         self.prod_view.comboBox_modificar_producto_listaProv.clear()
 
+        tabla= self.prod_view.table_productos
+        self.redimensionar_tabla(tabla)
+
 
     #Agregar nuevo Producto
     def agregar_producto(self):
@@ -158,6 +161,13 @@ class ProductosController():
         else:
             self.mostrar_productos
             self.prod_view.input_nombre_producto_buscar.clear()
+
+    
+    #Redimensionar la Tabla
+    def redimensionar_tabla(self,tabla):
+        header = tabla.horizontalHeader()
+        header.setSectionResizeMode(QtWidgets.QHeaderView.ResizeToContents)
+        header.setSectionResizeMode(0,QtWidgets.QHeaderView.Interactive)
 
 
     #Caja de Mensajes

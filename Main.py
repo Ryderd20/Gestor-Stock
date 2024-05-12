@@ -17,7 +17,9 @@ class VentanaPrincipal(QMainWindow):
     def __init__(self):
         super(VentanaPrincipal,self).__init__()
         loadUi("Views/Principal.ui",self)
-        self.dateEdit_test.setDate(QDate.currentDate())
+        self.dateEdit_final.setDate(QDate.currentDate())
+        self.dateEdit_inicial.setDate(QDate.currentDate())
+        
 
     
         #----------------Controladores----------------
@@ -34,6 +36,7 @@ class VentanaPrincipal(QMainWindow):
         #Ir a Gestion de Ventas
         self.btn_gestionventas.clicked.connect(lambda:self.stackedWidget.setCurrentWidget(self.page_ventas))
         self.btn_gestionventas.clicked.connect(self.ventas_controller.mostrar_ventas)
+        self.btn_gestionventas.clicked.connect(self.stock_controller.mostrar_alerta_stock_bajo)
 
 
         #Ir a Gestion de Stock
@@ -66,6 +69,10 @@ class VentanaPrincipal(QMainWindow):
 
         #Eliminar Venta seleccionada
         self.btn_eliminarVenta.clicked.connect(lambda:self.ventas_controller.eliminar_venta_seleccionada())
+
+        #Buscar Ventas entre Fechas
+        self.btn_buscar_fecha.clicked.connect(lambda:self.ventas_controller.buscar_ventas_por_rango_de_fechas())
+        self.btn_buscar_fecha_cancelar.clicked.connect(lambda:self.ventas_controller.mostrar_ventas())
 
         #-------------------------------Detalle de Venta--------------------------
         #Agregar Producto a Detalle
@@ -178,7 +185,7 @@ class VentanaPrincipal(QMainWindow):
             self.signal_producto_modificado.setText("Hay espacios obligatorios vacios")     
 
     def getFecha(self):
-        fecha = self.dateEdit.date()
+        fecha = QDate.currentDate()
         fecha_str = fecha.toString("yyyy-MM-dd")
         return (fecha_str)
 

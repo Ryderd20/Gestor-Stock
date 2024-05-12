@@ -32,7 +32,7 @@ class DetalleVenta():
     #Obtener Detalle de una Venta
     def getDetalle(self, codVenta):
         cursor = self.control.cursor()
-        sql = """SELECT CodProd,Producto,Cantidad,SubTotal FROM Tabla_DetalleVenta WHERE CodVen = {}""".format(codVenta)
+        sql = """SELECT CodProd,Producto,Cantidad,SubTotal FROM Tabla_DetalleVenta WHERE CodVen = {} AND Cantidad > 0""".format(codVenta)
         cursor.execute(sql)
         registro = cursor.fetchall()
         cursor.close()

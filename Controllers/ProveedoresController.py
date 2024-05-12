@@ -34,6 +34,9 @@ class ProveedoresController():
                 item = QtWidgets.QTableWidgetItem(str(valor))
                 self.proveedores_view.table_proveedores.setItem(fila, columna, item)
 
+        tabla= self.proveedores_view.table_proveedores
+        self.redimensionar_tabla(tabla)
+
     #Agregar nuevo Proveedor
     def agregar_proveedor(self):
         self.proveedores_view.signal_proveedor_nuevo.setText("Espacios obligatorios*")
@@ -136,6 +139,13 @@ class ProveedoresController():
         else:
             self.mostrar_proveedores
             self.proveedores_view.input_nombre_proveedor.clear()
+
+
+    #Redimensionar la Tabla
+    def redimensionar_tabla(self,tabla):
+        header = tabla.horizontalHeader()
+        header.setSectionResizeMode(QtWidgets.QHeaderView.ResizeToContents)
+        header.setSectionResizeMode(0,QtWidgets.QHeaderView.Interactive)
 
 
     #Caja de Mensajes

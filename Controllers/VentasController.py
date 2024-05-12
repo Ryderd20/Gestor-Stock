@@ -5,7 +5,7 @@ import os
 myDir = os.getcwd()
 sys.path.append(myDir)
 
-
+from PyQt5.QtCore import QDate
 from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QMessageBox
 from DataBase.Connection import connection
@@ -28,6 +28,9 @@ class VentasController():
 
     #Mostrar Registro de Ventas
     def mostrar_ventas(self):
+        self.ventas_view.dateEdit_final.setDate(QDate.currentDate())
+        self.ventas_view.dateEdit_inicial.setDate(QDate.currentDate())
+
         datos = self.ventas.getVentas()
         num_filas = len(datos)
         num_columnas = 3 
@@ -41,6 +44,9 @@ class VentasController():
             for columna, valor in enumerate(registro):
                 item = QtWidgets.QTableWidgetItem(str(valor))
                 self.ventas_view.table_ventas.setItem(fila, columna, item)
+
+        tabla= self.ventas_view.table_ventas
+        self.redimensionar_tabla(tabla)
 
 
     #Ingresar Nueva Venta
@@ -156,6 +162,9 @@ class VentasController():
                 item = QtWidgets.QTableWidgetItem(str(valor))
                 self.ventas_view.table_detalleVenta.setItem(fila, columna, item)
 
+        tabla= self.ventas_view.table_detalleVenta
+        self.redimensionar_tabla(tabla)
+
 
     #Mostrar Detalle de la Venta seleccionada
     def mostrar_detalleVentaSeleccionada(self):
@@ -175,6 +184,49 @@ class VentasController():
                 item = QtWidgets.QTableWidgetItem(str(valor))
                 self.ventas_view.table_detalleVentaSelec.setItem(fila, columna, item)
 
+        tabla= self.ventas_view.table_detalleVentaSelec
+        self.redimensionar_tabla(tabla)
+
+
+    #Filtrar Ventas por entre Fechas
+    def buscar_ventas_por_rango_de_fechas(self):
+    
+        fecha_inicial = self.ventas_view.dateEdit_inicial.date()
+        fecha_final = self.ventas_view.dateEdit_final.date()
+        
+        if fecha_inicial < fecha_final:
+            fecha_inicial_str = fecha_inicial.toString('yyyy-MM-dd')
+            fecha_final_str = fecha_final.toString('yyyy-MM-dd')
+
+            datos = self.ventas.getVentasEntreFechas(fecha_inicial_str,fecha_final_str)
+
+            num_filas = len(datos)
+            num_columnas = 3 
+            
+            self.ventas_view.table_ventas.setRowCount(num_filas)
+            self.ventas_view.table_ventas.setColumnCount(num_columnas)
+
+            self.ventas_view.label_total.setText("-")
+
+            for fila, registro in enumerate(datos):
+                for columna, valor in enumerate(registro):
+                    item = QtWidgets.QTableWidgetItem(str(valor))
+                    self.ventas_view.table_ventas.setItem(fila, columna, item)
+
+            tabla= self.ventas_view.table_venta
+            self.redimensionar_tabla(tabla)
+
+
+        else:
+            mensaje= "La fecha inicial es mayor a la fecha final"
+            self.mensaje_advertencia(mensaje)
+
+
+    #Redimensionar la Tabla
+    def redimensionar_tabla(self,tabla):
+        header = tabla.horizontalHeader()
+        header.setSectionResizeMode(QtWidgets.QHeaderView.ResizeToContents)
+        header.setSectionResizeMode(0,QtWidgets.QHeaderView.Interactive)
 
     #Caja de Mensajes
     def mensaje_advertencia(self,mensaje):

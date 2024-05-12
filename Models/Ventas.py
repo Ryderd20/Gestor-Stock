@@ -56,3 +56,14 @@ class Ventas():
         cursor.execute(sql)
         self.control.commit()
         cursor.close()
+
+
+    #Obtener Ventas entre Fechas
+    def getVentasEntreFechas(self,fecha_inicial,fecha_final):
+        cursor = self.control.cursor()
+        sql = f""" SELECT * FROM Tabla_Ventas WHERE Fecha BETWEEN '{fecha_inicial}' AND '{fecha_final}' """
+        cursor.execute(sql)
+        ventas_en_rango = cursor.fetchall()
+        cursor.close()
+
+        return ventas_en_rango
