@@ -61,7 +61,6 @@ class VentanaPrincipal(QMainWindow):
 
         #Ingresar nueva Venta
         self.btn_nuevaVenta.clicked.connect(lambda:self.stackedWidget.setCurrentWidget(self.page_nueva_venta))
-        self.btn_nuevaVenta.clicked.connect(self.detalleVenta_controller.mostrar_stock)
         self.btn_nuevaVenta.clicked.connect(lambda:self.ventas_controller.nueva_venta(self.getFecha()))
 
         #Mostrar Detalle de Venta
@@ -77,11 +76,11 @@ class VentanaPrincipal(QMainWindow):
         #-------------------------------Detalle de Venta--------------------------
         #Agregar Producto a Detalle
         self.btn_agregar_detalleVenta.clicked.connect(self.ventas_controller.cargar_producto)
-        self.btn_agregar_detalleVenta.clicked.connect(self.detalleVenta_controller.mostrar_stock)
+        self.btn_agregar_detalleVenta.clicked.connect(self.ventas_controller.mostrar_stock)
 
         #Restar Producto a Detalle
         self.btn_restar_detalleVenta.clicked.connect(self.ventas_controller.restar_producto)
-        self.btn_restar_detalleVenta.clicked.connect(self.detalleVenta_controller.mostrar_stock)
+        self.btn_restar_detalleVenta.clicked.connect(self.ventas_controller.mostrar_stock)
 
         #Confirmar Venta
         self.btn_detalleVenta_confirmar.clicked.connect(lambda:self.stackedWidget.setCurrentWidget(self.page_ventas))
@@ -91,6 +90,9 @@ class VentanaPrincipal(QMainWindow):
         self.btn_detalleVenta_cancelar.clicked.connect(lambda:self.stackedWidget.setCurrentWidget(self.page_ventas))
         self.btn_detalleVenta_cancelar.clicked.connect(self.ventas_controller.cancelar_venta)
         self.btn_detalleVenta_cancelar.clicked.connect(self.ventas_controller.mostrar_ventas)
+
+        #Buscar los Productos en stock
+        self.btn_buscar_stockEnDetalle.clicked.connect(lambda:self.ventas_controller.buscar_producto_por_nombre())
 
 
         #-------------------------------Gestion de Stock---------------------------

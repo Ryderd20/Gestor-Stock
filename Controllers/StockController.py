@@ -114,21 +114,28 @@ class StockController():
     def buscar_producto_por_nombre(self):
         nombre_producto = self.stock_view.input_nombre_producto_buscar_stock.text().lower()
         
+        if not nombre_producto:
+            self.mostrar_productos()
+            self.mostrar_stock()
+            return
+        
         resultados_tabla_1 = []
         for fila in range(self.stock_view.table_stock_listaProductos.rowCount()):
             nombre_fila = self.stock_view.table_stock_listaProductos.item(fila, 1).text().lower()
             if nombre_producto in nombre_fila:
                 resultados_tabla_1.append([self.stock_view.table_stock_listaProductos.item(fila, columna).text() 
-                                        for columna in range(self.stock_view.table_stock_listaProductos.columnCount())])
-        
+                for columna in range(self.stock_view.table_stock_listaProductos.columnCount())])
+            
         resultados_tabla_2 = []
         for fila in range(self.stock_view.table_stock.rowCount()):
             nombre_fila = self.stock_view.table_stock.item(fila, 1).text().lower()
             if nombre_producto in nombre_fila:
                 resultados_tabla_2.append([self.stock_view.table_stock.item(fila, columna).text() 
-                                        for columna in range(self.stock_view.table_stock.columnCount())])
+                for columna in range(self.stock_view.table_stock.columnCount())])
         
         self.mostrar_resultados_busqueda(resultados_tabla_1, resultados_tabla_2)
+        
+        # Limpiar el campo de búsqueda después de mostrar resultados
         self.stock_view.input_nombre_producto_buscar_stock.clear()
 
 
@@ -148,11 +155,10 @@ class StockController():
                 item = QtWidgets.QTableWidgetItem(valor)
                 self.stock_view.table_stock.setItem(fila, columna, item)
 
-                tabla= self.stock_view.table_stock
-                self.redimensionar_tabla(tabla)
-
-                tabla= self.stock_view.table_stock_listaProductos
-                self.redimensionar_tabla(tabla)
+        tabla= self.stock_view.table_stock
+        self.redimensionar_tabla(tabla)
+        tabla= self.stock_view.table_stock_listaProductos
+        self.redimensionar_tabla(tabla)
 
 
     #Alertar la falta de Stock

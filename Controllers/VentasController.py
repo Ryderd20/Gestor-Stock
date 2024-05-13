@@ -23,6 +23,7 @@ class VentasController():
         self.detalleVenta = DetalleVenta(connection())
         self.stock = Stock(connection())
         self.productos= Productos(connection())
+
         self.ventas_view = view
     
 
@@ -48,6 +49,24 @@ class VentasController():
         tabla= self.ventas_view.table_ventas
         self.redimensionar_tabla(tabla)
 
+    
+    #Mostrar los productos en Stock
+    def mostrar_stock(self):
+        datos = self.stock.getStock()
+        num_filas = len(datos)
+        num_columnas = 4     
+        
+        self.ventas_view.table_venta_prodEnStock.setRowCount(num_filas)
+        self.ventas_view.table_venta_prodEnStock.setColumnCount(num_columnas)
+
+        for fila, registro in enumerate(datos):
+            for columna, valor in enumerate(registro):
+                item = QtWidgets.QTableWidgetItem(str(valor))
+                self.ventas_view.table_venta_prodEnStock.setItem(fila, columna, item)
+
+        tabla= self.ventas_view.table_venta_prodEnStock
+        self.redimensionar_tabla(tabla)
+
 
     #Ingresar Nueva Venta
     def nueva_venta(self,date):
@@ -55,6 +74,7 @@ class VentasController():
         self.codVenta = self.ventas.insertVenta(date,total)
         self.mostrar_detalleVenta(self.codVenta)
         self.ventas_view.label_codVenta.setText(str(self.codVenta))
+        self.mostrar_stock()
 
     #Cancelar la Venta
     def cancelar_venta(self):
@@ -186,6 +206,42 @@ class VentasController():
 
         tabla= self.ventas_view.table_detalleVentaSelec
         self.redimensionar_tabla(tabla)
+
+
+    #Buscar Stock por nombre
+    def buscar_producto_por_nombre(self):
+        nombre_producto = self.ventas_view.input_nombre_detalleVenta.text().lower()
+        
+        if not nombre_producto:
+            self.mostrar_stock()
+            return
+        
+        resultados_tabla = []
+        for fila in range(self.ventas_view.table_venta_prodEnStock.rowCount()):
+            nombre_fila = self.ventas_view.table_venta_prodEnStock.item(fila, 1).text().lower()
+            if nombre_producto in nombre_fila:
+                resultados_tabla.append([self.ventas_view.table_venta_prodEnStock.item(fila, columna).text() 
+                for columna in range(self.ventas_view.table_venta_prodEnStock.columnCount())])
+            
+
+        self.mostrar_resultados_busqueda(resultados_tabla)
+        
+        self.ventas_view.input_nombre_detalleVenta.clear()
+
+
+    #Mostrar Resultados
+    def mostrar_resultados_busqueda(self, resultados_tabla,):
+
+        self.ventas_view.table_venta_prodEnStock.setRowCount(len(resultados_tabla))
+
+        for fila, resultado in enumerate(resultados_tabla):
+            for columna, valor in enumerate(resultado):
+                item = QtWidgets.QTableWidgetItem(valor)
+                self.ventas_view.table_venta_prodEnStock.setItem(fila, columna, item)
+
+        tabla= self.ventas_view.table_venta_prodEnStock
+        self.redimensionar_tabla(tabla)
+
 
 
     #Filtrar Ventas por entre Fechas
