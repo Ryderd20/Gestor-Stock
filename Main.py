@@ -41,8 +41,10 @@ class VentanaPrincipal(QMainWindow):
 
         #Ir a Gestion de Stock
         self.btn_gestionstock.clicked.connect(lambda:self.stackedWidget.setCurrentWidget(self.page_stock))
-        self.btn_gestionstock.clicked.connect(self.stock_controller.mostrar_productos)
         self.btn_gestionstock.clicked.connect(self.stock_controller.mostrar_stock)
+
+        #Ir a Gestion de Compras
+        self.btn_compras.clicked.connect(lambda:self.stackedWidget.setCurrentWidget(self.page_compras))
         
         #Ir a Gestion de Productos
         self.btn_productos.clicked.connect(lambda:self.stackedWidget.setCurrentWidget(self.page_productos))
@@ -97,10 +99,12 @@ class VentanaPrincipal(QMainWindow):
 
         #-------------------------------Gestion de Stock---------------------------
 
-        self.btn_agregar_stock.clicked.connect(self.stock_controller.cargar_producto_stock)
         self.btn_eliminar_stock.clicked.connect(self.stock_controller.restar_cantidad_producto)
         self.btn_buscar_prodStock_porNom.clicked.connect(self.stock_controller.buscar_producto_por_nombre)
 
+
+        #--------------------------------Gestion de Compras-----------------------------------------
+        self.btn_nuevaCompra.clicked.connect(lambda:self.stackedWidget.setCurrentWidget(self.page_nueva_compra))
 
 
         
