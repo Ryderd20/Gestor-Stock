@@ -41,14 +41,15 @@ class ProveedoresController():
     def agregar_proveedor(self):
         self.proveedores_view.signal_proveedor_nuevo.setText("Espacios obligatorios*")
 
+        cuil = self.proveedores_view.input_cuil_proveedor_nuevo.text()
         nombre = self.proveedores_view.input_nombre_proveedor_nuevo.text()
         telefono = self.proveedores_view.input_telefono_proveedor_nuevo.text()
         email = self.proveedores_view.input_email_proveedor_nuevo.text()
         direccion = self.proveedores_view.input_direccion_proveedor_nuevo.text()
         descripcion = self.proveedores_view.input_descripcion_proveedor_nuevo.text()
 
-        if nombre !="" and telefono !="" and email !="" and direccion !="":
-            self.proveedores.insertProveedor(nombre,telefono,email,direccion,descripcion)
+        if cuil !="" and nombre !="" and telefono !="" and email !="" and direccion !="":
+            self.proveedores.insertProveedor(cuil,nombre,telefono,email,direccion,descripcion)
             self.limpiar_proveedor_nuevo()
             self.proveedores_view.signal_proveedor_nuevo.setText("Registrado con exito")
             self.mostrar_proveedores()
@@ -107,6 +108,7 @@ class ProveedoresController():
 
     #Limpiar espacios para un nuevo Proveedor
     def limpiar_proveedor_nuevo(self):
+            self.proveedores_view.input_cuil_proveedor_nuevo.clear()
             self.proveedores_view.input_nombre_proveedor_nuevo.clear()
             self.proveedores_view.input_telefono_proveedor_nuevo.clear()
             self.proveedores_view.input_email_proveedor_nuevo.clear()

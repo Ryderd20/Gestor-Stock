@@ -15,6 +15,7 @@ class Proveedores():
         cursor = self.control.cursor()
         sql = """ CREATE TABLE IF NOT EXISTS "Tabla_Proveedores" (
 	    "CodProv"	INTEGER,
+        "Cuil"	TEXT,
 	    "Nombre"	TEXT,
 	    "Telefono"	TEXT,
 	    "Mail"	TEXT,
@@ -46,9 +47,9 @@ class Proveedores():
             return registro
 
     #Agregar nuevo Proveedor
-    def insertProveedor(self,nombre,telefono,mail,direccion,descripcion):
+    def insertProveedor(self,cuil,nombre,telefono,mail,direccion,descripcion):
         cursor = self.control.cursor()
-        sql = """INSERT INTO Tabla_Proveedores (Nombre,Telefono,Mail,Direccion,Descripcion) VALUES ("{}","{}","{}","{}","{}")""".format(nombre,telefono,mail,direccion,descripcion)
+        sql = """INSERT INTO Tabla_Proveedores (Cuil,Nombre,Telefono,Mail,Direccion,Descripcion) VALUES ("{}","{}","{}","{}","{}","{}")""".format(cuil,nombre,telefono,mail,direccion,descripcion)
         cursor.execute(sql)
         self.control.commit()
 

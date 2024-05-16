@@ -3003,6 +3003,11 @@ QPushButton :pressed {
                 </column>
                 <column>
                  <property name="text">
+                  <string>Cuil</string>
+                 </property>
+                </column>
+                <column>
+                 <property name="text">
                   <string>Nombre</string>
                  </property>
                 </column>
