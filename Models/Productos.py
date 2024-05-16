@@ -4,31 +4,27 @@ import os
 myDir = os.getcwd()
 sys.path.append(myDir)
 
-
 class Productos():
-
-
     #-----------Constructor----------------
-    def __init__(self,connection):
+    def __init__(self, connection):
         self.control = connection
 
-        
         #-------------CREAR LA TABLA--------------
         cursor = self.control.cursor()
         sql = """CREATE TABLE IF NOT EXISTS "Tabla_Productos" (
-            "CodProd"	INTEGER NOT NULL,
-            "Nombre"	TEXT NOT NULL,
-            "Proveedor"	TEXT NOT NULL,
-            "Precio"	REAL NOT NULL,
-            "Descripcion"	TEXT NOT NULL,
+            "CodProd" INTEGER NOT NULL,
+            "Nombre" TEXT NOT NULL,
+            "Proveedor" TEXT NOT NULL,
+            "PrecioCompra" REAL NOT NULL,
+            "PrecioVenta" REAL NOT NULL,
+            "StockMin" INTEGER NOT NULL,
+            "Descripcion" TEXT NOT NULL,
             PRIMARY KEY("CodProd" AUTOINCREMENT)
         );"""
-
         cursor.execute(sql)
         self.control.commit()
-        
 
-    #Obtener lista de Productos
+    # Obtener lista de Productos
     def getProductos(self):
         cursor = self.control.cursor()
         sql = """SELECT * FROM Tabla_Productos"""
@@ -36,10 +32,9 @@ class Productos():
         registro = cursor.fetchall()
         cursor.close()
         return registro
-    
 
-    #Obtener Producto por Codigo
-    def getProductoCod(self,cod):
+    # Obtener Producto por Codigo
+    def getProductoCod(self, cod):
         cursor = self.control.cursor()
         sql = """SELECT * FROM Tabla_Productos WHERE CodProd = {}""".format(cod)
         cursor.execute(sql)
@@ -47,35 +42,31 @@ class Productos():
         cursor.close()
         if registro:
             return registro
-    
 
-    #Actualizar Producto
-    def updateProducto(self,cod,nombre,proveedor,precio,descripcion):
+    # Actualizar Producto
+    def updateProducto(self, cod, nombre, precioCompra, precioVenta, stockMin, descripcion):
         cursor = self.control.cursor()
-        sql = """UPDATE Tabla_Productos SET Nombre = "{}" , Proveedor = "{}" , Precio = "{}", Descripcion = "{}" WHERE CodProd = "{}" """.format(nombre,proveedor,precio,descripcion,cod)
+        sql = """UPDATE Tabla_Productos SET Nombre = "{}", PrecioCompra = "{}", PrecioVenta = "{}", StockMin = "{}", Descripcion = "{}" WHERE CodProd = "{}" """.format(nombre, precioCompra, precioVenta, stockMin, descripcion, cod)
         cursor.execute(sql)
         self.control.commit()
         cursor.close()
 
-
-    #Agregar Nuevo Producto
-    def insertProducto(self,nombre,proveedor,precio,descripcion):
+    # Agregar Nuevo Producto
+    def insertProducto(self, nombre, proveedor, precioCompra, precioVenta, stockMin, descripcion):
         cursor = self.control.cursor()
-        sql = """INSERT INTO Tabla_Productos (Nombre,Proveedor,Precio,Descripcion) VALUES ("{}","{}","{}","{}")""".format(nombre,proveedor,precio,descripcion)
+        sql = """INSERT INTO Tabla_Productos (Nombre, Proveedor, PrecioCompra, PrecioVenta, StockMin, Descripcion) VALUES ("{}", "{}", "{}", "{}", "{}", "{}")""".format(nombre, proveedor, precioCompra, precioVenta, stockMin, descripcion)
         cursor.execute(sql)
         self.control.commit()
 
-
-    #Eliminar un Producto
-    def deleteProducto(self,cod):
+    # Eliminar un Producto
+    def deleteProducto(self, cod):
         cursor = self.control.cursor()
         sql = """DELETE FROM Tabla_Productos WHERE CodProd = {}""".format(cod)
         cursor.execute(sql)
         self.control.commit()
-    
-    
-    #Obetener Productos por Nombre
-    def getProductoNom(self,nombre):
+
+    # Obtener Productos por Nombre
+    def getProductoNom(self, nombre):
         cursor = self.control.cursor()
         sql = """SELECT * FROM Tabla_Productos WHERE LOWER(Nombre) LIKE LOWER('{}%')""".format(nombre)
         cursor.execute(sql)
@@ -83,14 +74,13 @@ class Productos():
         if registro:
             return registro
 
-
-    #Obtener Precio de Producto
-    def getPrecioProducto(self,cod):
+    # Obtener Precio de Producto
+    def getPrecioProducto(self, cod):
         cursor = self.control.cursor()
-        sql = """SELECT Precio FROM Tabla_Productos WHERE CodProd = {}""".format(cod)
+        sql = """SELECT PrecioCompra FROM Tabla_Productos WHERE CodProd = {}""".format(cod)
         cursor.execute(sql)
         precio = cursor.fetchone()
         self.control.commit()
         return precio
-    
+
 

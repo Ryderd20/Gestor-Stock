@@ -184,11 +184,11 @@ class VentanaPrincipal(QMainWindow):
             msg.exec_()
 
 
-    def validarProductoModificado(self):        
+    def validarProductoModificado(self):  
+              
         if self.productos_controller.modificar_producto():
             self.stackedWidget.setCurrentWidget(self.page_productos)
-        else:
-            self.signal_producto_modificado.setText("Hay espacios obligatorios vacios")     
+    
 
     def getFecha(self):
         fecha = QDate.currentDate()
