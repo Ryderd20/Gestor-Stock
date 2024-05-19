@@ -1771,7 +1771,17 @@ QPushButton :pressed {
                 </column>
                 <column>
                  <property name="text">
-                  <string>Precio de Venta</string>
+                  <string>Precio Venta</string>
+                 </property>
+                </column>
+                <column>
+                 <property name="text">
+                  <string>Precio Compra</string>
+                 </property>
+                </column>
+                <column>
+                 <property name="text">
+                  <string>Proveedor</string>
                  </property>
                 </column>
                 <column>
@@ -2695,6 +2705,11 @@ QPushButton :pressed {
                     <column>
                      <property name="text">
                       <string>Producto</string>
+                     </property>
+                    </column>
+                    <column>
+                     <property name="text">
+                      <string>Precio Compra</string>
                      </property>
                     </column>
                     <column>

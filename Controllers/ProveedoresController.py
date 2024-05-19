@@ -147,7 +147,12 @@ class ProveedoresController():
     def redimensionar_tabla(self,tabla):
         header = tabla.horizontalHeader()
         header.setSectionResizeMode(QtWidgets.QHeaderView.ResizeToContents)
-        header.setSectionResizeMode(0,QtWidgets.QHeaderView.Interactive)
+        header.setSectionResizeMode(0, QtWidgets.QHeaderView.Interactive)  
+        header.setSectionResizeMode(1, QtWidgets.QHeaderView.Interactive)      
+        header.setSectionResizeMode(2, QtWidgets.QHeaderView.Stretch)  
+        header.setSectionResizeMode(3, QtWidgets.QHeaderView.Interactive)  
+        header.setSectionResizeMode(4, QtWidgets.QHeaderView.Interactive)  
+        header.setSectionResizeMode(5, QtWidgets.QHeaderView.Interactive) 
 
 
     #Caja de Mensajes

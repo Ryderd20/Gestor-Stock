@@ -87,6 +87,5 @@ class DetalleVenta():
         sql = """SELECT Cantidad FROM Tabla_DetalleVenta WHERE CodVen = {} AND CodProd = {}""".format(codVen,codProd)
         cursor.execute(sql)
         registro = cursor.fetchone()
-        print(registro)
         cursor.close()
         return registro

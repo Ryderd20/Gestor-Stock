@@ -116,13 +116,13 @@ class VentasController():
                         self.en_detalle = self.detalleVenta.getInDetalle(self.codVenta, codItem)
 
                         if self.en_detalle:
-                            cantidad_actual = float(self.en_detalle[0]) 
+                            cantidad_actual = int(self.en_detalle[0]) 
                             nueva_cantidad = cantidad_actual + cantidad_a_agregar
-                            subtotal = self.productos.getPrecioProducto(codItem)[0] * nueva_cantidad
+                            subtotal = self.productos.getPrecioVentaProducto(codItem)[0] * nueva_cantidad
                             self.detalleVenta.updateDetalle(self.codVenta, codItem, nueva_cantidad, subtotal)
                         else:
                             nombre_producto = self.productos.getProductoCod(codItem)[1] #Nombre del Producto
-                            subtotal = self.productos.getPrecioProducto(codItem)[0] * cantidad_a_agregar
+                            subtotal = self.productos.getPrecioVentaProducto(codItem)[0] * cantidad_a_agregar
                             self.detalleVenta.insertDetalle(self.codVenta, codItem, nombre_producto, cantidad_a_agregar, subtotal)
 
                         total = self.detalleVenta.getDetalleTotal(self.codVenta)[0]

@@ -27,7 +27,44 @@ class Productos():
     # Obtener lista de Productos
     def getProductos(self):
         cursor = self.control.cursor()
-        sql = """SELECT * FROM Tabla_Productos"""
+        sql = """SELECT * FROM Tabla_Productos ORDER BY Nombre"""
+        cursor.execute(sql)
+        registro = cursor.fetchall()
+        cursor.close()
+        return registro
+    
+    # Obtener lista simple de todos los Productos
+    def getProductosProveedorNulo(self):
+        cursor = self.control.cursor()
+        sql = """SELECT CodProd, Nombre, PrecioCompra,Descripcion FROM Tabla_Productos ORDER BY Nombre"""
+        cursor.execute(sql)
+        registro = cursor.fetchall()
+        cursor.close()
+        return registro
+    
+    # Buscar Producto de todos los Proveedores
+    def getProductosProveedorNuloNombre(self,nombre):
+        cursor = self.control.cursor()
+        sql = """SELECT CodProd, Nombre, PrecioCompra,Descripcion FROM Tabla_Productos WHERE LOWER(Nombre) LIKE LOWER('{}%')""".format(nombre)
+        cursor.execute(sql)
+        registro = cursor.fetchall()
+        cursor.close()
+        return registro
+
+
+    # Obtener lista simple de Productos de un Proveedor
+    def getProductosProveedor(self,proveedor):
+        cursor = self.control.cursor()
+        sql = """SELECT CodProd, Nombre,PrecioCompra,Descripcion FROM Tabla_Productos WHERE Proveedor = '{}'ORDER BY Nombre""".format(proveedor)
+        cursor.execute(sql)
+        registro = cursor.fetchall()
+        cursor.close()
+        return registro
+    
+    # Buscar Productos de un Proveedor 
+    def getProductosProveedorNombre(self,proveedor,nombre):
+        cursor = self.control.cursor()
+        sql = """SELECT CodProd, Nombre,PrecioCompra,Descripcion FROM Tabla_Productos WHERE Proveedor = '{}' AND LOWER(Nombre) LIKE LOWER('{}%')""".format(proveedor,nombre)
         cursor.execute(sql)
         registro = cursor.fetchall()
         cursor.close()
@@ -74,13 +111,24 @@ class Productos():
         if registro:
             return registro
 
-    # Obtener Precio de Producto
-    def getPrecioProducto(self, cod):
+    # Obtener Precio Venta de Producto
+    def getPrecioVentaProducto(self, cod):
+        cursor = self.control.cursor()
+        sql = """SELECT PrecioVenta FROM Tabla_Productos WHERE CodProd = {}""".format(cod)
+        cursor.execute(sql)
+        precio = cursor.fetchone()
+        self.control.commit()
+        return precio
+    
+    # Obtener Precio Compra de Producto
+    def getPrecioCompraProducto(self, cod):
         cursor = self.control.cursor()
         sql = """SELECT PrecioCompra FROM Tabla_Productos WHERE CodProd = {}""".format(cod)
         cursor.execute(sql)
         precio = cursor.fetchone()
         self.control.commit()
         return precio
+    
+
 
 

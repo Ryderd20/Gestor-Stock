@@ -26,7 +26,7 @@ class Stock():
     #Obtener todos los Productos en Stock
     def getStock(self):
         cursor = self.control.cursor()
-        sql = """SELECT s.CodStock, p.Nombre, s.Cantidad, p.Precio, p.Descripcion FROM Tabla_Stock s, Tabla_Productos p WHERE s.CodStock = p.CodProd"""
+        sql = """SELECT s.CodStock, p.Nombre, s.Cantidad, p.PrecioVenta, p.PrecioCompra, p.Proveedor, p.Descripcion FROM Tabla_Stock s, Tabla_Productos p WHERE s.CodStock = p.CodProd ORDER BY p.Nombre"""
         cursor.execute(sql)
         registro = cursor.fetchall()
         cursor.close()
@@ -93,7 +93,7 @@ class Stock():
         cursor = self.control.cursor()
         sql = """SELECT Cantidad FROM Tabla_Stock WHERE CodStock = "{}" """.format(codStock)
         cursor.execute(sql)
-        registro = cursor.fetchone()
+        cantidad = cursor.fetchone()
         self.control.commit()
         cursor.close()
-        return registro
+        return cantidad if cantidad else (0,)
