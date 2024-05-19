@@ -89,6 +89,7 @@ class VentanaPrincipal(QMainWindow):
         #Confirmar Venta
         self.btn_detalleVenta_confirmar.clicked.connect(lambda:self.stackedWidget.setCurrentWidget(self.page_ventas))
         self.btn_detalleVenta_confirmar.clicked.connect(self.ventas_controller.mostrar_ventas)
+        self.btn_detalleVenta_confirmar.clicked.connect(self.stock_controller.mostrar_alerta_stock_bajo)
 
         #Cancelar Venta
         self.btn_detalleVenta_cancelar.clicked.connect(lambda:self.stackedWidget.setCurrentWidget(self.page_ventas))
@@ -101,8 +102,11 @@ class VentanaPrincipal(QMainWindow):
 
         #-------------------------------Gestion de Stock---------------------------
 
-        self.btn_eliminar_stock.clicked.connect(self.stock_controller.restar_cantidad_producto)
+        #Buscar Producto en Stock
         self.btn_buscar_prodStock_porNom.clicked.connect(self.stock_controller.buscar_producto_por_nombre)
+
+        #Restar de Stock
+        self.btn_eliminar_stock.clicked.connect(self.stock_controller.restar_cantidad_producto)
 
 
         #--------------------------------Gestion de Compras-----------------------------------------

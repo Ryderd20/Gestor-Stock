@@ -47,7 +47,11 @@ class VentasController():
                 self.ventas_view.table_ventas.setItem(fila, columna, item)
 
         tabla= self.ventas_view.table_ventas
-        self.redimensionar_tabla(tabla)
+        header = tabla.horizontalHeader()
+        header.setSectionResizeMode(QtWidgets.QHeaderView.ResizeToContents)
+        header.setSectionResizeMode(0,QtWidgets.QHeaderView.Interactive)
+        header.setSectionResizeMode(1,QtWidgets.QHeaderView.Stretch)
+        header.setSectionResizeMode(2,QtWidgets.QHeaderView.Stretch)
 
     
     #Mostrar los productos en Stock
@@ -65,7 +69,12 @@ class VentasController():
                 self.ventas_view.table_venta_prodEnStock.setItem(fila, columna, item)
 
         tabla= self.ventas_view.table_venta_prodEnStock
-        self.redimensionar_tabla(tabla)
+        header = tabla.horizontalHeader()
+        header.setSectionResizeMode(QtWidgets.QHeaderView.ResizeToContents)
+        header.setSectionResizeMode(0,QtWidgets.QHeaderView.Interactive)
+        header.setSectionResizeMode(1,QtWidgets.QHeaderView.Stretch)
+        header.setSectionResizeMode(2,QtWidgets.QHeaderView.Interactive)
+        header.setSectionResizeMode(3,QtWidgets.QHeaderView.Stretch)
 
 
     #Ingresar Nueva Venta
@@ -149,7 +158,7 @@ class VentasController():
 
                 if cantidadDetalle >= resta:
                     nuevaCantidad = cantidadDetalle - resta
-                    subtotal = self.productos.getPrecioProducto(codProd)[0] * nuevaCantidad
+                    subtotal = self.productos.getPrecioVentaProducto(codProd)[0] * nuevaCantidad
 
                     self.detalleVenta.updateDetalle(self.codVenta, codProd, nuevaCantidad, subtotal)
                     self.mostrar_detalleVenta(self.codVenta)
@@ -183,7 +192,12 @@ class VentasController():
                 self.ventas_view.table_detalleVenta.setItem(fila, columna, item)
 
         tabla= self.ventas_view.table_detalleVenta
-        self.redimensionar_tabla(tabla)
+        header = tabla.horizontalHeader()
+        header.setSectionResizeMode(QtWidgets.QHeaderView.ResizeToContents)
+        header.setSectionResizeMode(0,QtWidgets.QHeaderView.Interactive)
+        header.setSectionResizeMode(1,QtWidgets.QHeaderView.Stretch)
+        header.setSectionResizeMode(2,QtWidgets.QHeaderView.Interactive)
+        header.setSectionResizeMode(3,QtWidgets.QHeaderView.Interactive)
 
 
     #Mostrar Detalle de la Venta seleccionada
@@ -205,7 +219,12 @@ class VentasController():
                 self.ventas_view.table_detalleVentaSelec.setItem(fila, columna, item)
 
         tabla= self.ventas_view.table_detalleVentaSelec
-        self.redimensionar_tabla(tabla)
+        header = tabla.horizontalHeader()
+        header.setSectionResizeMode(QtWidgets.QHeaderView.ResizeToContents)
+        header.setSectionResizeMode(0,QtWidgets.QHeaderView.Interactive)
+        header.setSectionResizeMode(1,QtWidgets.QHeaderView.Stretch)
+        header.setSectionResizeMode(2,QtWidgets.QHeaderView.Interactive)
+        header.setSectionResizeMode(3,QtWidgets.QHeaderView.Interactive)
 
 
     #Buscar Stock por nombre
@@ -240,7 +259,6 @@ class VentasController():
                 self.ventas_view.table_venta_prodEnStock.setItem(fila, columna, item)
 
         tabla= self.ventas_view.table_venta_prodEnStock
-        self.redimensionar_tabla(tabla)
 
 
 
@@ -270,7 +288,7 @@ class VentasController():
                     self.ventas_view.table_ventas.setItem(fila, columna, item)
 
             tabla= self.ventas_view.table_ventas
-            self.redimensionar_tabla(tabla)
+            
 
 
         else:
@@ -278,11 +296,7 @@ class VentasController():
             self.mensaje_advertencia(mensaje)
 
 
-    #Redimensionar la Tabla
-    def redimensionar_tabla(self,tabla):
-        header = tabla.horizontalHeader()
-        header.setSectionResizeMode(QtWidgets.QHeaderView.ResizeToContents)
-        header.setSectionResizeMode(0,QtWidgets.QHeaderView.Interactive)
+
 
     #Caja de Mensajes
     def mensaje_advertencia(self,mensaje):

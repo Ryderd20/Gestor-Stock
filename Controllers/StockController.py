@@ -60,12 +60,15 @@ class StockController():
         return contraseña == contraseña_correcta
 
     def restar_cantidad_producto(self):
-        contraseña, ok = self.solicitar_contraseña(self.stock_view)
-        
-        if ok:
-            if self.validar_contraseña(contraseña):
-                
-                if self.stock_view.table_stock.currentRow() != -1:
+
+        if self.stock_view.table_stock.currentRow() != -1:
+
+            contraseña, ok = self.solicitar_contraseña(self.stock_view)
+            
+            if ok:
+                if self.validar_contraseña(contraseña):
+                    
+                    
                     item = self.stock_view.table_stock.item(self.stock_view.table_stock.currentRow(), 0).text()
 
                     if self.stock_view.spinBox_Restar.value() > 0:
@@ -79,13 +82,14 @@ class StockController():
 
                             self.stock.updateStock(item, nueva_cantidad)
                             self.mostrar_stock()
-                    else:
-                        mensaje = "Debe seleccionar un Producto en Stock"
-                        self.mensaje_advertencia(mensaje)
+                    
+                else:
+                    QMessageBox.warning(self.stock_view, 'Error', 'Contraseña incorrecta.')
             else:
-                QMessageBox.warning(self.stock_view, 'Error', 'Contraseña incorrecta.')
+                QMessageBox.information(self.stock_view, 'Cancelado', 'Operación cancelada.')
         else:
-            QMessageBox.information(self.stock_view, 'Cancelado', 'Operación cancelada.')
+            mensaje = "Debe seleccionar un Producto en Stock"
+            self.mensaje_advertencia(mensaje)
 
                 
     #Buscar en Stock y Productos por nombre
@@ -93,50 +97,31 @@ class StockController():
         nombre_producto = self.stock_view.input_nombre_producto_buscar_stock.text().lower()
         
         if not nombre_producto:
-            self.mostrar_productos()
             self.mostrar_stock()
             return
-        
-        resultados_tabla_1 = []
-        for fila in range(self.stock_view.table_stock_listaProductos.rowCount()):
-            nombre_fila = self.stock_view.table_stock_listaProductos.item(fila, 1).text().lower()
-            if nombre_producto in nombre_fila:
-                resultados_tabla_1.append([self.stock_view.table_stock_listaProductos.item(fila, columna).text() 
-                for columna in range(self.stock_view.table_stock_listaProductos.columnCount())])
-            
-        resultados_tabla_2 = []
+                    
+        resultados_tabla = []
         for fila in range(self.stock_view.table_stock.rowCount()):
             nombre_fila = self.stock_view.table_stock.item(fila, 1).text().lower()
             if nombre_producto in nombre_fila:
-                resultados_tabla_2.append([self.stock_view.table_stock.item(fila, columna).text() 
+                resultados_tabla.append([self.stock_view.table_stock.item(fila, columna).text() 
                 for columna in range(self.stock_view.table_stock.columnCount())])
         
-        self.mostrar_resultados_busqueda(resultados_tabla_1, resultados_tabla_2)
+        self.mostrar_resultados_busqueda(resultados_tabla)
         
         # Limpiar el campo de búsqueda después de mostrar resultados
         self.stock_view.input_nombre_producto_buscar_stock.clear()
 
 
     #Mostrar resultado de busqueda
-    def mostrar_resultados_busqueda(self, resultados_tabla_1, resultados_tabla_2):
-
-        self.stock_view.table_stock_listaProductos.setRowCount(len(resultados_tabla_1))
-
-        for fila, resultado in enumerate(resultados_tabla_1):
-            for columna, valor in enumerate(resultado):
-                item = QtWidgets.QTableWidgetItem(valor)
-                self.stock_view.table_stock_listaProductos.setItem(fila, columna, item)
+    def mostrar_resultados_busqueda(self,resultados_tabla):
         
-        self.stock_view.table_stock.setRowCount(len(resultados_tabla_2))
-        for fila, resultado in enumerate(resultados_tabla_2):
+        self.stock_view.table_stock.setRowCount(len(resultados_tabla))
+        for fila, resultado in enumerate(resultados_tabla):
             for columna, valor in enumerate(resultado):
                 item = QtWidgets.QTableWidgetItem(valor)
                 self.stock_view.table_stock.setItem(fila, columna, item)
 
-        tabla= self.stock_view.table_stock
-        self.redimensionar_tabla(tabla)
-        tabla= self.stock_view.table_stock_listaProductos
-        self.redimensionar_tabla(tabla)
 
 
     #Alertar la falta de Stock

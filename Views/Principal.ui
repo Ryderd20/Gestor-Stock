@@ -637,7 +637,7 @@ QPushButton :pressed {
              <string notr="true"/>
             </property>
             <property name="currentIndex">
-             <number>6</number>
+             <number>0</number>
             </property>
             <widget class="QWidget" name="page">
              <layout class="QVBoxLayout" name="verticalLayout_20">
@@ -1372,7 +1372,14 @@ QPushButton :pressed {
                       </widget>
                      </item>
                      <item>
-                      <widget class="QSpinBox" name="spinBox_agregarDetalle"/>
+                      <widget class="QSpinBox" name="spinBox_agregarDetalle">
+                       <property name="minimum">
+                        <number>1</number>
+                       </property>
+                       <property name="maximum">
+                        <number>100</number>
+                       </property>
+                      </widget>
                      </item>
                     </layout>
                    </item>
@@ -1418,7 +1425,14 @@ QPushButton :pressed {
                       </widget>
                      </item>
                      <item>
-                      <widget class="QSpinBox" name="spinBox_restarDetalle"/>
+                      <widget class="QSpinBox" name="spinBox_restarDetalle">
+                       <property name="minimum">
+                        <number>1</number>
+                       </property>
+                       <property name="maximum">
+                        <number>100</number>
+                       </property>
+                      </widget>
                      </item>
                     </layout>
                    </item>
@@ -2590,7 +2604,14 @@ QPushButton :pressed {
                       </widget>
                      </item>
                      <item>
-                      <widget class="QSpinBox" name="spinBox_agregarDetalleCompra"/>
+                      <widget class="QSpinBox" name="spinBox_agregarDetalleCompra">
+                       <property name="minimum">
+                        <number>1</number>
+                       </property>
+                       <property name="maximum">
+                        <number>100</number>
+                       </property>
+                      </widget>
                      </item>
                     </layout>
                    </item>
@@ -2636,7 +2657,14 @@ QPushButton :pressed {
                       </widget>
                      </item>
                      <item>
-                      <widget class="QSpinBox" name="spinBox_restarDetalleCompra"/>
+                      <widget class="QSpinBox" name="spinBox_restarDetalleCompra">
+                       <property name="minimum">
+                        <number>1</number>
+                       </property>
+                       <property name="maximum">
+                        <number>100</number>
+                       </property>
+                      </widget>
                      </item>
                     </layout>
                    </item>
