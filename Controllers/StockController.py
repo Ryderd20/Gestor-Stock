@@ -27,7 +27,7 @@ class StockController():
     def mostrar_stock(self):
         datos = self.stock.getStock()
         num_filas = len(datos)
-        num_columnas = 5
+        num_columnas = 7
         
         self.stock_view.table_stock.setRowCount(num_filas)
         self.stock_view.table_stock.setColumnCount(num_columnas)
@@ -38,54 +38,17 @@ class StockController():
                 self.stock_view.table_stock.setItem(fila, columna, item)
 
         tabla= self.stock_view.table_stock
-        self.redimensionar_tabla(tabla)
+        header = tabla.horizontalHeader()
+        header.setSectionResizeMode(QtWidgets.QHeaderView.ResizeToContents)
+        header.setSectionResizeMode(0,QtWidgets.QHeaderView.Interactive)
+        header.setSectionResizeMode(1,QtWidgets.QHeaderView.Stretch)
+        header.setSectionResizeMode(2,QtWidgets.QHeaderView.Interactive)
+        header.setSectionResizeMode(3,QtWidgets.QHeaderView.Interactive)
+        header.setSectionResizeMode(4,QtWidgets.QHeaderView.Interactive)
+        header.setSectionResizeMode(5,QtWidgets.QHeaderView.Stretch)
+        header.setSectionResizeMode(6,QtWidgets.QHeaderView.Stretch)
 
 
-        
-        
-    #Mostrar lista de Productos
-    def mostrar_productos(self):
-        datos = self.stock.getProductos()
-        num_filas = len(datos)
-        num_columnas = 4
-        
-        self.stock_view.table_stock_listaProductos.setRowCount(num_filas)
-        self.stock_view.table_stock_listaProductos.setColumnCount(num_columnas)
-
-        for fila, registro in enumerate(datos):
-            for columna, valor in enumerate(registro):
-                item = QtWidgets.QTableWidgetItem(str(valor))
-                self.stock_view.table_stock_listaProductos.setItem(fila, columna, item)
-        
- 
-        tabla= self.stock_view.table_stock_listaProductos
-        self.redimensionar_tabla(tabla)
-        
-    
-    #Agregar Producto al Stock
-    def cargar_producto_stock(self):
-        
-        if self.stock_view.table_stock_listaProductos.currentRow() != -1:
-            codItem = self.stock_view.table_stock_listaProductos.item(self.stock_view.table_stock_listaProductos.currentRow(), 0).text()
-            
-            if codItem is not None:
-                self.producto = self.productos.getProductoCod(codItem)
-                
-                if self.producto:
-                    self.en_stock = self.stock.getInStock(codItem)
-                    if self.en_stock:
-                        cantidad = int(self.en_stock[2]) + int(self.stock_view.spinBox_Agregar.value())
-                        self.stock.updateStock(codItem, cantidad)
-                        self.mostrar_stock()
-                        self.mostrar_productos()
-                    else:
-                        cantidad = int(self.stock_view.spinBox_Agregar.value())
-                        self.stock.insertProducto(codItem,cantidad)
-                        self.mostrar_stock()
-                        self.mostrar_productos()
-        else:
-            mensaje= "Debe seleccionar un Producto en la Lista de Productos"
-            self.mensaje_advertencia(mensaje)
 
     #Restar Producto del Stock
     def restar_cantidad_producto(self):
@@ -174,12 +137,6 @@ class StockController():
                 mensaje += f"Código: {stock[0]} | Cantidad: {stock[2]} | Nombre: {stock[1]} \n"
             self.mensaje_advertencia(mensaje)
 
-
-    #Redimensionar la Tabla
-    def redimensionar_tabla(self,tabla):
-        header = tabla.horizontalHeader()
-        header.setSectionResizeMode(QtWidgets.QHeaderView.ResizeToContents)
-        header.setSectionResizeMode(0,QtWidgets.QHeaderView.Interactive)
 
 
     #Caja de Mensajes
