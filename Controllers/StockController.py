@@ -3,7 +3,7 @@ import os
 myDir = os.getcwd()
 sys.path.append(myDir)
 
-
+from PyQt5.QtWidgets import QInputDialog, QLineEdit, QMessageBox
 from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QMessageBox
 from DataBase.Connection import connection
@@ -50,27 +50,42 @@ class StockController():
 
 
 
-    #Restar Producto del Stock
+    def solicitar_contraseña(self, parent):
+        contraseña, ok = QInputDialog.getText(parent, 'Contraseña de Administrador', 
+                                            'Ingrese la contraseña:', QLineEdit.Password)
+        return contraseña, ok
+
+    def validar_contraseña(self, contraseña):
+        contraseña_correcta = 'admin' 
+        return contraseña == contraseña_correcta
+
     def restar_cantidad_producto(self):
-
-        if self.stock_view.table_stock.currentRow() != -1:
-            item = self.stock_view.table_stock.item(self.stock_view.table_stock.currentRow(), 0).text()
+        contraseña, ok = self.solicitar_contraseña(self.stock_view)
         
-            if self.stock_view.spinBox_Restar.value() > 0:
-                self.producto = self.stock.getInStock(item)
+        if ok:
+            if self.validar_contraseña(contraseña):
                 
-                if self.producto:
-                    cantidad_actual = int(self.producto[2])
-                    cantidad_a_restar = int(self.stock_view.spinBox_Restar.value())
-                    
-                    nueva_cantidad = cantidad_actual - cantidad_a_restar
+                if self.stock_view.table_stock.currentRow() != -1:
+                    item = self.stock_view.table_stock.item(self.stock_view.table_stock.currentRow(), 0).text()
 
-                    self.stock.updateStock(item, nueva_cantidad)
-                    self.mostrar_stock()
-                    self.mostrar_productos()
+                    if self.stock_view.spinBox_Restar.value() > 0:
+                        self.producto = self.stock.getInStock(item)
+
+                        if self.producto:
+                            cantidad_actual = int(self.producto[2])
+                            cantidad_a_restar = int(self.stock_view.spinBox_Restar.value())
+
+                            nueva_cantidad = cantidad_actual - cantidad_a_restar
+
+                            self.stock.updateStock(item, nueva_cantidad)
+                            self.mostrar_stock()
+                    else:
+                        mensaje = "Debe seleccionar un Producto en Stock"
+                        self.mensaje_advertencia(mensaje)
+            else:
+                QMessageBox.warning(self.stock_view, 'Error', 'Contraseña incorrecta.')
         else:
-            mensaje= "Debe seleccionar un Producto en Stock"
-            self.mensaje_advertencia(mensaje)
+            QMessageBox.information(self.stock_view, 'Cancelado', 'Operación cancelada.')
 
                 
     #Buscar en Stock y Productos por nombre
@@ -128,13 +143,15 @@ class StockController():
     def mostrar_alerta_stock_bajo(self):
         productos_stock_bajo = []
         for stock in self.stock.getStock():
-            if stock[2] < 10:  # La cantidad está en el segundo índice
+            cantidad_disponible = stock[2]
+            stock_minimo = stock[7]  # Índice 7 corresponde a StockMin en la consulta SQL
+            if cantidad_disponible < stock_minimo:
                 productos_stock_bajo.append(stock)
 
         if productos_stock_bajo:
-            mensaje = "Los siguientes Productos estan escasos en Stock\n"
+            mensaje = "Los siguientes Productos están escasos en Stock:\n"
             for stock in productos_stock_bajo:
-                mensaje += f"Código: {stock[0]} | Cantidad: {stock[2]} | Nombre: {stock[1]} \n"
+                mensaje += f"Código: {stock[0]} | Cantidad Disponible: {stock[2]} | Stock Mínimo: {stock[7]} | Nombre: {stock[1]}\n"
             self.mensaje_advertencia(mensaje)
 
 

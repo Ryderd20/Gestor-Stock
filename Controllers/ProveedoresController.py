@@ -24,7 +24,7 @@ class ProveedoresController():
         datos = self.proveedores.getProveedores()
 
         num_filas = len(datos)
-        num_columnas = 6   
+        num_columnas = 7   
     
         self.proveedores_view.table_proveedores.setRowCount(num_filas)
         self.proveedores_view.table_proveedores.setColumnCount(num_columnas)
