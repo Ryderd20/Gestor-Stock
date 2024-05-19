@@ -66,11 +66,11 @@ class ProveedoresController():
             if item != None:
                 self.proveedor = self.proveedores.getProveedorCod(item)            
                 if self.proveedor:
-                    self.proveedores_view.input_nombre_proveedor_modificar.setText(self.proveedor[1])
-                    self.proveedores_view.input_telefono_proveedor_modificar.setText(self.proveedor[2])
-                    self.proveedores_view.input_email_proveedor_modificar.setText(self.proveedor[3])
-                    self.proveedores_view.input_direccion_proveedor_modificar.setText(self.proveedor[4])
-                    self.proveedores_view.input_descripcion_proveedor_modificar.setText(self.proveedor[5])
+                    self.proveedores_view.input_nombre_proveedor_modificar.setText(self.proveedor[2])
+                    self.proveedores_view.input_telefono_proveedor_modificar.setText(self.proveedor[3])
+                    self.proveedores_view.input_email_proveedor_modificar.setText(self.proveedor[4])
+                    self.proveedores_view.input_direccion_proveedor_modificar.setText(self.proveedor[5])
+                    self.proveedores_view.input_descripcion_proveedor_modificar.setText(self.proveedor[6])
 
 
     #Actualizar los datos de Proveedor
