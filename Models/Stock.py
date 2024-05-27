@@ -35,6 +35,17 @@ class Stock():
         cursor.close()
         return registro
     
+    def getStockVenta(self):
+        cursor = self.control.cursor()
+        sql = """SELECT s.CodStock, p.Nombre, s.Cantidad, p.PrecioVenta,  p.Descripcion
+             FROM Tabla_Stock s
+             INNER JOIN Tabla_Productos p ON s.CodStock = p.CodProd
+             ORDER BY p.Nombre"""
+        cursor.execute(sql)
+        registro = cursor.fetchall()
+        cursor.close()
+        return registro
+    
 
     #Obtener Producto en Stock
     def getInStock(self, cod):

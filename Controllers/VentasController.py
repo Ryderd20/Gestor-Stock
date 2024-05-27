@@ -56,9 +56,9 @@ class VentasController():
     
     #Mostrar los productos en Stock
     def mostrar_stock(self):
-        datos = self.stock.getStock()
+        datos = self.stock.getStockVenta()
         num_filas = len(datos)
-        num_columnas = 4     
+        num_columnas = 5     
         
         self.ventas_view.table_venta_prodEnStock.setRowCount(num_filas)
         self.ventas_view.table_venta_prodEnStock.setColumnCount(num_columnas)
@@ -72,9 +72,10 @@ class VentasController():
         header = tabla.horizontalHeader()
         header.setSectionResizeMode(QtWidgets.QHeaderView.ResizeToContents)
         header.setSectionResizeMode(0,QtWidgets.QHeaderView.Interactive)
-        header.setSectionResizeMode(1,QtWidgets.QHeaderView.Stretch)
+        header.setSectionResizeMode(1,QtWidgets.QHeaderView.Interactive)
         header.setSectionResizeMode(2,QtWidgets.QHeaderView.Interactive)
-        header.setSectionResizeMode(3,QtWidgets.QHeaderView.Stretch)
+        header.setSectionResizeMode(3,QtWidgets.QHeaderView.Interactive)
+        header.setSectionResizeMode(4,QtWidgets.QHeaderView.Stretch)
 
 
     #Ingresar Nueva Venta
