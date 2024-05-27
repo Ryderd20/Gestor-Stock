@@ -7,7 +7,7 @@ sys.path.append(myDir)
 
 from PyQt5.QtCore import QDate
 from PyQt5 import QtWidgets
-from PyQt5.QtWidgets import QMessageBox
+from PyQt5.QtWidgets import QMessageBox,QInputDialog, QLineEdit
 from DataBase.Connection import connection
 from Models.Ventas import Ventas
 from Models.DetalleVenta import DetalleVenta
@@ -91,15 +91,27 @@ class VentasController():
         self.ventas.deleteVenta(self.codVenta)
         self.detalleVenta.deleteDetalle(self.codVenta)
 
-    #Eliminar Venta
+    # Eliminar Venta
     def eliminar_venta_seleccionada(self):
         current_row = self.ventas_view.table_ventas.currentRow()
         if current_row != -1:
             codVen = self.ventas_view.table_ventas.item(current_row, 0).text()
-            if codVen:    
-                self.ventas.deleteVenta(codVen)
-                self.detalleVenta.deleteDetalle(codVen)
-                self.mostrar_ventas()
+            if codVen:
+                reply = QMessageBox.question(self.ventas_view, 'Confirmar Eliminación',
+                    f"¿Estás seguro de que deseas eliminar la venta?",
+                    QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
+                if reply == QMessageBox.Yes:
+                    # Pedir la contraseña de administrador
+                    password, ok = QInputDialog.getText(self.ventas_view, 'Contraseña',
+                        'Introduce la contraseña de administrador:',
+                        QLineEdit.Password)
+                    if ok and password == 'admin': 
+                        self.ventas.deleteVenta(codVen)
+                        self.detalleVenta.deleteDetalle(codVen)
+                        self.mostrar_ventas()
+                    else:
+                        mensaje = "Contraseña incorrecta. No se eliminó la venta."
+                        self.mensaje_advertencia(mensaje)
         else:
             mensaje = "Debes seleccionar una Venta"
             self.mensaje_advertencia(mensaje)

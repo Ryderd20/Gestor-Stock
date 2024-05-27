@@ -97,10 +97,15 @@ class ProveedoresController():
         if current_row != -1:
             item = self.proveedores_view.table_proveedores.item(current_row, 0).text()
             if item:
-                proveedor = self.proveedores.getProveedorCod(item)
-                if proveedor:
-                    self.proveedores.deleteProveedor(item)
-                    self.mostrar_proveedores()
+                # Mostrar el mensaje de confirmación
+                reply = QMessageBox.question(self.proveedores_view, 'Confirmar Eliminación',
+                                            f"¿Estás seguro de que deseas eliminar este proveedor?",
+                                            QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
+                if reply == QMessageBox.Yes:
+                    proveedor = self.proveedores.getProveedorCod(item)
+                    if proveedor:
+                        self.proveedores.deleteProveedor(item)
+                        self.mostrar_proveedores()
         else:
             mensaje = "Debes seleccionar un Proveedor"
             self.mensaje_advertencia(mensaje)

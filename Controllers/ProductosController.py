@@ -36,9 +36,11 @@ class ProductosController():
         tabla = self.prod_view.table_productos
         self.redimensionar_tabla(tabla)
 
+        self.prod_view.signal_nuevo_producto.setText("Espacios obligatorios*")
+
     # Agregar nuevo Producto
     def agregar_producto(self):
-        self.prod_view.signal_nuevo_producto.setText("Espacios obligatorios*")
+        
 
         nombre = self.prod_view.input_nombre_producto_nuevo.text()
         proveedor = self.prod_view.comboBox_nuevo_producto_listaProv.currentText()
@@ -67,10 +69,15 @@ class ProductosController():
         if current_row != -1:
             item = self.prod_view.table_productos.item(current_row, 0).text()
             if item:
-                producto = self.productos.getProductoCod(item)
-                if producto:
-                    self.productos.deleteProducto(item)
-                    self.mostrar_productos()
+                # Mostrar el mensaje de confirmación
+                reply = QMessageBox.question(self.prod_view, 'Confirmar Eliminación',
+                                            f"¿Estás seguro de que deseas eliminar este producto?",
+                                            QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
+                if reply == QMessageBox.Yes:
+                    producto = self.productos.getProductoCod(item)
+                    if producto:
+                        self.productos.deleteProducto(item)
+                        self.mostrar_productos()
         else:
             mensaje = "Debes seleccionar un Producto"
             self.mensaje_advertencia(mensaje)

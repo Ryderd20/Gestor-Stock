@@ -7,7 +7,7 @@ sys.path.append(myDir)
 
 from PyQt5.QtCore import QDate
 from PyQt5 import QtWidgets
-from PyQt5.QtWidgets import QMessageBox
+from PyQt5.QtWidgets import QMessageBox,QInputDialog, QLineEdit
 from DataBase.Connection import connection
 from Models.Compras import Compras
 from Models.DetalleCompra import DetalleCompra
@@ -103,15 +103,26 @@ class ComprasController():
         self.mostrar_productos_de_proveedor()
 
 
-    #Eliminar Compra
+    # Eliminar Compra
     def eliminar_compra_seleccionada(self):
         current_row = self.compras_view.table_compras.currentRow()
         if current_row != -1:
             codVen = self.compras_view.table_compras.item(current_row, 0).text()
-            if codVen:    
-                self.compras.deleteCompra(codVen)
-                self.detalleCompra.deleteDetalle(codVen)
-                self.mostrar_compras()
+            if codVen:
+                reply = QMessageBox.question(self.compras_view, 'Confirmar Eliminación',
+                    f"¿Estás seguro de que deseas eliminar la compra?",
+                    QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
+                if reply == QMessageBox.Yes:
+                    password, ok = QInputDialog.getText(self.compras_view, 'Contraseña',
+                        'Introduce la contraseña de administrador:',
+                        QLineEdit.Password)
+                    if ok and password == 'admin':  
+                        self.compras.deleteCompra(codVen)
+                        self.detalleCompra.deleteDetalle(codVen)
+                        self.mostrar_compras()
+                    else:
+                        mensaje = "Contraseña incorrecta. No se eliminó la compra."
+                        self.mensaje_advertencia(mensaje)
         else:
             mensaje = "Debes seleccionar una Compra"
             self.mensaje_advertencia(mensaje)
